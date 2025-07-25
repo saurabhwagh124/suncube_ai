@@ -5,6 +5,7 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
 import 'package:suncube_ai/view/login_screen.dart';
 import 'package:suncube_ai/widgets/benefits_section.dart';
+import 'package:suncube_ai/widgets/customized_nav_bar.dart';
 import 'package:suncube_ai/widgets/final_cta.dart';
 import 'package:suncube_ai/widgets/hero_section.dart';
 import 'package:suncube_ai/widgets/how_it_works.dart';
@@ -39,6 +40,10 @@ class _LandingPageState extends State<LandingPage> {
           ),
         ],
       ),
+      // bottomNavigationBar: CustomizedNavBar(selectedIndex: 0),
+      floatingActionButton: CustomizedNavBar(selectedIndex: 0),
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterFloat,
     );
   }
 }
