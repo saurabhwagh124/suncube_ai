@@ -1,7 +1,10 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -27,6 +30,13 @@ class _SplashScreenState extends State<SplashScreen>
       end: 1.5,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
     _controller.forward();
+
+    Future.delayed(Duration(seconds: 4), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+      );
+    });
   }
 
   @override
@@ -39,15 +49,11 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: RadialGradient(
             center: Alignment.center,
-            radius: 1.2,
-            colors: [
-              Color(0xFF0F1F17), // Inner: black-green core
-              Color(0xFF0B1B14), // Mid: very dark green
-              Color(0xFF0A1612), // Outer: deep desaturated green
-            ],
+            radius: 1.2.r,
+            colors: [Color(0xFF0F1F17), Color(0xFF0B1B14), Color(0xFF0A1612)],
             stops: [0.2, 0.6, 1.0],
           ),
         ),
@@ -62,28 +68,28 @@ class _SplashScreenState extends State<SplashScreen>
                     child: Container(
                       decoration: BoxDecoration(
                         color: Color(0XFF34B87C),
-                        borderRadius: BorderRadius.circular(25),
+                        borderRadius: BorderRadius.circular(25.r),
                       ),
-                      padding: EdgeInsets.all(5),
+                      padding: EdgeInsets.all(5.r),
                       child: SvgPicture.asset(
                         'assets/zap-icon.svg',
-                        width: 150,
-                        height: 150,
+                        width: 150.w,
+                        height: 150.h,
                       ),
                     ),
                   ),
             ),
-            const SizedBox(height: 100, width: double.infinity),
+            SizedBox(height: 100.h, width: double.infinity),
             SizedBox(
               child: AnimatedTextKit(
                 animatedTexts: [
                   TypewriterAnimatedText(
                     cursor: '.',
-                    speed: Duration(milliseconds: 350),
+                    speed: Duration(milliseconds: 150),
                     "Suncube AI",
                     textStyle: GoogleFonts.lato(
                       color: Colors.white,
-                      fontSize: 50,
+                      fontSize: 50.sp,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
