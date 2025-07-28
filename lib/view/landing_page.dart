@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,6 +6,7 @@ import 'package:suncube_ai/view/billings_blockchain.dart';
 import 'package:suncube_ai/view/features_screen.dart';
 import 'package:suncube_ai/view/login_screen.dart';
 import 'package:suncube_ai/view/services_screen.dart';
+import 'package:suncube_ai/widgets/app_sidebar.dart';
 import 'package:suncube_ai/widgets/benefits_section.dart';
 import 'package:suncube_ai/widgets/customized_nav_bar.dart';
 import 'package:suncube_ai/widgets/final_cta.dart';
@@ -24,6 +23,7 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -38,9 +38,55 @@ class _LandingPageState extends State<LandingPage> {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     return Scaffold(
+      key: scaffoldKey,
       extendBodyBehindAppBar: true,
       backgroundColor: const Color(0xFF060C09),
+      drawer: const AppSidebar(),
+      appBar: AppBar(
+        leading: InkWell(
+          onTap: () {
+            scaffoldKey.currentState?.openDrawer();
+          },
+          child: Icon(LucideIcons.menu, color: Colors.white, size: 22.sp),
+        ),
+        backgroundColor: Color(0xFF060C09).withOpacity(0.9),
+        automaticallyImplyLeading: false,
+
+        title: Text(
+          'Suncube AI',
+          style: GoogleFonts.inter(
+            fontWeight: FontWeight.w800,
+            fontSize: 20.sp,
+            color: Colors.white,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
+              );
+            },
+            style: TextButton.styleFrom(
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+            ),
+            child: Text(
+              'Login',
+              style: GoogleFonts.inter(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w600,
+                color: const Color(0xFF73E0A9),
+              ),
+            ),
+          ),
+        ],
+      ),
       body: Container(
+        margin: EdgeInsets.only(top: 64.h),
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Color(0xFF060C09), Color(0xFF1A231F)],
@@ -54,7 +100,6 @@ class _LandingPageState extends State<LandingPage> {
             CustomScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
               slivers: [
-                const _StickyHeader(),
                 SliverList(
                   delegate: SliverChildListDelegate([
                     const HeroSection(),
@@ -114,109 +159,101 @@ class _LandingPageState extends State<LandingPage> {
   }
 }
 
-class _StickyHeader extends StatelessWidget {
-  const _StickyHeader();
-
-  @override
-  Widget build(BuildContext context) {
-    final double statusBarHeight = MediaQuery.of(context).padding.top;
-
-    return SliverAppBar(
-      pinned: true,
-      floating: false,
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      toolbarHeight: 64.h + statusBarHeight,
-
-      // Add status bar height here
-      flexibleSpace: Container(
-        padding: EdgeInsets.only(
-          top: statusBarHeight,
-        ), // Padding to avoid notch
-        decoration: BoxDecoration(
-          color: const Color(0xFF060C09).withOpacity(0.9),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: ClipRRect(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-              child: Row(
-                children: [
-                  Container(
-                    width: 40.w,
-                    height: 40.h,
-                    decoration: BoxDecoration(
-                      gradient: _grad,
-                      borderRadius: BorderRadius.circular(10.r),
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color(0xFF73E0A9).withOpacity(0.3),
-                          blurRadius: 6,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: Icon(
-                      LucideIcons.zap,
-                      color: Colors.white,
-                      size: 22.sp,
-                    ),
-                  ),
-                  SizedBox(width: 12.w),
-                  Expanded(
-                    child: Text(
-                      'Suncube AI',
-                      style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 20.sp,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LoginScreen(),
-                        ),
-                      );
-                    },
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 16.w,
-                        vertical: 8.h,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.r),
-                      ),
-                    ),
-                    child: Text(
-                      'Login',
-                      style: GoogleFonts.inter(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w600,
-                        color: const Color(0xFF73E0A9),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+// class _StickyHeader extends StatelessWidget {
+//   final VoidCallback function;
+//
+//   const _StickyHeader({required this.function});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     final double statusBarHeight = MediaQuery.of(context).padding.top;
+//
+//     return SliverAppBar(
+//       pinned: true,
+//       floating: false,
+//       backgroundColor: Colors.transparent,
+//       elevation: 0,
+//       toolbarHeight: 64.h + statusBarHeight,
+//
+//       // Add status bar height here
+//       flexibleSpace: Container(
+//         padding: EdgeInsets.only(
+//           top: statusBarHeight,
+//         ), // Padding to avoid notch
+//         decoration: BoxDecoration(
+//           color: const Color(0xFF060C09).withOpacity(0.9),
+//           boxShadow: [
+//             BoxShadow(
+//               color: Colors.black.withOpacity(0.2),
+//               blurRadius: 8,
+//               offset: const Offset(0, 2),
+//             ),
+//           ],
+//         ),
+//         child: ClipRRect(
+//           child: BackdropFilter(
+//             filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+//             child: Container(
+//               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+//               child: Row(
+//                 children: [
+//                   InkWell(
+//                     onTap: () {
+//                       function;
+//                     },
+//                     child: Icon(
+//                       LucideIcons.menu,
+//                       color: Colors.white,
+//                       size: 22.sp,
+//                     ),
+//                   ),
+//                   SizedBox(width: 12.w),
+//                   Expanded(
+//                     child: Text(
+//                       'Suncube AI',
+//                       style: GoogleFonts.inter(
+//                         fontWeight: FontWeight.w800,
+//                         fontSize: 20.sp,
+//                         color: Colors.white,
+//                       ),
+//                     ),
+//                   ),
+//                   TextButton(
+//                     onPressed: () {
+//                       Navigator.push(
+//                         context,
+//                         MaterialPageRoute(
+//                           builder: (context) => const LoginScreen(),
+//                         ),
+//                       );
+//                     },
+//                     style: TextButton.styleFrom(
+//                       padding: EdgeInsets.symmetric(
+//                         horizontal: 16.w,
+//                         vertical: 8.h,
+//                       ),
+//                       shape: RoundedRectangleBorder(
+//                         borderRadius: BorderRadius.circular(8.r),
+//                       ),
+//                     ),
+//                     child: Text(
+//                       'Login',
+//                       style: GoogleFonts.inter(
+//                         fontSize: 14.sp,
+//                         fontWeight: FontWeight.w600,
+//                         color: const Color(0xFF73E0A9),
+//                       ),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 const _grad = LinearGradient(
   colors: [Color(0xFF73E0A9), Color(0xFF34B87C)],
