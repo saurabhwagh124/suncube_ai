@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:suncube_ai/widgets/solution1/solution1.dart';
-import 'package:suncube_ai/widgets/solution2.dart';
-import 'package:suncube_ai/widgets/solution3.dart';
-import 'package:suncube_ai/widgets/solution4.dart';
-import 'package:suncube_ai/widgets/solution5.dart';
-import 'package:suncube_ai/widgets/solution6.dart';
+import 'package:suncube_ai/widgets/solutions/solution1.dart';
+import 'package:suncube_ai/widgets/solutions/solution2.dart';
+import 'package:suncube_ai/widgets/solutions/solution3.dart';
+import 'package:suncube_ai/widgets/solutions/solution4.dart';
+import 'package:suncube_ai/widgets/solutions/solution5.dart';
+import 'package:suncube_ai/widgets/solutions/solution6.dart';
 
 class ServicesScreen extends StatelessWidget {
   const ServicesScreen({super.key});

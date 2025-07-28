@@ -1,65 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Solution4 extends StatelessWidget {
+  const Solution4({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Suncube AI'),
-        backgroundColor: Colors.blue,
-        actions: [
-          TextButton(
-            onPressed: () {},
-            child: Text('Home', style: TextStyle(color: Colors.white)),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Text('Solutions', style: TextStyle(color: Colors.white)),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              'Billing & Blockchain',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Text('Case Studies', style: TextStyle(color: Colors.white)),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              'Sustainability',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Text('Partners', style: TextStyle(color: Colors.white)),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Text('More', style: TextStyle(color: Colors.white)),
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text('Portal Login'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
-              foregroundColor: Colors.white,
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text('Request Demo'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
-              foregroundColor: Colors.white,
-            ),
-          ),
-        ],
-      ),
+      appBar: AppBar(title: Text('Solution 4'), backgroundColor: Colors.blue),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -85,11 +33,11 @@ class Solution4 extends StatelessWidget {
                   SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {},
-                    child: Text('Preview AI Monitoring Panel'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                       foregroundColor: Colors.white,
                     ),
+                    child: Text('Preview AI Monitoring Panel'),
                   ),
                 ],
               ),
@@ -99,52 +47,55 @@ class Solution4 extends StatelessWidget {
               padding: EdgeInsets.all(20),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Card(
-                        child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Icon(Icons.check_circle, color: Colors.green),
-                              Text('System Status'),
-                              Text('Online'),
-                              Text('All systems operational'),
-                            ],
+                  SizedBox(
+                    height: 110.h,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.all(16),
+                            child: Column(
+                              children: [
+                                Icon(Icons.check_circle, color: Colors.green),
+                                Text('System Status'),
+                                Text('Online'),
+                                Text('All systems operational'),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Card(
-                        child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Icon(
-                                Icons.local_activity_sharp,
-                                color: Colors.blue,
-                              ),
-                              Text('Monitoring Points'),
-                              Text('247'),
-                              Text('Active sensors'),
-                            ],
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.all(16),
+                            child: Column(
+                              children: [
+                                Icon(
+                                  Icons.local_activity_sharp,
+                                  color: Colors.blue,
+                                ),
+                                Text('Monitoring Points'),
+                                Text('247'),
+                                Text('Active sensors'),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Card(
-                        child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Icon(Icons.shield, color: Colors.green),
-                              Text('Uptime'),
-                              Text('99.97%'),
-                              Text('Last 365 days'),
-                            ],
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.all(16),
+                            child: Column(
+                              children: [
+                                Icon(Icons.shield, color: Colors.green),
+                                Text('Uptime'),
+                                Text('99.97%'),
+                                Text('Last 365 days'),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   SizedBox(height: 20),
                   Card(
@@ -200,65 +151,68 @@ class Solution4 extends StatelessWidget {
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Card(
-                        child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Icon(Icons.wb_sunny, color: Colors.green),
-                              Text('Panel Performance'),
-                              Text('48 panels monitored'),
-                              Text('Normal'),
-                            ],
+                  SizedBox(
+                    height: 110.h,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.all(16),
+                            child: Column(
+                              children: [
+                                Icon(Icons.wb_sunny, color: Colors.green),
+                                Text('Panel Performance'),
+                                Text('48 panels monitored'),
+                                Text('Normal'),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Card(
-                        child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Icon(
-                                Icons.check_box_outline_blank,
-                                color: Colors.green,
-                              ),
-                              Text('Inverter Health'),
-                              Text('3 inverters active'),
-                              Text('Normal'),
-                            ],
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.all(16),
+                            child: Column(
+                              children: [
+                                Icon(
+                                  Icons.check_box_outline_blank,
+                                  color: Colors.green,
+                                ),
+                                Text('Inverter Health'),
+                                Text('3 inverters active'),
+                                Text('Normal'),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Card(
-                        child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Icon(Icons.cloud, color: Colors.orange),
-                              Text('Weather Impact'),
-                              Text('Cloud coverage detected'),
-                              Text('Advisory'),
-                            ],
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.all(16),
+                            child: Column(
+                              children: [
+                                Icon(Icons.cloud, color: Colors.orange),
+                                Text('Weather Impact'),
+                                Text('Cloud coverage detected'),
+                                Text('Advisory'),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Card(
-                        child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Icon(Icons.grid_on, color: Colors.green),
-                              Text('Grid Connection'),
-                              Text('Stable connection'),
-                              Text('Normal'),
-                            ],
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.all(16),
+                            child: Column(
+                              children: [
+                                Icon(Icons.grid_on, color: Colors.green),
+                                Text('Grid Connection'),
+                                Text('Stable connection'),
+                                Text('Normal'),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -273,65 +227,68 @@ class Solution4 extends StatelessWidget {
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Card(
-                        child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Icon(Icons.thermostat, color: Colors.green),
-                              Text('Hot spot detection'),
-                            ],
+                  SizedBox(
+                    height: 80.h,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.all(16),
+                            child: Column(
+                              children: [
+                                Icon(Icons.thermostat, color: Colors.green),
+                                Text('Hot spot detection'),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Card(
-                        child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Icon(Icons.sunny, color: Colors.green),
-                              Text('Shading analysis'),
-                            ],
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.all(16),
+                            child: Column(
+                              children: [
+                                Icon(Icons.sunny, color: Colors.green),
+                                Text('Shading analysis'),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Card(
-                        child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Icon(Icons.trending_down, color: Colors.green),
-                              Text('Performance degradation'),
-                            ],
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.all(16),
+                            child: Column(
+                              children: [
+                                Icon(Icons.trending_down, color: Colors.green),
+                                Text('Performance degradation'),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Card(
-                        child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Icon(Icons.cloud, color: Colors.green),
-                              Text('Weather correlation'),
-                            ],
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.all(16),
+                            child: Column(
+                              children: [
+                                Icon(Icons.cloud, color: Colors.green),
+                                Text('Weather correlation'),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Card(
-                        child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Icon(Icons.grid_on, color: Colors.green),
-                              Text('Grid anomalies'),
-                            ],
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.all(16),
+                            child: Column(
+                              children: [
+                                Icon(Icons.grid_on, color: Colors.green),
+                                Text('Grid anomalies'),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -528,52 +485,58 @@ class Solution4 extends StatelessWidget {
                 children: [
                   Text(
                     'Performance Over Time',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Card(
-                        child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Icon(Icons.graphic_eq, color: Colors.green),
-                              Text('Uptime %'),
-                              Text('99.97%'),
-                              Text('Last 30 days'),
-                            ],
+                  SizedBox(height: 10.h),
+                  SizedBox(
+                    height: 110.h,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.all(16),
+                            child: Column(
+                              children: [
+                                Icon(Icons.graphic_eq, color: Colors.green),
+                                Text('Uptime %'),
+                                Text('99.97%'),
+                                Text('Last 30 days'),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Card(
-                        child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Icon(Icons.timer, color: Colors.blue),
-                              Text('Avg Resolution Time'),
-                              Text('2.3h'),
-                              Text('Issue resolution'),
-                            ],
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.all(16),
+                            child: Column(
+                              children: [
+                                Icon(Icons.timer, color: Colors.blue),
+                                Text('Avg Resolution Time'),
+                                Text('2.3h'),
+                                Text('Issue resolution'),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Card(
-                        child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Icon(Icons.calendar_today, color: Colors.green),
-                              Text('Maintenance Logs'),
-                              Text('47'),
-                              Text('Completed tasks'),
-                            ],
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.all(16),
+                            child: Column(
+                              children: [
+                                Icon(Icons.calendar_today, color: Colors.green),
+                                Text('Maintenance Logs'),
+                                Text('47'),
+                                Text('Completed tasks'),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),
