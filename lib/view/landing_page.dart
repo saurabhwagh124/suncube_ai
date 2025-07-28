@@ -1,16 +1,21 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
+import 'package:suncube_ai/view/billings_blockchain.dart';
 import 'package:suncube_ai/view/login_screen.dart';
 import 'package:suncube_ai/widgets/benefits_section.dart';
-import 'package:suncube_ai/widgets/customized_nav_bar.dart';
 import 'package:suncube_ai/widgets/final_cta.dart';
 import 'package:suncube_ai/widgets/hero_section.dart';
 import 'package:suncube_ai/widgets/how_it_works.dart';
 import 'package:suncube_ai/widgets/impact_section.dart';
 import 'package:suncube_ai/widgets/predictive_alert.dart';
+import 'package:suncube_ai/widgets/customized_nav_bar.dart';
+import 'package:suncube_ai/view/about_us.dart';
+import 'package:suncube_ai/view/features_screen.dart';
+import 'package:suncube_ai/view/services_screen.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -20,30 +25,92 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    // Get status bar height for padding adjustment if needed later (optional)
+    final double statusBarHeight = MediaQuery.of(context).padding.top;
+
     return Scaffold(
       extendBodyBehindAppBar: true,
-      body: CustomScrollView(
-        slivers: [
-          const _StickyHeader(),
-          SliverList(
-            delegate: SliverChildListDelegate([
-              const HeroSection(),
-              const BenefitsSection(),
-              const HowItWorks(),
-              const PredictiveAlerts(),
-              const ImpactSection(),
-              const FinalCTA(),
-              SizedBox(height: 60.h),
-            ]),
+      backgroundColor: const Color(0xFF060C09),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF060C09), Color(0xFF1A231F)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
-        ],
+        ),
+        child: IndexedStack(
+          index: _selectedIndex,
+          children: [
+            CustomScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              slivers: [
+                const _StickyHeader(),
+                SliverList(
+                  delegate: SliverChildListDelegate([
+                    const HeroSection(),
+                    SizedBox(
+                      // height: 20.h,
+                    ), // reduce from large values like 50.h or 60.h
+                    const BenefitsSection(),
+                    // SizedBox(height: 20.h),
+                    const HowItWorks(),
+                    // SizedBox(height: 20.h),
+                    const PredictiveAlerts(),
+                    // SizedBox(height: 20.h),
+                    const ImpactSection(),
+                    // SizedBox(height: 20.h),
+                    const FinalCTA(),
+                    // SizedBox(height: 20.h), // bottom padding if desired
+                  ]),
+                ),
+              ],
+            ),
+            const ServicesScreen(),
+            const FeaturesScreen(),
+            const BillingPage(),
+          ],
+        ),
       ),
-      // bottomNavigationBar: CustomizedNavBar(selectedIndex: 0),
-      floatingActionButton: CustomizedNavBar(selectedIndex: 0),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterFloat,
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(bottom: 16.h),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12.r),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
+            gradient: LinearGradient(
+              colors: [
+                Colors.white.withOpacity(0.05),
+                Colors.grey.withOpacity(0.1),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: CustomizedNavBar(
+            selectedIndex: _selectedIndex,
+            onItemTapped: _onItemTapped,
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
@@ -53,100 +120,106 @@ class _StickyHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double statusBarHeight = MediaQuery.of(context).padding.top;
+
     return SliverAppBar(
       pinned: true,
       floating: false,
-      backgroundColor: Colors.white.withOpacity(.95),
+      backgroundColor: Colors.transparent,
       elevation: 0,
-      title: Row(
-        children: [
-          Container(
-            width: 32.w,
-            height: 32.h,
-            decoration: BoxDecoration(
-              gradient: _grad,
-              borderRadius: BorderRadius.circular(8.r),
+      toolbarHeight: 64.h + statusBarHeight, // Add status bar height here
+
+      flexibleSpace: Container(
+        padding: EdgeInsets.only(
+          top: statusBarHeight,
+        ), // Padding to avoid notch
+        decoration: BoxDecoration(
+          color: const Color(0xFF060C09).withOpacity(0.9),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
             ),
-            child: Icon(LucideIcons.zap, color: Colors.white, size: 18.sp),
-          ),
-          SizedBox(width: 8.w),
-          const Expanded(
-            child: Text(
-              'Suncube AI',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-          ),
-        ],
-      ),
-      actions: [
-        TextButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => LoginScreen()),
-            );
-          },
-          child: Text(
-            'Login',
-            style: GoogleFonts.lato(
-              fontSize: 15.sp,
-              fontWeight: FontWeight.w700,
-              color: AppColors.themeGreen,
+          ],
+        ),
+        child: ClipRRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+              child: Row(
+                children: [
+                  Container(
+                    width: 40.w,
+                    height: 40.h,
+                    decoration: BoxDecoration(
+                      gradient: _grad,
+                      borderRadius: BorderRadius.circular(10.r),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0xFF73E0A9).withOpacity(0.3),
+                          blurRadius: 6,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Icon(
+                      LucideIcons.zap,
+                      color: Colors.white,
+                      size: 22.sp,
+                    ),
+                  ),
+                  SizedBox(width: 12.w),
+                  Expanded(
+                    child: Text(
+                      'Suncube AI',
+                      style: GoogleFonts.inter(
+                        fontWeight: FontWeight.w800,
+                        fontSize: 20.sp,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                      );
+                    },
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16.w,
+                        vertical: 8.h,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
+                    ),
+                    child: Text(
+                      'Login',
+                      style: GoogleFonts.inter(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                        color: const Color(0xFF73E0A9),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-        SizedBox(width: 12.w),
-      ],
-    );
-  }
-}
-
-class MetricCard extends StatelessWidget {
-  final String title, value;
-  final IconData icon;
-  final Color color;
-
-  const MetricCard(this.title, this.value, this.icon, this.color, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 220.w,
-      padding: EdgeInsets.all(20.w),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12.r),
-        border: Border(left: BorderSide(color: color, width: 5)),
-        boxShadow: const [
-          BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(0, 2)),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Text(
-                title,
-                style: TextStyle(fontSize: 13.sp, color: Colors.black54),
-              ),
-              const Spacer(),
-              Icon(icon, color: color, size: 18.sp),
-            ],
-          ),
-          SizedBox(height: 6.h),
-          Text(
-            value,
-            style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
-          ),
-        ],
       ),
     );
   }
 }
 
 const _grad = LinearGradient(
-  colors: [Color(0XFF34B87C), Color.fromARGB(255, 20, 106, 67)],
-  begin: Alignment.topLeft,
-  end: Alignment.bottomRight,
+  colors: [Color(0xFF73E0A9), Color(0xFF34B87C)],
+  begin: Alignment.topCenter,
+  end: Alignment.bottomCenter,
 );

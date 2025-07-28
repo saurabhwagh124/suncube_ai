@@ -43,62 +43,80 @@ class _RoleDropdownState extends State<RoleDropdown> {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField<RoleOption>(
-      dropdownColor: const Color(0xFFFFFFFF),
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: const Color(0xFFFFFFFF),
-        contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
-          borderSide: const BorderSide(color: Colors.grey),
+    return Container(
+      width: double.infinity,
+      child: DropdownButtonFormField<RoleOption>(
+        dropdownColor: Colors.black.withOpacity(0.85),
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white.withOpacity(0.12),
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 16.w,
+            vertical: 12.h,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.r),
+            borderSide: const BorderSide(color: Color(0xFF73E0A9)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.r),
+            borderSide: const BorderSide(color: Color(0xFF73E0A9), width: 2),
+          ),
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
-          borderSide: const BorderSide(color: Color(0xFF73E0A9), width: 2),
+        iconEnabledColor: const Color(0xFF73E0A9),
+        value: selectedRole,
+        onChanged: (value) {
+          setState(() {
+            selectedRole = value;
+          });
+        },
+        hint: Text(
+          "Select Role",
+          style: TextStyle(color: Colors.white70, fontSize: 14.sp),
         ),
-      ),
-      iconEnabledColor: Colors.grey,
-      value: selectedRole,
-      onChanged: (value) {
-        setState(() {
-          selectedRole = value;
-        });
-      },
-      hint: Text(
-        "Select Role",
-        style: TextStyle(color: Colors.grey, fontSize: 14.sp),
-      ),
-      style: TextStyle(color: Colors.white, fontSize: 14.sp),
-      items:
-          roles.map((role) {
-            return DropdownMenuItem<RoleOption>(
-              value: role,
-              child: Row(
-                children: [
-                  Icon(role.icon, color: Color(0xFF73E0A9), size: 20.sp),
-                  SizedBox(width: 10.w),
-                  Row(
-                    spacing: 5.w,
-                    children: [
-                      Text(
-                        role.title,
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600,
+        style: TextStyle(color: Colors.white, fontSize: 14.sp),
+        items:
+            roles.map((role) {
+              return DropdownMenuItem<RoleOption>(
+                value: role,
+                child: Row(
+                  children: [
+                    Icon(
+                      role.icon,
+                      color: const Color(0xFF73E0A9),
+                      size: 20.sp,
+                    ),
+                    SizedBox(width: 10.w),
+                    Flexible(
+                      child: RichText(
+                        overflow: TextOverflow.ellipsis,
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: role.title,
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            TextSpan(
+                              text: role.description,
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                color: Colors.white70,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Text(
-                        role.description,
-                        style: TextStyle(fontSize: 12.sp, color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            );
-          }).toList(),
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
+      ),
     );
   }
 }

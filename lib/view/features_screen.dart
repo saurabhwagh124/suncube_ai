@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:suncube_ai/widgets/customized_nav_bar.dart';
+import 'package:suncube_ai/view/about_us.dart';
+import 'package:suncube_ai/view/features_screen.dart';
+import 'package:suncube_ai/view/landing_page.dart';
 
-class FeaturesScreen extends StatefulWidget {
+class FeaturesScreen extends StatelessWidget {
   const FeaturesScreen({super.key});
 
   @override
-  State<FeaturesScreen> createState() => _FeaturesScreenState();
-}
-
-class _FeaturesScreenState extends State<FeaturesScreen> {
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: const Text("Features Screen")),
-      floatingActionButton: CustomizedNavBar(selectedIndex: 2),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    return Center(
+      child: const Text(
+        "Features Screen",
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 }
