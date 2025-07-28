@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:suncube_ai/utils/AppColors.dart';
 import 'package:suncube_ai/widgets/solutions/solution1.dart';
 import 'package:suncube_ai/widgets/solutions/solution2.dart';
 import 'package:suncube_ai/widgets/solutions/solution3.dart';
@@ -23,51 +26,111 @@ class ServicesScreen extends StatelessWidget {
     final solutionKeys = solutions.keys.toList();
 
     return Scaffold(
-      appBar: AppBar(title: Text('Explore Solutions')),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: GridView.builder(
-          itemCount: solutionKeys.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, // 2 cards per row
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            childAspectRatio: 1.1,
+      // appBar: AppBar(
+      //   title: Text(
+      //     'Explore Solutions',
+      //     style: GoogleFonts.inter(
+      //       fontSize: 20.sp,
+      //       fontWeight: FontWeight.bold,
+      //       color: Colors.white,
+      //     ),
+      //   ),
+      //   centerTitle: true,
+      //   elevation: 0,
+      //   backgroundColor: Colors.transparent,
+      //   flexibleSpace: Container(
+      //     decoration: BoxDecoration(
+      //       gradient: LinearGradient(
+      //         colors: [
+      //           const Color(0xFF060C09).withOpacity(0.9),
+      //           const Color(0xFF1A231F).withOpacity(0.9),
+      //         ],
+      //         begin: Alignment.topLeft,
+      //         end: Alignment.bottomRight,
+      //       ),
+      //       boxShadow: [
+      //         BoxShadow(
+      //           color: Colors.black.withOpacity(0.2),
+      //           blurRadius: 8,
+      //           offset: const Offset(0, 2),
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF060C09), Color(0xFF1A231F)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
-          itemBuilder: (context, index) {
-            final title = solutionKeys[index];
-            return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => solutions.values.elementAt(index),
-                  ),
-                );
-              },
-              child: Card(
-                elevation: 4,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Wrap(
-                  alignment: WrapAlignment.center,
-                  runAlignment: WrapAlignment.center,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    Text(
-                      title,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(12.w),
+          child: GridView.builder(
+            itemCount: solutionKeys.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              childAspectRatio: 1.1,
+            ),
+            itemBuilder: (context, index) {
+              final title = solutionKeys[index];
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => solutions.values.elementAt(index),
                     ),
-                  ],
+                  );
+                },
+                child: Container(
+                  margin: EdgeInsets.all(4.w),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.white.withOpacity(0.05),
+                        Colors.white.withOpacity(0.1),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.circular(12.r),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 8,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(12.w),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          title,
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.inter(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            // overflow: TextOverflow.ellipsis,
+                          ),
+                          maxLines: 2,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

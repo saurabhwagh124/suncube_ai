@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:suncube_ai/utils/AppColors.dart';
 
 class Solution4 extends StatelessWidget {
   const Solution4({super.key});
@@ -7,541 +9,1506 @@ class Solution4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Solution 4'), backgroundColor: Colors.blue),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Hero Section
-            Container(
-              color: Colors.blue,
-              padding: EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Text(
-                    'Know Before It Breaks.',
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    'Suncube AI doesn\'t just track solar performance — it predicts and prevents failures before they cost you.',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
-                  ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      foregroundColor: Colors.white,
-                    ),
-                    child: Text('Preview AI Monitoring Panel'),
-                  ),
-                ],
-              ),
+      appBar: AppBar(
+        title: Text(
+          'Solution 4',
+          style: GoogleFonts.inter(
+            fontSize: 20.sp,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                const Color(0xFF060C09).withOpacity(0.9),
+                const Color(0xFF1A231F).withOpacity(0.9),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
             ),
-            // Status Cards Section
-            Container(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 110.h,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        Card(
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                blurRadius: 8,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF060C09), Color(0xFF1A231F)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: Column(
+            children: [
+              // Hero Section
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 16.w),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColors.themeGreen.withOpacity(0.3),
+                      const Color(0xFF106B43).withOpacity(0.2),
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(16.r),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      'Know Before It Breaks.',
+                      style: GoogleFonts.inter(
+                        fontSize: 32.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      'Suncube AI doesn\'t just track solar performance — it predicts and prevents failures before they cost you.',
+                      style: GoogleFonts.inter(
+                        fontSize: 18.sp,
+                        color: Colors.white70,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 20.h),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Preview AI Monitoring Panel',
+                        style: GoogleFonts.inter(fontSize: 14.sp),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: AppColors.themeGreen,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.r),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20.h),
+              // Status Cards Section
+              Container(
+                padding: EdgeInsets.all(16.w),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 110.h,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 1.w),
+                            padding: EdgeInsets.all(2.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.check_circle, color: Colors.green),
-                                Text('System Status'),
-                                Text('Online'),
-                                Text('All systems operational'),
+                                Icon(
+                                  Icons.check_circle,
+                                  color: Colors.green,
+                                  size: 24.sp,
+                                ),
+                                SizedBox(height: 5.h),
+                                Text(
+                                  'System Status',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  'Online',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  'All systems operational',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 12.sp,
+                                    color: Colors.white70,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
-                        ),
-                        Card(
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: EdgeInsets.all(12.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
                                   Icons.local_activity_sharp,
                                   color: Colors.blue,
+                                  size: 24.sp,
                                 ),
-                                Text('Monitoring Points'),
-                                Text('247'),
-                                Text('Active sensors'),
+                                SizedBox(height: 5.h),
+                                Text(
+                                  'Monitoring Points',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  '247',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  'Active sensors',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 12.sp,
+                                    color: Colors.white70,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
-                        ),
-                        Card(
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: EdgeInsets.all(2.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.shield, color: Colors.green),
-                                Text('Uptime'),
-                                Text('99.97%'),
-                                Text('Last 365 days'),
+                                Icon(
+                                  Icons.shield,
+                                  color: Colors.green,
+                                  size: 24.sp,
+                                ),
+                                SizedBox(height: 5.h),
+                                Text(
+                                  'Uptime',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  '99.97%',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  'Last 365 days',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 12.sp,
+                                    color: Colors.white70,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 20),
-                  Card(
-                    child: Padding(
-                      padding: EdgeInsets.all(16),
+                    SizedBox(height: 20.h),
+                    Container(
+                      padding: EdgeInsets.all(16.w),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.white.withOpacity(0.05),
+                            Colors.white.withOpacity(0.1),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        borderRadius: BorderRadius.circular(12.r),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 8,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
                       child: Column(
                         children: [
-                          Text('Live System Status'),
-                          SizedBox(height: 10),
-                          Text('AI Predictive Alerts'),
-                          SizedBox(height: 10),
+                          Text(
+                            'Live System Status',
+                            style: GoogleFonts.inter(
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(height: 10.h),
+                          Text(
+                            'AI Predictive Alerts',
+                            style: GoogleFonts.inter(
+                              fontSize: 16.sp,
+                              color: Colors.white70,
+                            ),
+                          ),
+                          SizedBox(height: 10.h),
                           ListTile(
-                            leading: Icon(Icons.cloud, color: Colors.orange),
-                            title: Text('Panel Cleaning Required'),
+                            leading: Icon(
+                              Icons.cloud,
+                              color: Colors.orange,
+                              size: 20.sp,
+                            ),
+                            title: Text(
+                              'Panel Cleaning Required',
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                              ),
+                            ),
                             subtitle: Text(
                               'Dust accumulation detected on panels 3-7. Efficiency reduced by 8%. Recommended cleaning within 48 hours.',
+                              style: GoogleFonts.inter(
+                                fontSize: 12.sp,
+                                color: Colors.white70,
+                              ),
                             ),
                           ),
                           ListTile(
                             leading: Icon(
                               Icons.trending_neutral_rounded,
                               color: Colors.green,
+                              size: 20.sp,
                             ),
-                            title: Text('Temporary Shading Detected'),
+                            title: Text(
+                              'Temporary Shading Detected',
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                              ),
+                            ),
                             subtitle: Text(
                               'Tree shadow affecting Panel Row B. Consider trimming branches or adjusting panel angle.',
+                              style: GoogleFonts.inter(
+                                fontSize: 12.sp,
+                                color: Colors.white70,
+                              ),
                             ),
                           ),
                           ListTile(
                             leading: Icon(
                               Icons.tour_outlined,
                               color: Colors.red,
+                              size: 20.sp,
                             ),
-                            title: Text('Inverter Anomaly'),
+                            title: Text(
+                              'Inverter Anomaly',
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                              ),
+                            ),
                             subtitle: Text(
                               'Inverter 2 showing irregular output patterns. Schedule technician inspection immediately.',
+                              style: GoogleFonts.inter(
+                                fontSize: 12.sp,
+                                color: Colors.white70,
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            // Monitoring Categories Section
-            Container(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Text(
-                    'Monitoring Categories',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 10),
-                  SizedBox(
-                    height: 110.h,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        Card(
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
+              SizedBox(height: 20.h),
+              // Monitoring Categories Section
+              Container(
+                padding: EdgeInsets.all(16.w),
+                child: Column(
+                  children: [
+                    Text(
+                      'Monitoring Categories',
+                      style: GoogleFonts.inter(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+                    SizedBox(
+                      height: 110.h,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: EdgeInsets.all(12.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.wb_sunny, color: Colors.green),
-                                Text('Panel Performance'),
-                                Text('48 panels monitored'),
-                                Text('Normal'),
+                                Icon(
+                                  Icons.wb_sunny,
+                                  color: Colors.green,
+                                  size: 24.sp,
+                                ),
+                                SizedBox(height: 5.h),
+                                Text(
+                                  'Panel Performance',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  '48 panels monitored',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 12.sp,
+                                    color: Colors.white70,
+                                  ),
+                                ),
+                                Text(
+                                  'Normal',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 12.sp,
+                                    color: Colors.white70,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
-                        ),
-                        Card(
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: EdgeInsets.all(12.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
                                   Icons.check_box_outline_blank,
                                   color: Colors.green,
+                                  size: 24.sp,
                                 ),
-                                Text('Inverter Health'),
-                                Text('3 inverters active'),
-                                Text('Normal'),
+                                SizedBox(height: 5.h),
+                                Text(
+                                  'Inverter Health',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  '3 inverters active',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 12.sp,
+                                    color: Colors.white70,
+                                  ),
+                                ),
+                                Text(
+                                  'Normal',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 12.sp,
+                                    color: Colors.white70,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
-                        ),
-                        Card(
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: EdgeInsets.all(12.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.cloud, color: Colors.orange),
-                                Text('Weather Impact'),
-                                Text('Cloud coverage detected'),
-                                Text('Advisory'),
+                                Icon(
+                                  Icons.cloud,
+                                  color: Colors.orange,
+                                  size: 24.sp,
+                                ),
+                                SizedBox(height: 5.h),
+                                Text(
+                                  'Weather Impact',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  'Cloud coverage detected',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 12.sp,
+                                    color: Colors.white70,
+                                  ),
+                                ),
+                                Text(
+                                  'Advisory',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 12.sp,
+                                    color: Colors.white70,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
-                        ),
-                        Card(
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: EdgeInsets.all(12.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.grid_on, color: Colors.green),
-                                Text('Grid Connection'),
-                                Text('Stable connection'),
-                                Text('Normal'),
+                                Icon(
+                                  Icons.grid_on,
+                                  color: Colors.green,
+                                  size: 24.sp,
+                                ),
+                                SizedBox(height: 5.h),
+                                Text(
+                                  'Grid Connection',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  'Stable connection',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 12.sp,
+                                    color: Colors.white70,
+                                  ),
+                                ),
+                                Text(
+                                  'Normal',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 12.sp,
+                                    color: Colors.white70,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            // AI Detection Capabilities Section
-            Container(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Text(
-                    'AI Detection Capabilities',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 10),
-                  SizedBox(
-                    height: 80.h,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        Card(
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Column(
-                              children: [
-                                Icon(Icons.thermostat, color: Colors.green),
-                                Text('Hot spot detection'),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Card(
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Column(
-                              children: [
-                                Icon(Icons.sunny, color: Colors.green),
-                                Text('Shading analysis'),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Card(
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Column(
-                              children: [
-                                Icon(Icons.trending_down, color: Colors.green),
-                                Text('Performance degradation'),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Card(
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Column(
-                              children: [
-                                Icon(Icons.cloud, color: Colors.green),
-                                Text('Weather correlation'),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Card(
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Column(
-                              children: [
-                                Icon(Icons.grid_on, color: Colors.green),
-                                Text('Grid anomalies'),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+              SizedBox(height: 20.h),
+              // AI Detection Capabilities Section
+              Container(
+                padding: EdgeInsets.all(16.w),
+                child: Column(
+                  children: [
+                    Text(
+                      'AI Detection Capabilities',
+                      style: GoogleFonts.inter(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 10.h),
+                    SizedBox(
+                      height: 80.h,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: EdgeInsets.all(12.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.thermostat,
+                                  color: Colors.green,
+                                  size: 24.sp,
+                                ),
+                                SizedBox(height: 5.h),
+                                Text(
+                                  'Hot spot detection',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14.sp,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: EdgeInsets.all(12.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.sunny,
+                                  color: Colors.green,
+                                  size: 24.sp,
+                                ),
+                                SizedBox(height: 5.h),
+                                Text(
+                                  'Shading analysis',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14.sp,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: EdgeInsets.all(12.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.trending_down,
+                                  color: Colors.green,
+                                  size: 24.sp,
+                                ),
+                                SizedBox(height: 5.h),
+                                Text(
+                                  'Performance degradation',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14.sp,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: EdgeInsets.all(12.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.cloud,
+                                  color: Colors.green,
+                                  size: 24.sp,
+                                ),
+                                SizedBox(height: 5.h),
+                                Text(
+                                  'Weather correlation',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14.sp,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: EdgeInsets.all(12.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.grid_on,
+                                  color: Colors.green,
+                                  size: 24.sp,
+                                ),
+                                SizedBox(height: 5.h),
+                                Text(
+                                  'Grid anomalies',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14.sp,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            // Recent Activity Section
-            Container(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Text(
-                    'Recent Activity',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 10),
-                  Card(
-                    child: Padding(
-                      padding: EdgeInsets.all(16),
+              SizedBox(height: 20.h),
+              // Recent Activity Section
+              Container(
+                padding: EdgeInsets.all(16.w),
+                child: Column(
+                  children: [
+                    Text(
+                      'Recent Activity',
+                      style: GoogleFonts.inter(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Container(
+                      padding: EdgeInsets.all(16.w),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.white.withOpacity(0.05),
+                            Colors.white.withOpacity(0.1),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        borderRadius: BorderRadius.circular(12.r),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 8,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
                       child: Column(
                         children: [
                           ListTile(
                             leading: Icon(
                               Icons.check_circle,
                               color: Colors.green,
+                              size: 20.sp,
                             ),
                             title: Text(
                               '2 min ago: All systems performing optimally',
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                           ListTile(
                             leading: Icon(
                               Icons.cleaning_services,
                               color: Colors.blue,
+                              size: 20.sp,
                             ),
                             title: Text(
                               '15 min ago: Panel cleaning alert cleared',
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                           ListTile(
-                            leading: Icon(Icons.sunny, color: Colors.green),
-                            title: Text('1 hour ago: Peak generation detected'),
+                            leading: Icon(
+                              Icons.sunny,
+                              color: Colors.green,
+                              size: 20.sp,
+                            ),
+                            title: Text(
+                              '1 hour ago: Peak generation detected',
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                           ListTile(
-                            leading: Icon(Icons.alarm, color: Colors.grey),
+                            leading: Icon(
+                              Icons.alarm,
+                              color: Colors.grey,
+                              size: 20.sp,
+                            ),
                             title: Text(
                               '3 hours ago: Morning startup sequence completed',
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            // Smart Anomaly Detection Section
-            Container(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Text(
-                    'Smart Anomaly Detection',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 10),
-                  Card(
-                    child: Padding(
-                      padding: EdgeInsets.all(16),
+              SizedBox(height: 20.h),
+              // Smart Anomaly Detection Section
+              Container(
+                padding: EdgeInsets.all(16.w),
+                child: Column(
+                  children: [
+                    Text(
+                      'Smart Anomaly Detection',
+                      style: GoogleFonts.inter(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Container(
+                      padding: EdgeInsets.all(16.w),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.white.withOpacity(0.05),
+                            Colors.white.withOpacity(0.1),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        borderRadius: BorderRadius.circular(12.r),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 8,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
                       child: Column(
                         children: [
                           ListTile(
-                            leading: Icon(Icons.error, color: Colors.red),
-                            title: Text('Critical Alert'),
-                            subtitle: Text('20% drop in Panel Group B'),
+                            leading: Icon(
+                              Icons.error,
+                              color: Colors.red,
+                              size: 20.sp,
+                            ),
+                            title: Text(
+                              'Critical Alert',
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                              ),
+                            ),
+                            subtitle: Text(
+                              '20% drop in Panel Group B',
+                              style: GoogleFonts.inter(
+                                fontSize: 12.sp,
+                                color: Colors.white70,
+                              ),
+                            ),
                           ),
                           ListTile(
                             leading: Icon(
                               Icons.battery_alert,
                               color: Colors.orange,
+                              size: 20.sp,
                             ),
-                            title: Text('Warning Alert'),
-                            subtitle: Text('Low discharge from Battery Line 2'),
+                            title: Text(
+                              'Warning Alert',
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                              ),
+                            ),
+                            subtitle: Text(
+                              'Low discharge from Battery Line 2',
+                              style: GoogleFonts.inter(
+                                fontSize: 12.sp,
+                                color: Colors.white70,
+                              ),
+                            ),
                           ),
                           ListTile(
-                            leading: Icon(Icons.flash_on, color: Colors.blue),
-                            title: Text('Info Alert'),
+                            leading: Icon(
+                              Icons.flash_on,
+                              color: Colors.blue,
+                              size: 20.sp,
+                            ),
+                            title: Text(
+                              'Info Alert',
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                              ),
+                            ),
                             subtitle: Text(
                               'Inverter efficiency below optimal range',
+                              style: GoogleFonts.inter(
+                                fontSize: 12.sp,
+                                color: Colors.white70,
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            // Maintenance Scheduler Section
-            Container(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Text(
-                    'Maintenance Scheduler',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 10),
-                  Card(
-                    child: Padding(
-                      padding: EdgeInsets.all(16),
+              SizedBox(height: 20.h),
+              // Maintenance Scheduler Section
+              Container(
+                padding: EdgeInsets.all(16.w),
+                child: Column(
+                  children: [
+                    Text(
+                      'Maintenance Scheduler',
+                      style: GoogleFonts.inter(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Container(
+                      padding: EdgeInsets.all(16.w),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.white.withOpacity(0.05),
+                            Colors.white.withOpacity(0.1),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        borderRadius: BorderRadius.circular(12.r),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 8,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
                       child: Column(
                         children: [
                           ListTile(
                             leading: Icon(
                               Icons.cleaning_services,
                               color: Colors.blue,
+                              size: 20.sp,
                             ),
-                            title: Text('Panel Cleaning'),
-                            subtitle: Text('Due in 3 days'),
+                            title: Text(
+                              'Panel Cleaning',
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                              ),
+                            ),
+                            subtitle: Text(
+                              'Due in 3 days',
+                              style: GoogleFonts.inter(
+                                fontSize: 12.sp,
+                                color: Colors.white70,
+                              ),
+                            ),
                           ),
                           ListTile(
                             leading: Icon(
                               Icons.check_box_outline_blank,
                               color: Colors.orange,
+                              size: 20.sp,
                             ),
-                            title: Text('Inverter Inspection'),
-                            subtitle: Text('Due in 1 week'),
+                            title: Text(
+                              'Inverter Inspection',
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                              ),
+                            ),
+                            subtitle: Text(
+                              'Due in 1 week',
+                              style: GoogleFonts.inter(
+                                fontSize: 12.sp,
+                                color: Colors.white70,
+                              ),
+                            ),
                           ),
                           ListTile(
                             leading: Icon(
                               Icons.battery_full,
                               color: Colors.green,
+                              size: 20.sp,
                             ),
-                            title: Text('Battery Health Check'),
-                            subtitle: Text('Due in 2 weeks'),
+                            title: Text(
+                              'Battery Health Check',
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                              ),
+                            ),
+                            subtitle: Text(
+                              'Due in 2 weeks',
+                              style: GoogleFonts.inter(
+                                fontSize: 12.sp,
+                                color: Colors.white70,
+                              ),
+                            ),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            // Alerts System Section
-            Container(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Text(
-                    'Alerts System',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 10),
-                  Card(
-                    child: Padding(
-                      padding: EdgeInsets.all(16),
+              SizedBox(height: 20.h),
+              // Alerts System Section
+              Container(
+                padding: EdgeInsets.all(16.w),
+                child: Column(
+                  children: [
+                    Text(
+                      'Alerts System',
+                      style: GoogleFonts.inter(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Container(
+                      padding: EdgeInsets.all(16.w),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.white.withOpacity(0.05),
+                            Colors.white.withOpacity(0.1),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        borderRadius: BorderRadius.circular(12.r),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 8,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
                       child: Column(
                         children: [
                           ListTile(
                             leading: Icon(
                               Icons.notifications,
                               color: Colors.blue,
+                              size: 20.sp,
                             ),
-                            title: Text('Alert Preferences'),
+                            title: Text(
+                              'Alert Preferences',
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                              ),
+                            ),
                             subtitle: Text(
                               'Customize your notification preferences and escalation protocols',
+                              style: GoogleFonts.inter(
+                                fontSize: 12.sp,
+                                color: Colors.white70,
+                              ),
                             ),
                           ),
                           ListTile(
-                            leading: Icon(Icons.sms, color: Colors.blue),
-                            title: Text('SMS Alerts'),
-                            subtitle: Text('Critical system alerts'),
+                            leading: Icon(
+                              Icons.sms,
+                              color: Colors.blue,
+                              size: 20.sp,
+                            ),
+                            title: Text(
+                              'SMS Alerts',
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                              ),
+                            ),
+                            subtitle: Text(
+                              'Critical system alerts',
+                              style: GoogleFonts.inter(
+                                fontSize: 12.sp,
+                                color: Colors.white70,
+                              ),
+                            ),
                           ),
                           ListTile(
-                            leading: Icon(Icons.email, color: Colors.blue),
-                            title: Text('Email Alerts'),
-                            subtitle: Text('Detailed reports and summaries'),
+                            leading: Icon(
+                              Icons.email,
+                              color: Colors.blue,
+                              size: 20.sp,
+                            ),
+                            title: Text(
+                              'Email Alerts',
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                              ),
+                            ),
+                            subtitle: Text(
+                              'Detailed reports and summaries',
+                              style: GoogleFonts.inter(
+                                fontSize: 12.sp,
+                                color: Colors.white70,
+                              ),
+                            ),
                           ),
                           ListTile(
-                            leading: Icon(Icons.push_pin, color: Colors.blue),
-                            title: Text('Push Notifications'),
-                            subtitle: Text('Mobile app notifications'),
+                            leading: Icon(
+                              Icons.push_pin,
+                              color: Colors.blue,
+                              size: 20.sp,
+                            ),
+                            title: Text(
+                              'Push Notifications',
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                              ),
+                            ),
+                            subtitle: Text(
+                              'Mobile app notifications',
+                              style: GoogleFonts.inter(
+                                fontSize: 12.sp,
+                                color: Colors.white70,
+                              ),
+                            ),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            // Performance Over Time Section
-            Container(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Text(
-                    'Performance Over Time',
-                    style: TextStyle(
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.bold,
+              SizedBox(height: 20.h),
+              // Performance Over Time Section
+              Container(
+                padding: EdgeInsets.all(16.w),
+                child: Column(
+                  children: [
+                    Text(
+                      'Performance Over Time',
+                      style: GoogleFonts.inter(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 10.h),
-                  SizedBox(
-                    height: 110.h,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        Card(
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
+                    SizedBox(height: 10.h),
+                    SizedBox(
+                      height: 110.h,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: EdgeInsets.all(12.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.graphic_eq, color: Colors.green),
-                                Text('Uptime %'),
-                                Text('99.97%'),
-                                Text('Last 30 days'),
+                                Icon(
+                                  Icons.graphic_eq,
+                                  color: Colors.green,
+                                  size: 24.sp,
+                                ),
+                                SizedBox(height: 5.h),
+                                Text(
+                                  'Uptime %',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  '99.97%',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  'Last 30 days',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 12.sp,
+                                    color: Colors.white70,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
-                        ),
-                        Card(
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: EdgeInsets.all(12.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.timer, color: Colors.blue),
-                                Text('Avg Resolution Time'),
-                                Text('2.3h'),
-                                Text('Issue resolution'),
+                                Icon(
+                                  Icons.timer,
+                                  color: Colors.blue,
+                                  size: 24.sp,
+                                ),
+                                SizedBox(height: 5.h),
+                                Text(
+                                  'Avg Resolution Time',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  '2.3h',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  'Issue resolution',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 12.sp,
+                                    color: Colors.white70,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
-                        ),
-                        Card(
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: EdgeInsets.all(12.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.calendar_today, color: Colors.green),
-                                Text('Maintenance Logs'),
-                                Text('47'),
-                                Text('Completed tasks'),
+                                Icon(
+                                  Icons.calendar_today,
+                                  color: Colors.green,
+                                  size: 24.sp,
+                                ),
+                                SizedBox(height: 5.h),
+                                Text(
+                                  'Maintenance Logs',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  '47',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  'Completed tasks',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 12.sp,
+                                    color: Colors.white70,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
