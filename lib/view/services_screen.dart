@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:suncube_ai/widgets/solution1/solution1.dart';
+import 'package:suncube_ai/widgets/solution2.dart';
+import 'package:suncube_ai/widgets/solution3.dart';
+import 'package:suncube_ai/widgets/solution4.dart';
+import 'package:suncube_ai/widgets/solution5.dart';
+import 'package:suncube_ai/widgets/solution6.dart';
 
 class ServicesScreen extends StatelessWidget {
   const ServicesScreen({super.key});
@@ -7,12 +12,12 @@ class ServicesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Map<String, Widget> solutions = {
-      'Resident Solar + AI ': Solution1(),
-      'Commercial & Industrial Solar': Solution1(),
-      'Smart Grid & Virtual Power Plant': Solution1(),
-      'AI Monitoring & Predictive Maintenance': Solution1(),
-      'Data Insights & Weather Forecasting': Solution1(),
-      'Cloud Dashboard & Multi-Site Management': Solution1(),
+      'Resident Solar + AI ': Solution1Page(),
+      'Commercial & Industrial Solar': Solution2Page(),
+      'Smart Grid & Virtual Power Plant': Solution3Page(),
+      'AI Monitoring & Predictive Maintenance': Solution4(),
+      'Data Insights & Weather Forecasting': Solution5Page(),
+      'Cloud Dashboard & Multi-Site Management': Solution6Page(),
     };
 
     final solutionKeys = solutions.keys.toList();
