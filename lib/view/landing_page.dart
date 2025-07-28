@@ -1,21 +1,20 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:suncube_ai/utils/AppColors.dart';
 import 'package:suncube_ai/view/billings_blockchain.dart';
+import 'package:suncube_ai/view/features_screen.dart';
 import 'package:suncube_ai/view/login_screen.dart';
+import 'package:suncube_ai/view/services_screen.dart';
 import 'package:suncube_ai/widgets/benefits_section.dart';
+import 'package:suncube_ai/widgets/customized_nav_bar.dart';
 import 'package:suncube_ai/widgets/final_cta.dart';
 import 'package:suncube_ai/widgets/hero_section.dart';
 import 'package:suncube_ai/widgets/how_it_works.dart';
 import 'package:suncube_ai/widgets/impact_section.dart';
 import 'package:suncube_ai/widgets/predictive_alert.dart';
-import 'package:suncube_ai/widgets/customized_nav_bar.dart';
-import 'package:suncube_ai/view/about_us.dart';
-import 'package:suncube_ai/view/features_screen.dart';
-import 'package:suncube_ai/view/services_screen.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -59,9 +58,9 @@ class _LandingPageState extends State<LandingPage> {
                 SliverList(
                   delegate: SliverChildListDelegate([
                     const HeroSection(),
-                    SizedBox(
-                      // height: 20.h,
-                    ), // reduce from large values like 50.h or 60.h
+                    // SizedBox(
+                    //   // height: 20.h,
+                    // ), // reduce from large values like 50.h or 60.h
                     const BenefitsSection(),
                     // SizedBox(height: 20.h),
                     const HowItWorks(),
@@ -71,7 +70,7 @@ class _LandingPageState extends State<LandingPage> {
                     const ImpactSection(),
                     // SizedBox(height: 20.h),
                     const FinalCTA(),
-                    // SizedBox(height: 20.h), // bottom padding if desired
+                    SizedBox(height: 50.h), // bottom padding if desired
                   ]),
                 ),
               ],
@@ -127,8 +126,9 @@ class _StickyHeader extends StatelessWidget {
       floating: false,
       backgroundColor: Colors.transparent,
       elevation: 0,
-      toolbarHeight: 64.h + statusBarHeight, // Add status bar height here
+      toolbarHeight: 64.h + statusBarHeight,
 
+      // Add status bar height here
       flexibleSpace: Container(
         padding: EdgeInsets.only(
           top: statusBarHeight,
