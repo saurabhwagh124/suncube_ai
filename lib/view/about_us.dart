@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
 
 class AboutUsPage extends StatelessWidget {
@@ -104,16 +104,16 @@ class AboutUsPage extends StatelessWidget {
                     SizedBox(height: 20.h),
                     ElevatedButton(
                       onPressed: () {},
-                      child: Text(
-                        'Our Story',
-                        style: GoogleFonts.inter(fontSize: 14.sp),
-                      ),
                       style: ElevatedButton.styleFrom(
                         foregroundColor: AppColors.themeGreen,
                         backgroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.r),
                         ),
+                      ),
+                      child: Text(
+                        'Our Story',
+                        style: GoogleFonts.inter(fontSize: 14.sp),
                       ),
                     ),
                   ],
@@ -258,7 +258,7 @@ class AboutUsPage extends StatelessWidget {
               // Leadership Section
               GlassCard(
                 child: Padding(
-                  padding: EdgeInsets.all(20.w),
+                  padding: EdgeInsets.all(10.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -288,7 +288,7 @@ class AboutUsPage extends StatelessWidget {
                               name: 'Dr. Sarah Chen',
                               role: 'CEO & Co-Founder',
                               description:
-                                  'Former Tesla Energy VP with 15+ years in renewable energy and AI research.',
+                                  'Former Tesla Energy VP with\n15+ years in renewable energy and AI research.',
                               education:
                                   'PhD in Electrical Engineering, Stanford University',
                             ),
@@ -411,19 +411,19 @@ class AboutUsPage extends StatelessWidget {
                               icon: Icons.bar_chart_outlined,
                               title: 'Carbon Negative by 2025',
                               description:
-                                  'We will remove more carbon from the atmosphere than we produce across all operations.',
+                                  'We will remove more carbon from\nthe atmosphere than we produce\nacross all operations.',
                             ),
                             PledgeCard(
                               icon: Icons.trending_up,
                               title: '100% Renewable Energy',
                               description:
-                                  'All our facilities and operations are powered by renewable energy sources.',
+                                  'All our facilities and operations are\npowered by renewable\nenergy sources.',
                             ),
                             PledgeCard(
                               icon: Icons.rate_review_sharp,
                               title: 'B-Corp Certification',
                               description:
-                                  'Certified as a business that meets the highest standards of social and environmental performance.',
+                                  'Certified as a business that meets the\nhighest standards of social\nand environmental performance.',
                             ),
                           ],
                         ),
@@ -478,48 +478,66 @@ class LeadershipCard extends StatelessWidget {
   final String description;
   final String education;
 
-  LeadershipCard({
+  const LeadershipCard({
     required this.name,
     required this.role,
     required this.description,
     required this.education,
+    super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white.withOpacity(0.1),
-      child: Padding(
-        padding: EdgeInsets.all(16.w),
-        child: Column(
-          children: [
-            CircleAvatar(
-              radius: 40.r,
-              backgroundColor: AppColors.themeGreen.withOpacity(0.3),
-            ),
-            SizedBox(height: 10.h),
-            Text(
-              name,
-              style: GoogleFonts.inter(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+    return SizedBox(
+      height: 310.h,
+      width: 250.w,
+      child: Card(
+        color: Colors.white.withOpacity(0.1),
+        child: Padding(
+          padding: EdgeInsets.all(10.w),
+          child: Column(
+            children: [
+              CircleAvatar(
+                radius: 40.r,
+                backgroundColor: AppColors.themeGreen.withOpacity(0.3),
               ),
-            ),
-            Text(
-              role,
-              style: GoogleFonts.inter(fontSize: 14.sp, color: Colors.white70),
-            ),
-            SizedBox(height: 10.h),
-            Text(
-              description,
-              style: GoogleFonts.inter(fontSize: 14.sp, color: Colors.white70),
-            ),
-            Text(
-              education,
-              style: GoogleFonts.inter(fontSize: 14.sp, color: Colors.white70),
-            ),
-          ],
+              SizedBox(height: 10.h),
+              Text(
+                name,
+                style: GoogleFonts.inter(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              Text(
+                role,
+                style: GoogleFonts.inter(
+                  fontSize: 14.sp,
+                  color: Colors.white70,
+                ),
+              ),
+              SizedBox(height: 10.h),
+              Wrap(
+                children: [
+                  Text(
+                    description,
+                    style: GoogleFonts.inter(
+                      fontSize: 14.sp,
+                      color: Colors.white70,
+                    ),
+                  ),
+                  Text(
+                    education,
+                    style: GoogleFonts.inter(
+                      fontSize: 14.sp,
+                      color: Colors.white70,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -531,35 +549,45 @@ class MissionCard extends StatelessWidget {
   final String title;
   final String description;
 
-  MissionCard({
+  const MissionCard({
     required this.icon,
     required this.title,
     required this.description,
+    super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white.withOpacity(0.1),
-      child: Padding(
-        padding: EdgeInsets.all(16.w),
-        child: Column(
-          children: [
-            Icon(icon, size: 48.r, color: AppColors.themeGreen),
-            SizedBox(height: 10.h),
-            Text(
-              title,
-              style: GoogleFonts.inter(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+    return SizedBox(
+      height: 220.h,
+      width: 200.w,
+      child: Card(
+        color: Colors.white.withOpacity(0.1),
+        child: Padding(
+          padding: EdgeInsets.all(10.r),
+          child: Column(
+            children: [
+              Icon(icon, size: 48.r, color: AppColors.themeGreen),
+              SizedBox(height: 10.h),
+              Text(
+                title,
+                style: GoogleFonts.inter(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
-            ),
-            Text(
-              description,
-              style: GoogleFonts.inter(fontSize: 14.sp, color: Colors.white70),
-            ),
-          ],
+              Expanded(
+                child: Text(
+                  description,
+                  style: GoogleFonts.inter(
+                    fontSize: 14.sp,
+                    color: Colors.white70,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

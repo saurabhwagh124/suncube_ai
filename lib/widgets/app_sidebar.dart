@@ -1,20 +1,19 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
-import 'package:suncube_ai/view/contact_screen.dart';
-
-import 'package:suncube_ai/view/login_screen.dart';
-import 'package:suncube_ai/view/services_screen.dart';
 import 'package:suncube_ai/view/about_us.dart';
 import 'package:suncube_ai/view/billings_blockchain.dart';
-import 'package:suncube_ai/view/contact_page.dart';
-import 'package:suncube_ai/view/commitment_page.dart';
 import 'package:suncube_ai/view/blogs_page.dart';
 import 'package:suncube_ai/view/case_studies_page.dart';
+import 'package:suncube_ai/view/commitment_page.dart';
+import 'package:suncube_ai/view/contact_page.dart';
+import 'package:suncube_ai/view/login_screen.dart';
 
 class AppSidebar extends StatelessWidget {
   final String username;
+
   const AppSidebar({super.key, this.username = 'User'});
 
   @override
@@ -106,7 +105,7 @@ class AppSidebar extends StatelessWidget {
                     label: 'Home',
                     onTap: () {
                       Navigator.of(context).pop();
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const LoginScreen(),
@@ -119,7 +118,7 @@ class AppSidebar extends StatelessWidget {
                     label: 'Blogs',
                     onTap: () {
                       Navigator.of(context).pop();
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const BlogsPage(),
@@ -132,7 +131,7 @@ class AppSidebar extends StatelessWidget {
                     label: 'About Us',
                     onTap: () {
                       Navigator.of(context).pop();
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => AboutUsPage()),
                       );
@@ -143,7 +142,7 @@ class AppSidebar extends StatelessWidget {
                     label: 'Case Studies',
                     onTap: () {
                       Navigator.of(context).pop();
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const CaseStudiesPage(),
@@ -156,7 +155,7 @@ class AppSidebar extends StatelessWidget {
                     label: 'Contact',
                     onTap: () {
                       Navigator.of(context).pop();
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => ContactPage()),
                       );
@@ -167,7 +166,7 @@ class AppSidebar extends StatelessWidget {
                     label: 'Our Commitment',
                     onTap: () {
                       Navigator.of(context).pop();
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => CommitmentPage(),
@@ -187,7 +186,7 @@ class AppSidebar extends StatelessWidget {
                     label: 'Billing',
                     onTap: () {
                       Navigator.of(context).pop();
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const BillingPage(),
