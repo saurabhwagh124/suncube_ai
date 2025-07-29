@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:suncube_ai/view/billings_blockchain.dart';
-import 'package:suncube_ai/view/features_screen.dart';
+import 'package:suncube_ai/view/dashboard_screen.dart';
 import 'package:suncube_ai/view/login_screen.dart';
 import 'package:suncube_ai/view/services_screen.dart';
 import 'package:suncube_ai/widgets/app_sidebar.dart';
@@ -121,7 +121,7 @@ class _LandingPageState extends State<LandingPage> {
               ],
             ),
             const ServicesScreen(),
-            const FeaturesScreen(),
+            const DashboardScreen(),
             const BillingPage(),
           ],
         ),

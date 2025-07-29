@@ -9,7 +9,8 @@ import 'package:suncube_ai/view/blogs_page.dart';
 import 'package:suncube_ai/view/case_studies_page.dart';
 import 'package:suncube_ai/view/commitment_page.dart';
 import 'package:suncube_ai/view/contact_page.dart';
-import 'package:suncube_ai/view/login_screen.dart';
+import 'package:suncube_ai/view/landing_page.dart';
+import 'package:suncube_ai/view/success_stories_page.dart';
 
 class AppSidebar extends StatelessWidget {
   final String username;
@@ -108,13 +109,13 @@ class AppSidebar extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const LoginScreen(),
+                          builder: (context) => const LandingPage(),
                         ),
                       );
                     },
                   ),
                   _SidebarItem(
-                    icon: Icons.settings_rounded,
+                    icon: Icons.library_books_outlined,
                     label: 'Blogs',
                     onTap: () {
                       Navigator.of(context).pop();
@@ -158,6 +159,19 @@ class AppSidebar extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => ContactPage()),
+                      );
+                    },
+                  ),
+                  _SidebarItem(
+                    icon: Icons.check_circle_outline,
+                    label: 'Success Stories',
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SuccessStoriesPage(),
+                        ),
                       );
                     },
                   ),

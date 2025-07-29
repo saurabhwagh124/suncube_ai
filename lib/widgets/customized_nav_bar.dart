@@ -3,7 +3,7 @@
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:lucide_icons_flutter/lucide_icons.dart';
 // import 'package:suncube_ai/view/about_us.dart';
-// import 'package:suncube_ai/view/features_screen.dart';
+// import 'package:suncube_ai/view/dashboard_screen.dart';
 // import 'package:suncube_ai/view/landing_page.dart';
 // import 'package:suncube_ai/view/services_screen.dart';
 
@@ -120,13 +120,11 @@
 //     );
 //   }
 // }
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:suncube_ai/view/about_us.dart'; // Remove this if no longer used
+import 'package:suncube_ai/view/Dashboards/user_dashboard.dart';
 import 'package:suncube_ai/view/billings_blockchain.dart';
-import 'package:suncube_ai/view/features_screen.dart';
 import 'package:suncube_ai/view/landing_page.dart';
 import 'package:suncube_ai/view/services_screen.dart';
 // import 'package:suncube_ai/view/billings_page.dart'; // Add your billing page import here
@@ -144,7 +142,8 @@ class CustomizedNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 220.w, // tight navbar
+      width: 220.w,
+      // tight navbar
       height: 70.h,
       padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 8.h),
       decoration: BoxDecoration(
@@ -171,10 +170,10 @@ class CustomizedNavBar extends StatelessWidget {
           ),
           _buildNavItem(
             context,
-            icon: LucideIcons.squareChartGantt,
+            icon: LucideIcons.layoutDashboard,
             index: 2,
             label: 'Guidelines',
-            page: const FeaturesScreen(),
+            page: const UserDashboardHome(),
           ),
           _buildNavItem(
             context,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
 
 class ContactPage extends StatelessWidget {
@@ -10,6 +10,12 @@ class ContactPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back, color: Colors.white, size: 30.sp),
+        ),
         title: Text(
           'Contact Us',
           style: GoogleFonts.inter(
@@ -147,7 +153,7 @@ class ContactPage extends StatelessWidget {
                       ),
                       SizedBox(height: 20.h),
                       SizedBox(
-                        height: 200.h,
+                        height: 220.h,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: [
@@ -580,13 +586,14 @@ class ContactCard extends StatelessWidget {
   final String actionText;
   final VoidCallback action;
 
-  ContactCard({
+  const ContactCard({
     required this.icon,
     required this.title,
     required this.description,
     required this.contactInfo,
     required this.actionText,
     required this.action,
+    super.key,
   });
 
   @override
@@ -594,9 +601,9 @@ class ContactCard extends StatelessWidget {
     return Card(
       color: Colors.white.withOpacity(0.1),
       child: Padding(
-        padding: EdgeInsets.all(16.w),
+        padding: EdgeInsets.all(10.r),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          // mainAxisSize: MainAxisSize.min,
           children: [
             Icon(icon, size: 48.r, color: AppColors.themeGreen),
             SizedBox(height: 10.h),
@@ -624,16 +631,16 @@ class ContactCard extends StatelessWidget {
             SizedBox(height: 20.h),
             ElevatedButton(
               onPressed: action,
-              child: Text(
-                actionText,
-                style: GoogleFonts.inter(fontSize: 14.sp),
-              ),
               style: ElevatedButton.styleFrom(
                 foregroundColor: AppColors.themeGreen,
                 backgroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.r),
                 ),
+              ),
+              child: Text(
+                actionText,
+                style: GoogleFonts.inter(fontSize: 14.sp),
               ),
             ),
           ],

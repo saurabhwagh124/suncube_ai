@@ -8,6 +8,12 @@ class AboutUsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back, color: Colors.white, size: 30.sp),
+        ),
         title: Text(
           'About Us',
           style: GoogleFonts.inter(

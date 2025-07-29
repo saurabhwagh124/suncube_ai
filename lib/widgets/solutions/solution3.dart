@@ -10,6 +10,12 @@ class Solution3Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back, color: Colors.white, size: 30.sp),
+        ),
         title: Text(
           'Solution 3',
           style: GoogleFonts.inter(

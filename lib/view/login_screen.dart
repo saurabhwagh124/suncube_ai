@@ -1,9 +1,13 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
+import 'package:suncube_ai/view/Dashboards/admin_dashboard.dart';
+import 'package:suncube_ai/view/Dashboards/grid_operator_dashboard.dart';
+import 'package:suncube_ai/view/Dashboards/user_dashboard.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -273,7 +277,35 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: 48.h,
                           child: ElevatedButton.icon(
                             onPressed: () {
-                              // TODO: Handle login
+                              if (selectedRole != null) {
+                                if (selectedRole!.title.toLowerCase() ==
+                                    "admin") {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder:
+                                          (context) => AdminDashboardHome(),
+                                    ),
+                                  );
+                                } else if (selectedRole!.title.toLowerCase() ==
+                                    "user") {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => UserDashboardHome(),
+                                    ),
+                                  );
+                                } else {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder:
+                                          (context) =>
+                                              GridOperatorDashboardHome(),
+                                    ),
+                                  );
+                                }
+                              }
                             },
                             icon: const Icon(Icons.login, color: Colors.white),
                             label: Text(

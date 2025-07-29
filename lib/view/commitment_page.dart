@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
 
 class CommitmentPage extends StatelessWidget {
@@ -10,6 +10,12 @@ class CommitmentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back, color: Colors.white, size: 30.sp),
+        ),
         title: Text(
           'Our Commitment',
           style: GoogleFonts.inter(
@@ -148,7 +154,7 @@ class CommitmentPage extends StatelessWidget {
                       ),
                       SizedBox(height: 20.h),
                       SizedBox(
-                        height: 125.h,
+                        height: 150.h,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: [
@@ -189,7 +195,7 @@ class CommitmentPage extends StatelessWidget {
                       ),
                       SizedBox(height: 10.h),
                       Text(
-                        'We only support panels made using recyclable materials\nand promote manufacturers with\ncomprehensive reuse and repurpose programs.',
+                        'We only support panels made using recyclable materials and promote manufacturers with comprehensive reuse and repurpose programs.',
                         style: GoogleFonts.inter(
                           fontSize: 18.sp,
                           color: Colors.white70,
@@ -197,7 +203,7 @@ class CommitmentPage extends StatelessWidget {
                       ),
                       SizedBox(height: 20.h),
                       SizedBox(
-                        height: 155.h,
+                        height: 280.h,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: [
@@ -205,13 +211,13 @@ class CommitmentPage extends StatelessWidget {
                               icon: Icons.terrain,
                               title: 'Recyclable Materials',
                               description:
-                                  'All supported solar panels use materials \nthat can be fully recycled at end-of-life,\nreducing environmental impact.',
+                                  'All supported solar panels use materials that can be fully recycled at end-of-life, reducing environmental impact.',
                             ),
                             HardwareCard(
                               icon: Icons.tour_sharp,
                               title: 'Preferred Vendors',
                               description:
-                                  'We maintain a curated list of manufacturers\nwith proven sustainability and circular economy practices.',
+                                  'We maintain a curated list of manufacturers with proven sustainability and circular economy practices.',
                             ),
                             HardwareCard(
                               icon: Icons.water_outlined,
@@ -252,7 +258,7 @@ class CommitmentPage extends StatelessWidget {
                       ),
                       SizedBox(height: 20.h),
                       SizedBox(
-                        height: 135.h,
+                        height: 170.h,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: [
@@ -323,7 +329,7 @@ class CommitmentPage extends StatelessWidget {
                               ),
                               SizedBox(height: 20.h),
                               SizedBox(
-                                height: 125.h,
+                                height: 150.h,
                                 child: ListView(
                                   scrollDirection: Axis.horizontal,
                                   children: [
@@ -469,28 +475,38 @@ class HardwareCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white.withOpacity(0.1),
-      child: Padding(
-        padding: EdgeInsets.all(16.w),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, size: 48.r, color: AppColors.themeGreen),
-            SizedBox(height: 10.h),
-            Text(
-              title,
-              style: GoogleFonts.inter(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+    return SizedBox(
+      width: 200.w,
+      child: Card(
+        color: Colors.white.withOpacity(0.1),
+        child: Padding(
+          padding: EdgeInsets.all(16.w),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, size: 48.r, color: AppColors.themeGreen),
+              SizedBox(height: 10.h),
+              Text(
+                title,
+                style: GoogleFonts.inter(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
-            ),
-            Text(
-              description,
-              style: GoogleFonts.inter(fontSize: 14.sp, color: Colors.white70),
-            ),
-          ],
+              Wrap(
+                children: [
+                  Text(
+                    description,
+                    style: GoogleFonts.inter(
+                      fontSize: 14.sp,
+                      color: Colors.white70,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
