@@ -181,7 +181,7 @@ class Solution4 extends StatelessWidget {
                           ),
                           Container(
                             margin: EdgeInsets.symmetric(horizontal: 4.w),
-                            padding: EdgeInsets.all(12.w),
+                            padding: EdgeInsets.all(5.r),
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [
@@ -237,7 +237,7 @@ class Solution4 extends StatelessWidget {
                           ),
                           Container(
                             margin: EdgeInsets.symmetric(horizontal: 4.w),
-                            padding: EdgeInsets.all(2.w),
+                            padding: EdgeInsets.all(2.r),
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [
@@ -296,7 +296,7 @@ class Solution4 extends StatelessWidget {
                     ),
                     SizedBox(height: 20.h),
                     Container(
-                      padding: EdgeInsets.all(16.w),
+                      padding: EdgeInsets.all(5.r),
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
@@ -1335,7 +1335,7 @@ class Solution4 extends StatelessWidget {
                         children: [
                           Container(
                             margin: EdgeInsets.symmetric(horizontal: 4.w),
-                            padding: EdgeInsets.all(12.w),
+                            padding: EdgeInsets.all(5.r),
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [
@@ -1391,7 +1391,7 @@ class Solution4 extends StatelessWidget {
                           ),
                           Container(
                             margin: EdgeInsets.symmetric(horizontal: 4.w),
-                            padding: EdgeInsets.all(12.w),
+                            padding: EdgeInsets.all(5.r),
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [
@@ -1447,7 +1447,7 @@ class Solution4 extends StatelessWidget {
                           ),
                           Container(
                             margin: EdgeInsets.symmetric(horizontal: 4.w),
-                            padding: EdgeInsets.all(12.w),
+                            padding: EdgeInsets.all(5.r),
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [

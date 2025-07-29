@@ -136,219 +136,215 @@ class Solution1Page extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 10.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Expanded(
-                          child: Container(
-                            margin: EdgeInsets.symmetric(horizontal: 4.w),
-                            padding: EdgeInsets.all(12.w),
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.white.withOpacity(0.05),
-                                  Colors.white.withOpacity(0.1),
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.all(10.r),
+                          padding: EdgeInsets.all(12.w),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.white.withOpacity(0.05),
+                                Colors.white.withOpacity(0.1),
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                            borderRadius: BorderRadius.circular(12.r),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 8,
+                                offset: const Offset(0, 4),
                               ),
-                              borderRadius: BorderRadius.circular(12.r),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.1),
-                                  blurRadius: 8,
-                                  offset: const Offset(0, 4),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Solar Generation',
+                                style: GoogleFonts.inter(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
-                              ],
-                            ),
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Solar Generation',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
+                              ),
+                              SizedBox(height: 10.h),
+                              Text(
+                                '4.5 kW',
+                                style: GoogleFonts.inter(
+                                  fontSize: 24.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
-                                SizedBox(height: 10.h),
-                                Text(
-                                  '4.5 kW',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 24.sp,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
+                              ),
+                              SizedBox(height: 10.h),
+                              Text(
+                                '+12% from yesterday',
+                                style: GoogleFonts.inter(
+                                  color: AppColors.themeGreen,
+                                  fontSize: 14.sp,
                                 ),
-                                SizedBox(height: 10.h),
-                                Text(
-                                  '+12% from yesterday',
-                                  style: GoogleFonts.inter(
-                                    color: AppColors.themeGreen,
-                                    fontSize: 14.sp,
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: Container(
-                            margin: EdgeInsets.symmetric(horizontal: 4.w),
-                            padding: EdgeInsets.all(12.w),
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.white.withOpacity(0.05),
-                                  Colors.white.withOpacity(0.1),
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.all(10.r),
+                          padding: EdgeInsets.all(12.w),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.white.withOpacity(0.05),
+                                Colors.white.withOpacity(0.1),
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                            borderRadius: BorderRadius.circular(12.r),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 8,
+                                offset: const Offset(0, 4),
                               ),
-                              borderRadius: BorderRadius.circular(12.r),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.1),
-                                  blurRadius: 8,
-                                  offset: const Offset(0, 4),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Consumption',
+                                style: GoogleFonts.inter(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
-                              ],
-                            ),
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Consumption',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
+                              ),
+                              SizedBox(height: 10.h),
+                              Text(
+                                '3.3 kW',
+                                style: GoogleFonts.inter(
+                                  fontSize: 24.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
-                                SizedBox(height: 10.h),
-                                Text(
-                                  '3.3 kW',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 24.sp,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
+                              ),
+                              SizedBox(height: 10.h),
+                              Text(
+                                'Normal',
+                                style: GoogleFonts.inter(
+                                  color: Colors.blue,
+                                  fontSize: 14.sp,
                                 ),
-                                SizedBox(height: 10.h),
-                                Text(
-                                  'Normal',
-                                  style: GoogleFonts.inter(
-                                    color: Colors.blue,
-                                    fontSize: 14.sp,
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: Container(
-                            margin: EdgeInsets.symmetric(horizontal: 4.w),
-                            padding: EdgeInsets.all(12.w),
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.white.withOpacity(0.05),
-                                  Colors.white.withOpacity(0.1),
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.all(10.r),
+                          padding: EdgeInsets.all(12.w),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.white.withOpacity(0.05),
+                                Colors.white.withOpacity(0.1),
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                            borderRadius: BorderRadius.circular(12.r),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 8,
+                                offset: const Offset(0, 4),
                               ),
-                              borderRadius: BorderRadius.circular(12.r),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.1),
-                                  blurRadius: 8,
-                                  offset: const Offset(0, 4),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Battery Level',
+                                style: GoogleFonts.inter(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
-                              ],
-                            ),
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Battery Level',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
+                              ),
+                              SizedBox(height: 10.h),
+                              Text(
+                                '84%',
+                                style: GoogleFonts.inter(
+                                  fontSize: 24.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
-                                SizedBox(height: 10.h),
-                                Text(
-                                  '84%',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 24.sp,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
+                              ),
+                              SizedBox(height: 10.h),
+                              LinearProgressIndicator(
+                                value: 0.84,
+                                backgroundColor: Colors.grey[200],
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  AppColors.themeGreen,
                                 ),
-                                SizedBox(height: 10.h),
-                                LinearProgressIndicator(
-                                  value: 0.84,
-                                  backgroundColor: Colors.grey[200],
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    AppColors.themeGreen,
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: Container(
-                            margin: EdgeInsets.symmetric(horizontal: 4.w),
-                            padding: EdgeInsets.all(12.w),
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.white.withOpacity(0.05),
-                                  Colors.white.withOpacity(0.1),
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.all(10.r),
+                          padding: EdgeInsets.all(12.w),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.white.withOpacity(0.05),
+                                Colors.white.withOpacity(0.1),
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                            borderRadius: BorderRadius.circular(12.r),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 8,
+                                offset: const Offset(0, 4),
                               ),
-                              borderRadius: BorderRadius.circular(12.r),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.1),
-                                  blurRadius: 8,
-                                  offset: const Offset(0, 4),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Grid Feed-in',
+                                style: GoogleFonts.inter(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
-                              ],
-                            ),
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Grid Feed-in',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
+                              ),
+                              SizedBox(height: 10.h),
+                              Text(
+                                '1.2 kW',
+                                style: GoogleFonts.inter(
+                                  fontSize: 24.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
-                                SizedBox(height: 10.h),
-                                Text(
-                                  '1.2 kW',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 24.sp,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
+                              ),
+                              SizedBox(height: 10.h),
+                              Text(
+                                'Earning Credits',
+                                style: GoogleFonts.inter(
+                                  color: AppColors.themeGreen,
+                                  fontSize: 14.sp,
                                 ),
-                                SizedBox(height: 10.h),
-                                Text(
-                                  'Earning Credits',
-                                  style: GoogleFonts.inter(
-                                    color: AppColors.themeGreen,
-                                    fontSize: 14.sp,
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
