@@ -1,281 +1,520 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:suncube_ai/utils/AppColors.dart';
 
 class Solution1Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Solution1'), backgroundColor: Colors.green),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Header Section
-            Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.green, Colors.blue],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+      appBar: AppBar(
+        title: Text(
+          'Solution1',
+          style: GoogleFonts.inter(
+            fontSize: 20.sp,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                const Color(0xFF060C09).withOpacity(0.9),
+                const Color(0xFF1A231F).withOpacity(0.9),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                blurRadius: 8,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF060C09), Color(0xFF1A231F)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Header Section
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 16.w),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColors.themeGreen.withOpacity(0.3),
+                      const Color(0xFF106B43).withOpacity(0.2),
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(16.r),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      'AI-Powered Optimization',
+                      style: GoogleFonts.inter(
+                        color: Colors.white,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      'Smart Solar Starts at Home.',
+                      style: GoogleFonts.inter(
+                        color: Colors.white,
+                        fontSize: 32.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      'From rooftops to dashboards — make every ray count with AI-enhanced solar for your home.',
+                      style: GoogleFonts.inter(
+                        color: Colors.white70,
+                        fontSize: 18.sp,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 20.h),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: AppColors.themeGreen,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.r),
+                        ),
+                      ),
+                      child: Text(
+                        'Get a Smart Solar Plan',
+                        style: GoogleFonts.inter(fontSize: 14.sp),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          'AI-Powered Optimization',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          'Smart Solar Starts at Home.',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          'From rooftops to dashboards — make every ray count with AI-enhanced solar for your home.',
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                        ),
-                        SizedBox(height: 20),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.green,
-                            backgroundColor: Colors.white,
-                          ),
-                          child: Text('Get a Smart Solar Plan'),
-                        ),
-                      ],
+              SizedBox(height: 24.h),
+              // Content Section
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Raw vs Optimized Yield',
+                      style: GoogleFonts.inter(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            // Content Section
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Raw vs Optimized Yield',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(
-                        child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
+                    SizedBox(height: 10.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: EdgeInsets.all(12.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
                             child: Column(
                               children: [
                                 Text(
                                   'Solar Generation',
-                                  style: TextStyle(
-                                    fontSize: 18,
+                                  style: GoogleFonts.inter(
+                                    fontSize: 18.sp,
                                     fontWeight: FontWeight.bold,
+                                    color: Colors.white,
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                SizedBox(height: 10.h),
                                 Text(
                                   '4.5 kW',
-                                  style: TextStyle(
-                                    fontSize: 24,
+                                  style: GoogleFonts.inter(
+                                    fontSize: 24.sp,
                                     fontWeight: FontWeight.bold,
+                                    color: Colors.white,
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                SizedBox(height: 10.h),
                                 Text(
                                   '+12% from yesterday',
-                                  style: TextStyle(
-                                    color: Colors.green,
-                                    fontSize: 14,
+                                  style: GoogleFonts.inter(
+                                    color: AppColors.themeGreen,
+                                    fontSize: 14.sp,
                                   ),
                                 ),
                               ],
                             ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
+                        Expanded(
+                          child: Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: EdgeInsets.all(12.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
                             child: Column(
                               children: [
                                 Text(
                                   'Consumption',
-                                  style: TextStyle(
-                                    fontSize: 18,
+                                  style: GoogleFonts.inter(
+                                    fontSize: 18.sp,
                                     fontWeight: FontWeight.bold,
+                                    color: Colors.white,
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                SizedBox(height: 10.h),
                                 Text(
                                   '3.3 kW',
-                                  style: TextStyle(
-                                    fontSize: 24,
+                                  style: GoogleFonts.inter(
+                                    fontSize: 24.sp,
                                     fontWeight: FontWeight.bold,
+                                    color: Colors.white,
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                SizedBox(height: 10.h),
                                 Text(
                                   'Normal',
-                                  style: TextStyle(
+                                  style: GoogleFonts.inter(
                                     color: Colors.blue,
-                                    fontSize: 14,
+                                    fontSize: 14.sp,
                                   ),
                                 ),
                               ],
                             ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
+                        Expanded(
+                          child: Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: EdgeInsets.all(12.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
                             child: Column(
                               children: [
                                 Text(
                                   'Battery Level',
-                                  style: TextStyle(
-                                    fontSize: 18,
+                                  style: GoogleFonts.inter(
+                                    fontSize: 18.sp,
                                     fontWeight: FontWeight.bold,
+                                    color: Colors.white,
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                SizedBox(height: 10.h),
                                 Text(
                                   '84%',
-                                  style: TextStyle(
-                                    fontSize: 24,
+                                  style: GoogleFonts.inter(
+                                    fontSize: 24.sp,
                                     fontWeight: FontWeight.bold,
+                                    color: Colors.white,
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                SizedBox(height: 10.h),
                                 LinearProgressIndicator(
                                   value: 0.84,
                                   backgroundColor: Colors.grey[200],
                                   valueColor: AlwaysStoppedAnimation<Color>(
-                                    Colors.green,
+                                    AppColors.themeGreen,
                                   ),
                                 ),
                               ],
                             ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
+                        Expanded(
+                          child: Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: EdgeInsets.all(12.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white.withOpacity(0.05),
+                                  Colors.white.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
                             child: Column(
                               children: [
                                 Text(
                                   'Grid Feed-in',
-                                  style: TextStyle(
-                                    fontSize: 18,
+                                  style: GoogleFonts.inter(
+                                    fontSize: 18.sp,
                                     fontWeight: FontWeight.bold,
+                                    color: Colors.white,
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                SizedBox(height: 10.h),
                                 Text(
                                   '1.2 kW',
-                                  style: TextStyle(
-                                    fontSize: 24,
+                                  style: GoogleFonts.inter(
+                                    fontSize: 24.sp,
                                     fontWeight: FontWeight.bold,
+                                    color: Colors.white,
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                SizedBox(height: 10.h),
                                 Text(
                                   'Earning Credits',
-                                  style: TextStyle(
-                                    color: Colors.green,
-                                    fontSize: 14,
+                                  style: GoogleFonts.inter(
+                                    color: AppColors.themeGreen,
+                                    fontSize: 14.sp,
                                   ),
                                 ),
                               ],
                             ),
                           ),
                         ),
+                      ],
+                    ),
+                    SizedBox(height: 20.h),
+                    Container(
+                      padding: EdgeInsets.all(16.w),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.white.withOpacity(0.05),
+                            Colors.white.withOpacity(0.1),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        borderRadius: BorderRadius.circular(12.r),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 8,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  SizedBox(height: 20),
-                  Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             'Optimization Benefits',
-                            style: TextStyle(
-                              fontSize: 20,
+                            style: GoogleFonts.inter(
+                              fontSize: 20.sp,
                               fontWeight: FontWeight.bold,
+                              color: Colors.white,
                             ),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 10.h),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Standard Output'),
-                              Text('24.5 kWh/day'),
+                              Text(
+                                'Standard Output',
+                                style: GoogleFonts.inter(
+                                  fontSize: 16.sp,
+                                  color: Colors.white70,
+                                ),
+                              ),
+                              Text(
+                                '24.5 kWh/day',
+                                style: GoogleFonts.inter(
+                                  fontSize: 16.sp,
+                                  color: Colors.white,
+                                ),
+                              ),
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('AI-Optimized Output'),
-                              Text('31.2 kWh/day'),
+                              Text(
+                                'AI-Optimized Output',
+                                style: GoogleFonts.inter(
+                                  fontSize: 16.sp,
+                                  color: Colors.white70,
+                                ),
+                              ),
+                              Text(
+                                '31.2 kWh/day',
+                                style: GoogleFonts.inter(
+                                  fontSize: 16.sp,
+                                  color: Colors.white,
+                                ),
+                              ),
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [Text('Efficiency Gain'), Text('+27.3%')],
+                            children: [
+                              Text(
+                                'Efficiency Gain',
+                                style: GoogleFonts.inter(
+                                  fontSize: 16.sp,
+                                  color: Colors.white70,
+                                ),
+                              ),
+                              Text(
+                                '+27.3%',
+                                style: GoogleFonts.inter(
+                                  fontSize: 16.sp,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ),
-                  ),
-                  Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                    SizedBox(height: 20.h),
+                    Container(
+                      padding: EdgeInsets.all(16.w),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.white.withOpacity(0.05),
+                            Colors.white.withOpacity(0.1),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        borderRadius: BorderRadius.circular(12.r),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 8,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             'AI Learning Factors',
-                            style: TextStyle(
-                              fontSize: 20,
+                            style: GoogleFonts.inter(
+                              fontSize: 20.sp,
                               fontWeight: FontWeight.bold,
+                              color: Colors.white,
                             ),
                           ),
-                          SizedBox(height: 10),
-                          Text('• Weather pattern analysis'),
-                          Text('• Shading optimization'),
-                          Text('• Usage pattern matching'),
-                          Text('• Seasonal adjustments'),
+                          SizedBox(height: 10.h),
+                          Text(
+                            '• Weather pattern analysis',
+                            style: GoogleFonts.inter(
+                              fontSize: 16.sp,
+                              color: Colors.white70,
+                            ),
+                          ),
+                          Text(
+                            '• Shading optimization',
+                            style: GoogleFonts.inter(
+                              fontSize: 16.sp,
+                              color: Colors.white70,
+                            ),
+                          ),
+                          Text(
+                            '• Usage pattern matching',
+                            style: GoogleFonts.inter(
+                              fontSize: 16.sp,
+                              color: Colors.white70,
+                            ),
+                          ),
+                          Text(
+                            '• Seasonal adjustments',
+                            style: GoogleFonts.inter(
+                              fontSize: 16.sp,
+                              color: Colors.white70,
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
