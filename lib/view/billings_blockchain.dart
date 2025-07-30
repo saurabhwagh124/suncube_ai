@@ -4,13 +4,28 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
 
-class BillingPage extends StatelessWidget {
+class BillingPage extends StatefulWidget {
   const BillingPage({super.key});
+
+  @override
+  State<BillingPage> createState() => _BillingPageState();
+}
+
+class _BillingPageState extends State<BillingPage> {
+  int _selectedIndex = 3;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF060C09),
       body: Container(
+        margin: EdgeInsets.only(top: 84.h),
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Color(0xFF060C09), Color(0xFF1A231F)],

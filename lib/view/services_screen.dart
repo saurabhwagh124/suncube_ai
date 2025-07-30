@@ -10,9 +10,14 @@ import 'package:suncube_ai/widgets/solutions/solution4.dart';
 import 'package:suncube_ai/widgets/solutions/solution5.dart';
 import 'package:suncube_ai/widgets/solutions/solution6.dart';
 
-class ServicesScreen extends StatelessWidget {
+class ServicesScreen extends StatefulWidget {
   const ServicesScreen({super.key});
 
+  @override
+  State<ServicesScreen> createState() => _ServicesScreenState();
+}
+
+class _ServicesScreenState extends State<ServicesScreen> {
   @override
   Widget build(BuildContext context) {
     final Map<String, Map<String, dynamic>> solutions = {
@@ -57,16 +62,51 @@ class ServicesScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       // appBar: AppBar(
-      //   leading: IconButton(
-      //     onPressed: () {
-      //       Navigator.pop(context);
+      //   leading: InkWell(
+      //     onTap: () {
+      //       scaffoldKey.currentState?.openDrawer();
       //     },
-      //     // icon: Icon(Icons.arrow_back, color: Colors.white, size: 30.sp),
+      //     child: Icon(LucideIcons.menu, color: Colors.white, size: 22.sp),
       //   ),
-      //   backgroundColor: const Color(0xFF060C09).withOpacity(0.9),
-      //   elevation: 0,
+      //   backgroundColor: Color(0xFF060C09).withOpacity(0.9),
+      //   automaticallyImplyLeading: false,
+      //
+      //   title: Text(
+      //     'Suncube AI',
+      //     style: GoogleFonts.inter(
+      //       fontWeight: FontWeight.w800,
+      //       fontSize: 20.sp,
+      //       color: Colors.white,
+      //     ),
+      //   ),
+      //   actions: [
+      //     TextButton(
+      //       onPressed: () {
+      //         Navigator.push(
+      //           context,
+      //           MaterialPageRoute(builder: (context) => const LoginScreen()),
+      //         );
+      //       },
+      //       style: TextButton.styleFrom(
+      //         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+      //         shape: RoundedRectangleBorder(
+      //           borderRadius: BorderRadius.circular(8.r),
+      //         ),
+      //       ),
+      //       child: Text(
+      //         'Login',
+      //         style: GoogleFonts.inter(
+      //           fontSize: 14.sp,
+      //           fontWeight: FontWeight.w600,
+      //           color: const Color(0xFF73E0A9),
+      //         ),
+      //       ),
+      //     ),
+      //   ],
       // ),
+      // drawer: AppSidebar(),
       body: Container(
+        margin: EdgeInsets.only(top: 84.h),
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Color(0xFF060C09), Color(0xFF1A231F)],

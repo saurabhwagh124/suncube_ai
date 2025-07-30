@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class FeatureCard extends StatelessWidget {
   final (String, String, IconData, Color) data;
+
   const FeatureCard(this.data, {super.key});
 
   @override
@@ -24,7 +25,7 @@ class FeatureCard extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
-              blurRadius: 12,
+              blurRadius: 12.r,
               offset: const Offset(0, 4),
             ),
           ],

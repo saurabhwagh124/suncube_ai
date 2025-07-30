@@ -2,9 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:suncube_ai/widgets/customized_nav_bar.dart';
 
-class UserDashboardHome extends StatelessWidget {
+class UserDashboardHome extends StatefulWidget {
   const UserDashboardHome({super.key});
+
+  @override
+  State<UserDashboardHome> createState() => _UserDashboardHomeState();
+}
+
+class _UserDashboardHomeState extends State<UserDashboardHome> {
+  int _selectedIndex = 2;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -165,6 +179,35 @@ class UserDashboardHome extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(bottom: 16.h),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12.r),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
+            gradient: LinearGradient(
+              colors: [
+                Colors.white.withOpacity(0.05),
+                Colors.grey.withOpacity(0.1),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: CustomizedNavBar(
+            selectedIndex: _selectedIndex,
+            onItemTapped: _onItemTapped,
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 

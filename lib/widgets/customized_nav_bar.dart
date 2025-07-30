@@ -200,8 +200,10 @@ class CustomizedNavBar extends StatelessWidget {
       onTap: () {
         if (!isSelected) {
           onItemTapped(index);
-          // You might want to also push or replace navigation to page
-          // Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => page));
+          // Navigator.pushReplacement(
+          //   context,
+          //   MaterialPageRoute(builder: (_) => page),
+          // );
         }
       },
       child: AnimatedContainer(

@@ -49,7 +49,7 @@ class HowItWorks extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
-              blurRadius: 20,
+              blurRadius: 20.r,
               offset: const Offset(0, 4),
             ),
           ],
@@ -85,7 +85,7 @@ class HowItWorks extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
 
             /* --- Headline --- */
             Text(
@@ -108,10 +108,10 @@ class HowItWorks extends StatelessWidget {
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w400,
                 color: Colors.white.withOpacity(0.75),
-                height: 1.5,
+                height: 1.5.h,
               ),
             ),
-            const SizedBox(height: 32),
+            SizedBox(height: 32.h),
 
             /* --- Step Cards (2 per row) --- */
             GridView.builder(
@@ -139,6 +139,7 @@ class HowItWorks extends StatelessWidget {
 /* ------------------------------------------------------------------ */
 class _StepCard extends StatelessWidget {
   final (String title, IconData icon, String step, String desc) data;
+
   const _StepCard(this.data);
 
   @override
