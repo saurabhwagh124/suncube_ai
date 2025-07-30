@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:suncube_ai/utils/AppColors.dart';
 
 class CaseStudiesPage extends StatelessWidget {
   const CaseStudiesPage({super.key});
@@ -77,19 +78,30 @@ class _Hero extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 24.w),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFF73E0A9), Color(0xFF34B87C)],
+          colors: [
+            AppColors.themeGreen.withOpacity(0.3),
+            const Color(0xFF106B43).withOpacity(0.2),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
+        borderRadius: BorderRadius.circular(16.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         children: [
           Container(
             padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(.15),
+              color: Colors.white.withOpacity(0.15),
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: Text(
@@ -118,7 +130,7 @@ class _Hero extends StatelessWidget {
             textAlign: TextAlign.center,
             style: GoogleFonts.inter(
               fontSize: 18.sp,
-              color: Colors.white.withOpacity(.8),
+              color: Colors.white.withOpacity(0.8),
             ),
           ),
           SizedBox(height: 32.h),
@@ -128,10 +140,10 @@ class _Hero extends StatelessWidget {
             label: const Text('View Project Highlights'),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,
-              foregroundColor: const Color(0xFF34B87C),
+              foregroundColor: AppColors.themeGreen,
               padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
               elevation: 8,
-              shadowColor: Colors.black.withOpacity(.25),
+              shadowColor: Colors.black.withOpacity(0.25),
             ),
           ),
         ],
@@ -158,7 +170,7 @@ class _Section extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
             decoration: BoxDecoration(
-              color: const Color(0xFF73E0A9).withOpacity(.15),
+              color: AppColors.themeGreen.withOpacity(0.15),
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: Row(
@@ -171,7 +183,7 @@ class _Section extends StatelessWidget {
                   style: GoogleFonts.inter(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
-                    color: const Color(0xFF73E0A9),
+                    color: AppColors.themeGreen,
                   ),
                 ),
               ],
@@ -242,7 +254,7 @@ class _ProjectZenith extends StatelessWidget {
                       style: GoogleFonts.inter(
                         fontSize: 32.sp,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xFF73E0A9),
+                        color: AppColors.themeGreen,
                       ),
                     ),
                     Text(
@@ -293,7 +305,7 @@ class _IndustrialHub extends StatelessWidget {
                       style: GoogleFonts.inter(
                         fontSize: 48.sp,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xFF73E0A9),
+                        color: AppColors.themeGreen,
                       ),
                     ),
                     Text(
@@ -406,7 +418,7 @@ class _InsightsSection extends StatelessWidget {
                     'Community Engagement',
                     'Real-time Optimization',
                   ],
-                  color: Colors.green,
+                  color: Color(0XFF34B87C),
                 ),
                 _InsightCard(
                   title: 'AI Optimization',
@@ -446,13 +458,27 @@ class _FinalCTA extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(24.w),
         decoration: BoxDecoration(
-          color: const Color(0xFF1E2622),
+          gradient: LinearGradient(
+            colors: [
+              Colors.white.withOpacity(0.05),
+              Colors.white.withOpacity(0.1),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
           borderRadius: BorderRadius.circular(12.r),
-          border: Border.all(color: const Color(0xFF73E0A9)),
+          border: Border.all(color: AppColors.themeGreen.withOpacity(0.4)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
         child: Column(
           children: [
-            const Icon(LucideIcons.lightbulb, size: 48, color: Colors.blue),
+            Icon(LucideIcons.lightbulb, size: 48, color: AppColors.themeGreen),
             SizedBox(height: 16.h),
             Text(
               'Ready to Scale Your Energy Infrastructure?',
@@ -475,7 +501,7 @@ class _FinalCTA extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF73E0A9),
+                    backgroundColor: AppColors.themeGreen,
                     foregroundColor: Colors.black,
                     padding: EdgeInsets.symmetric(
                       horizontal: 24.w,
@@ -485,18 +511,18 @@ class _FinalCTA extends StatelessWidget {
                   child: const Text('Start Your Project'),
                 ),
                 SizedBox(width: 16.w),
-                OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(color: Color(0xFF73E0A9)),
-                    foregroundColor: const Color(0xFF73E0A9),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 24.w,
-                      vertical: 16.h,
-                    ),
-                  ),
-                  child: const Text('Schedule Demo'),
-                ),
+                // OutlinedButton(
+                //   onPressed: () {},
+                //   style: OutlinedButton.styleFrom(
+                //     side: BorderSide(color: AppColors.themeGreen),
+                //     foregroundColor: AppColors.themeGreen,
+                //     padding: EdgeInsets.symmetric(
+                //       horizontal: 24.w,
+                //       vertical: 16.h,
+                //     ),
+                //   ),
+                //   child: const Text('Schedule Demo'),
+                // ),
               ],
             ),
           ],
@@ -528,16 +554,23 @@ class _InfoCard extends StatelessWidget {
       margin: EdgeInsets.all(10.r),
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E2622),
+        color: Colors.white.withOpacity(0.1),
         borderRadius: BorderRadius.circular(12.r),
         border: Border.all(color: Colors.white12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(icon, color: const Color(0xFF73E0A9), size: 20),
+              Icon(icon, color: AppColors.themeGreen, size: 20),
               SizedBox(width: 8.w),
               Flexible(
                 child: Text(
@@ -581,7 +614,7 @@ class _ProgressBar extends StatelessWidget {
               '$value%',
               style: GoogleFonts.inter(
                 fontSize: 12.sp,
-                color: const Color(0xFF73E0A9),
+                color: AppColors.themeGreen,
               ),
             ),
           ],
@@ -590,7 +623,7 @@ class _ProgressBar extends StatelessWidget {
         LinearProgressIndicator(
           value: value / 100,
           backgroundColor: Colors.white12,
-          color: const Color(0xFF73E0A9),
+          color: AppColors.themeGreen,
         ),
       ],
     );
@@ -612,7 +645,7 @@ class _Stat extends StatelessWidget {
           style: GoogleFonts.inter(
             fontSize: 20.sp,
             fontWeight: FontWeight.bold,
-            color: const Color(0xFF73E0A9),
+            color: AppColors.themeGreen,
           ),
         ),
         Text(
@@ -666,7 +699,7 @@ class _TransactionRow extends StatelessWidget {
                 style: GoogleFonts.inter(
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w600,
-                  color: const Color(0xFF73E0A9),
+                  color: AppColors.themeGreen,
                 ),
               ),
             ],
@@ -691,7 +724,7 @@ class _CheckItem extends StatelessWidget {
           const Icon(
             LucideIcons.circleCheck,
             size: 16,
-            color: Color(0xFF73E0A9),
+            color: Color(0XFF34B87C),
           ),
           SizedBox(width: 8.w),
           Text(
@@ -721,9 +754,16 @@ class _InsightCard extends StatelessWidget {
       margin: EdgeInsets.all(5.r),
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E2622),
+        color: Colors.white.withOpacity(0.1),
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color: color.withOpacity(.4)),
+        border: Border.all(color: color.withOpacity(0.4)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
