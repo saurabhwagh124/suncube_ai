@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:suncube_ai/utils/AppColors.dart';
 
 class SuccessStoriesPage extends StatelessWidget {
   const SuccessStoriesPage({super.key});
@@ -66,19 +67,30 @@ class _HeroSection extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 24.w),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFF73E0A9), Color(0xFF34B87C)],
+          colors: [
+            AppColors.themeGreen.withOpacity(0.3),
+            const Color(0xFF106B43).withOpacity(0.2),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
+        borderRadius: BorderRadius.circular(16.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         children: [
           Container(
             padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(.15),
+              color: Colors.white.withOpacity(0.15),
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: Text(
@@ -106,7 +118,7 @@ class _HeroSection extends StatelessWidget {
             textAlign: TextAlign.center,
             style: GoogleFonts.inter(
               fontSize: 18.sp,
-              color: Colors.white.withOpacity(.8),
+              color: Colors.white.withOpacity(0.8),
             ),
           ),
           SizedBox(height: 32.h),
@@ -116,10 +128,10 @@ class _HeroSection extends StatelessWidget {
             label: const Text('Explore Featured Stories'),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,
-              foregroundColor: const Color(0xFF34B87C),
+              foregroundColor: AppColors.themeGreen,
               padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
               elevation: 8,
-              shadowColor: Colors.black.withOpacity(.25),
+              shadowColor: Colors.black.withOpacity(0.25),
             ),
           ),
         ],
@@ -153,7 +165,7 @@ class _ResidentialSection extends StatelessWidget {
           ),
           SizedBox(height: 24.h),
           SizedBox(
-            height: 450.h,
+            height: 500.h,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: const [
@@ -218,7 +230,7 @@ class _IndustrialSection extends StatelessWidget {
           ),
           SizedBox(height: 24.h),
           SizedBox(
-            height: 330.h,
+            height: 350.h,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: const [
@@ -233,7 +245,7 @@ class _IndustrialSection extends StatelessWidget {
                 ),
                 _IndustrialCard(
                   title: 'Steel Plant',
-                  location: 'Jamshedpur, Jharkhand',
+                  location: 'Jharkhand',
                   stat: '42%',
                   desc: 'Energy Efficiency',
                   quote:
@@ -283,7 +295,7 @@ class _GlobalSection extends StatelessWidget {
           ),
           SizedBox(height: 24.h),
           SizedBox(
-            height: 150.h,
+            height: 180.h,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: const [
@@ -334,12 +346,22 @@ class _MetricsSection extends StatelessWidget {
       margin: EdgeInsets.only(top: 40.h, bottom: 40.h),
       padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFF3B82F6), Color(0xFF8B5CF6)],
+        gradient: LinearGradient(
+          colors: [
+            AppColors.themeGreen.withOpacity(0.3),
+            const Color(0xFF106B43).withOpacity(0.2),
+          ],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
         ),
         borderRadius: BorderRadius.circular(16.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         children: [
@@ -401,11 +423,20 @@ class _StoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 300.w,
       margin: EdgeInsets.symmetric(horizontal: 5.r),
+      padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E2622),
+        color: Colors.white.withOpacity(0.1),
         borderRadius: BorderRadius.circular(12.r),
         border: Border.all(color: Colors.white12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         children: [
@@ -448,7 +479,7 @@ class _StoryCard extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.all(12.w),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF73E0A9).withOpacity(.15),
+                    color: AppColors.themeGreen.withOpacity(0.15),
                     borderRadius: BorderRadius.circular(8.r),
                   ),
                   child: Column(
@@ -458,7 +489,7 @@ class _StoryCard extends StatelessWidget {
                         style: GoogleFonts.inter(
                           fontSize: 24.sp,
                           fontWeight: FontWeight.bold,
-                          color: const Color(0xFF73E0A9),
+                          color: AppColors.themeGreen,
                         ),
                       ),
                       Text(
@@ -480,9 +511,13 @@ class _StoryCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _BeforeAfter('Before', before, Colors.red),
+                _BeforeAfter('Before', before, Colors.red.withOpacity(0.5)),
                 SizedBox(height: 8.h),
-                _BeforeAfter('After', after, Colors.green),
+                _BeforeAfter(
+                  'After',
+                  after,
+                  AppColors.themeGreen.withOpacity(0.5),
+                ),
               ],
             ),
           ),
@@ -503,7 +538,7 @@ class _BeforeAfter extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(8.w),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.5),
+        color: color,
         borderRadius: BorderRadius.circular(6.r),
       ),
       child: Column(
@@ -514,10 +549,14 @@ class _BeforeAfter extends StatelessWidget {
             style: GoogleFonts.inter(
               fontSize: 12.sp,
               fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
           ),
           SizedBox(height: 4.h),
-          Text(text, style: GoogleFonts.inter(fontSize: 12.sp)),
+          Text(
+            text,
+            style: GoogleFonts.inter(fontSize: 12.sp, color: Colors.white),
+          ),
         ],
       ),
     );
@@ -543,9 +582,16 @@ class _IndustrialCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 5.r),
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E2622),
+        color: Colors.white.withOpacity(0.1),
         borderRadius: BorderRadius.circular(12.r),
         border: Border.all(color: Colors.white12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -557,14 +603,14 @@ class _IndustrialCard extends StatelessWidget {
                 location,
                 style: GoogleFonts.inter(
                   fontSize: 12.sp,
-                  color: const Color(0xFF73E0A9),
+                  color: AppColors.themeGreen,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const Icon(
                 LucideIcons.trendingUp,
                 size: 20,
-                color: Color(0xFF73E0A9),
+                color: Color(0XFF34B87C),
               ),
             ],
           ),
@@ -583,7 +629,7 @@ class _IndustrialCard extends StatelessWidget {
             style: GoogleFonts.inter(
               fontSize: 28.sp,
               fontWeight: FontWeight.bold,
-              color: const Color(0xFF73E0A9),
+              color: AppColors.themeGreen,
             ),
           ),
           Text(
@@ -633,9 +679,16 @@ class _GlobalSnippet extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 5.r),
       padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E2622),
+        color: Colors.white.withOpacity(0.1),
         borderRadius: BorderRadius.circular(12.r),
         border: Border.all(color: Colors.white12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         children: [
@@ -689,10 +742,10 @@ class _Metric extends StatelessWidget {
             width: 50.w,
             height: 50.w,
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(.1),
+              color: Colors.white.withOpacity(0.1),
               shape: BoxShape.circle,
             ),
-            child: Icon(icon, size: 40, color: Colors.amber),
+            child: Icon(icon, size: 40, color: AppColors.themeGreen),
           ),
           SizedBox(height: 12.h),
           Text(

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:suncube_ai/utils/AppColors.dart';
 
 class BlogsPage extends StatelessWidget {
   const BlogsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Same top padding and background as LandingPage
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     return Scaffold(
@@ -20,7 +20,6 @@ class BlogsPage extends StatelessWidget {
           },
           icon: Icon(Icons.arrow_back, color: Colors.white, size: 30.sp),
         ),
-        // remove if you want a back button
         backgroundColor: const Color(0xFF060C09).withOpacity(0.9),
         elevation: 0,
         title: Text(
@@ -41,14 +40,14 @@ class BlogsPage extends StatelessWidget {
             end: Alignment.bottomCenter,
           ),
         ),
-        child: const SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
           child: Column(
             children: [
               _HeroSection(),
-              SizedBox(height: 40),
+              SizedBox(height: 40.h),
               _ArticleSection(),
-              SizedBox(height: 60),
+              SizedBox(height: 60.h),
             ],
           ),
         ),
@@ -68,12 +67,23 @@ class _HeroSection extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 24.w),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFF73E0A9), Color(0xFF34B87C)],
+          colors: [
+            AppColors.themeGreen.withOpacity(0.3),
+            const Color(0xFF106B43).withOpacity(0.2),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
+        borderRadius: BorderRadius.circular(16.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Center(
         child: ConstrainedBox(
@@ -83,7 +93,7 @@ class _HeroSection extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(.15),
+                  color: Colors.white.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(20.r),
                 ),
                 child: Text(
@@ -113,7 +123,7 @@ class _HeroSection extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: GoogleFonts.inter(
                   fontSize: 18.sp,
-                  color: Colors.white.withOpacity(.8),
+                  color: Colors.white.withOpacity(0.8),
                 ),
               ),
               SizedBox(height: 32.h),
@@ -133,13 +143,13 @@ class _HeroSection extends StatelessWidget {
                     ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
-                      foregroundColor: const Color(0xFF34B87C),
+                      foregroundColor: AppColors.themeGreen,
                       padding: EdgeInsets.symmetric(
                         horizontal: 24.w,
                         vertical: 16.h,
                       ),
                       elevation: 8,
-                      shadowColor: Colors.black.withOpacity(.25),
+                      shadowColor: Colors.black.withOpacity(0.25),
                     ),
                   ),
                   OutlinedButton(
@@ -149,8 +159,8 @@ class _HeroSection extends StatelessWidget {
                         horizontal: 24.w,
                         vertical: 16.h,
                       ),
-                      side: const BorderSide(color: Colors.white),
-                      foregroundColor: Colors.white,
+                      side: BorderSide(color: AppColors.themeGreen),
+                      foregroundColor: AppColors.themeGreen,
                     ),
                     child: Text(
                       'Download Resources',
@@ -180,7 +190,7 @@ class _ArticleSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final articles = [
       (
-        'The Future of AI-Powered Solar: 2024 Predictions',
+        'AI-Powered Solar: 2024 Predictions',
         'Dr. Sarah Chen',
         'January 15, 2024',
         ['Featured', 'AI Technology'],
@@ -211,7 +221,7 @@ class _ArticleSection extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: .75,
+        childAspectRatio: 0.75,
         crossAxisSpacing: 10.w,
         mainAxisSpacing: 25.h,
         mainAxisExtent: 400.h,
@@ -220,10 +230,13 @@ class _ArticleSection extends StatelessWidget {
       itemBuilder: (_, i) {
         final (title, author, date, tags) = articles[i];
         return SizedBox(
-          // height: 500.h,
           child: Card(
-            color: const Color(0xFF1E2622),
-            elevation: 2,
+            color: Colors.white.withOpacity(0.1),
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.r),
+              side: BorderSide(color: Colors.white12),
+            ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -247,6 +260,8 @@ class _ArticleSection extends StatelessWidget {
                                       t,
                                       style: GoogleFonts.inter(fontSize: 12.sp),
                                     ),
+                                    backgroundColor: AppColors.themeGreen
+                                        .withOpacity(0.15),
                                     materialTapTargetSize:
                                         MaterialTapTargetSize.shrinkWrap,
                                   ),
@@ -276,8 +291,8 @@ class _ArticleSection extends StatelessWidget {
                         child: OutlinedButton(
                           onPressed: () {},
                           style: OutlinedButton.styleFrom(
-                            side: const BorderSide(color: Color(0xFF73E0A9)),
-                            foregroundColor: const Color(0xFF73E0A9),
+                            side: BorderSide(color: AppColors.themeGreen),
+                            foregroundColor: AppColors.themeGreen,
                           ),
                           child: Text(
                             'Read Article',
