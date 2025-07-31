@@ -5,9 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
-import 'package:suncube_ai/view/Dashboards/admin_dashboard.dart';
-import 'package:suncube_ai/view/Dashboards/grid_operator_dashboard.dart';
-import 'package:suncube_ai/view/Dashboards/user_dashboard.dart';
+import 'package:suncube_ai/utils/user_data.dart';
+import 'package:suncube_ai/view/landing_page.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -278,13 +277,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: ElevatedButton.icon(
                             onPressed: () {
                               if (selectedRole != null) {
+                                UserData userData = UserData();
+                                userData.write('email', emailController.text);
+                                userData.write('role', selectedRole!.title);
+                                userData.write('isLogged', true);
                                 if (selectedRole!.title.toLowerCase() ==
                                     "admin") {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder:
-                                          (context) => AdminDashboardHome(),
+                                      builder: (context) => LandingPage(),
                                     ),
                                   );
                                 } else if (selectedRole!.title.toLowerCase() ==
@@ -292,16 +294,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => UserDashboardHome(),
+                                      builder: (context) => LandingPage(),
                                     ),
                                   );
                                 } else {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder:
-                                          (context) =>
-                                              GridOperatorDashboardHome(),
+                                      builder: (context) => LandingPage(),
                                     ),
                                   );
                                 }

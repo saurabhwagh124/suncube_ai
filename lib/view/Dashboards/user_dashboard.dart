@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:suncube_ai/utils/user_data.dart';
+import 'package:suncube_ai/view/login_screen.dart';
 import 'package:suncube_ai/widgets/customized_nav_bar.dart';
 
 class UserDashboardHome extends StatefulWidget {
@@ -12,6 +14,7 @@ class UserDashboardHome extends StatefulWidget {
 }
 
 class _UserDashboardHomeState extends State<UserDashboardHome> {
+  final userData = UserData();
   int _selectedIndex = 2;
 
   void _onItemTapped(int index) {
@@ -70,7 +73,9 @@ class _UserDashboardHomeState extends State<UserDashboardHome> {
                 ),
                 const Spacer(),
                 Text(
-                  'User',
+                  (userData.read<String>("role") != null)
+                      ? userData.read<String>("role") ?? ""
+                      : 'User',
                   style: GoogleFonts.inter(
                     fontSize: 14.sp,
                     color: Colors.white70,
@@ -78,7 +83,13 @@ class _UserDashboardHomeState extends State<UserDashboardHome> {
                 ),
                 SizedBox(width: 12.w),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                    );
+                    userData.clear();
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
                     foregroundColor: Colors.black,
@@ -176,6 +187,7 @@ class _UserDashboardHomeState extends State<UserDashboardHome> {
                 ],
               ),
             ),
+            SizedBox(height: 100.h),
           ],
         ),
       ),

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
+import 'package:suncube_ai/utils/user_data.dart';
 import 'package:suncube_ai/view/about_us.dart';
 import 'package:suncube_ai/view/billings_blockchain.dart';
 import 'package:suncube_ai/view/blogs_page.dart';
@@ -10,6 +11,7 @@ import 'package:suncube_ai/view/case_studies_page.dart';
 import 'package:suncube_ai/view/commitment_page.dart';
 import 'package:suncube_ai/view/contact_page.dart';
 import 'package:suncube_ai/view/landing_page.dart';
+import 'package:suncube_ai/view/login_screen.dart';
 import 'package:suncube_ai/view/success_stories_page.dart';
 
 class AppSidebar extends StatelessWidget {
@@ -19,6 +21,7 @@ class AppSidebar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserData userData = UserData();
     return Drawer(
       backgroundColor: Colors.transparent,
       child: ClipRRect(
@@ -88,7 +91,9 @@ class AppSidebar extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              username,
+                              (userData.read<String>('email') != null)
+                                  ? userData.read<String>('email') ?? ""
+                                  : username,
                               style: TextStyle(
                                 color: AppColors.themeGreen,
                                 fontWeight: FontWeight.bold,
@@ -216,6 +221,11 @@ class AppSidebar extends StatelessWidget {
                     onTap: () {
                       // Insert your logout logic here
                       Navigator.of(context).pop();
+                      userData.clear();
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                      );
                     },
                   ),
                 ],

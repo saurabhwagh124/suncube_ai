@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:suncube_ai/utils/user_data.dart';
 import 'package:suncube_ai/view/Dashboards/user_dashboard.dart';
 import 'package:suncube_ai/view/billings_blockchain.dart';
 import 'package:suncube_ai/view/login_screen.dart';
@@ -23,6 +24,7 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
+  final userData = UserData();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   int _selectedIndex = 0;
   final pageController = PageController();
@@ -69,28 +71,35 @@ class _LandingPageState extends State<LandingPage> {
           ),
         ),
         actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginScreen()),
-              );
-            },
-            style: TextButton.styleFrom(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.r),
+          (userData.read<bool>('isLogged') ?? false)
+              ? SizedBox.shrink()
+              : TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginScreen(),
+                    ),
+                  );
+                },
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16.w,
+                    vertical: 8.h,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.r),
+                  ),
+                ),
+                child: Text(
+                  'Login',
+                  style: GoogleFonts.inter(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w600,
+                    color: const Color(0xFF73E0A9),
+                  ),
+                ),
               ),
-            ),
-            child: Text(
-              'Login',
-              style: GoogleFonts.inter(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w600,
-                color: const Color(0xFF73E0A9),
-              ),
-            ),
-          ),
         ],
       ),
       body: PageView(
