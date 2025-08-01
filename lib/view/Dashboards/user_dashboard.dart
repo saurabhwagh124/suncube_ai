@@ -158,19 +158,6 @@ class _UserDashboardHomeState extends State<UserDashboardHome> {
                     LucideIcons.trendingUp,
                     const Color(0xFF22C55E),
                   ),
-                ],
-              ),
-            ),
-            SizedBox(height: 16.h),
-            Expanded(
-              child: GridView(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisExtent: 120.h,
-                  mainAxisSpacing: 10.h,
-                  crossAxisSpacing: 10.w,
-                  crossAxisCount: 2,
-                ),
-                children: [
                   _metric('Total Systems', '1,247', Icons.home, Colors.white54),
                   _metric(
                     'Total Capacity',

@@ -12,10 +12,10 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(375, 812),
+      designSize: Size(360, 690),
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: SplashScreen(),
+        home: SafeArea(child: SplashScreen()),
       ),
     );
   }

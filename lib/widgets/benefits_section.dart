@@ -141,7 +141,7 @@ class FeatureCard extends StatelessWidget {
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
         width: 160.w,
-        padding: EdgeInsets.all(14.w),
+        padding: EdgeInsets.all(10.r),
         decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.1),
           borderRadius: BorderRadius.circular(16.r),
@@ -170,7 +170,7 @@ class FeatureCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              padding: EdgeInsets.all(10.w),
+              padding: EdgeInsets.all(10.r),
               decoration: BoxDecoration(
                 color: const Color(0xFF73E0A9).withOpacity(0.15),
                 shape: BoxShape.circle,

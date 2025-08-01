@@ -61,6 +61,7 @@ class _BillingPageState extends State<BillingPage> {
               _sectionTitle('Monthly & Yearly Digest'),
               SizedBox(height: 16.h),
               _digestCards(),
+              SizedBox(height: 100.h),
             ],
           ),
         ),

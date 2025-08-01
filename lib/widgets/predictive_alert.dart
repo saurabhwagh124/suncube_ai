@@ -89,7 +89,7 @@ class PredictiveAlerts extends StatelessWidget {
             Container(
               width: 600.w,
               constraints: BoxConstraints(maxWidth: 600.w),
-              padding: EdgeInsets.all(20.w),
+              padding: EdgeInsets.all(15.r),
               decoration: BoxDecoration(
                 color: Colors.white.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(16.r),
@@ -121,9 +121,9 @@ class PredictiveAlerts extends StatelessWidget {
                       Icon(
                         LucideIcons.triangleAlert,
                         color: const Color(0xFF73E0A9),
-                        size: 22.sp,
+                        size: 20.sp,
                       ),
-                      SizedBox(width: 8.w),
+                      Spacer(),
                       Text(
                         'AI Predictive Alerts',
                         style: GoogleFonts.inter(

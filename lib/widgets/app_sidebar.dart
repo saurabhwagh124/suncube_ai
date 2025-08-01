@@ -22,6 +22,7 @@ class AppSidebar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UserData userData = UserData();
+    int index = userData.read<String>('email')!.indexOf("@");
     return Drawer(
       backgroundColor: Colors.transparent,
       child: ClipRRect(
@@ -90,16 +91,24 @@ class AppSidebar extends StatelessWidget {
                                 letterSpacing: 1.1,
                               ),
                             ),
-                            Text(
-                              (userData.read<String>('email') != null)
-                                  ? userData.read<String>('email') ?? ""
-                                  : username,
-                              style: TextStyle(
-                                color: AppColors.themeGreen,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.sp,
-                                letterSpacing: 1.3,
-                              ),
+                            Wrap(
+                              children: [
+                                Text(
+                                  (userData.read<String>('email') != null)
+                                      ? userData
+                                              .read<String>('email')!
+                                              .substring(0, index) ??
+                                          ""
+                                      : username,
+                                  style: TextStyle(
+                                    color: AppColors.themeGreen,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.sp,
+                                    // letterSpacing: 1.3,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),

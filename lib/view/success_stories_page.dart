@@ -344,7 +344,7 @@ class _MetricsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 40.h, bottom: 40.h),
-      padding: EdgeInsets.all(20.w),
+      padding: EdgeInsets.all(10.r),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -380,6 +380,7 @@ class _MetricsSection extends StatelessWidget {
           ),
           SizedBox(height: 32.h),
           Row(
+            // scrollDirection: Axis.horizontal,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               _Metric(
@@ -735,37 +736,31 @@ class _Metric extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.w,
+      width: 70.w,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             width: 50.w,
-            height: 50.w,
+            height: 50.h,
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.1),
               shape: BoxShape.circle,
             ),
-            child: Icon(icon, size: 40, color: AppColors.themeGreen),
+            child: Icon(icon, size: 30.sp, color: AppColors.themeGreen),
           ),
           SizedBox(height: 12.h),
           Text(
             value,
             style: GoogleFonts.inter(
-              fontSize: 22.sp,
+              fontSize: 20.sp,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
           ),
-          Wrap(
-            children: [
-              Text(
-                label,
-                style: GoogleFonts.inter(
-                  fontSize: 14.sp,
-                  color: Colors.white70,
-                ),
-              ),
-            ],
+          Text(
+            label,
+            style: GoogleFonts.inter(fontSize: 12.sp, color: Colors.white70),
           ),
         ],
       ),
