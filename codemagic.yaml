@@ -1,0 +1,59 @@
+workflows:
+  ios-release:
+    name: iOS Release Build
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+      vars:
+        XCODE_WORKSPACE: "ios/Runner.xcworkspace"
+        XCODE_SCHEME: "Runner"
+        APP_NAME: "SuncubeAI"
+      # Code signing identities are stored in Codemagic UI (Environment variables)
+      # - APP_STORE_CONNECT_ISSUER_ID
+      # - APP_STORE_CONNECT_KEY_IDENTIFIER
+      # - APP_STORE_CONNECT_PRIVATE_KEY
+      # - CERTIFICATE_PRIVATE_KEY
+    scripts:
+      - name: Install dependencies
+        script: |
+          flutter pub get
+
+      - name: Build iOS release
+        script: |
+          flutter build ios --release --no-codesign
+
+      - name: Xcode archive and export (signed IPA)
+        script: |
+          # Clean previous build
+          rm -rf build/ios/archive
+
+          # Archive the app
+          xcodebuild archive \
+            -workspace "$XCODE_WORKSPACE" \
+            -scheme "$XCODE_SCHEME" \
+            -configuration Release \
+            -sdk iphoneos \
+            -archivePath build/ios/archive/$APP_NAME.xcarchive \
+            DEVELOPMENT_TEAM="$APPLE_DEVELOPER_TEAM_ID" \
+            CODE_SIGN_STYLE=Manual
+
+          # Export to IPA
+          xcodebuild -exportArchive \
+            -archivePath build/ios/archive/$APP_NAME.xcarchive \
+            -exportPath build/ios/ipa \
+            -exportOptionsPlist ios/ExportOptions.plist
+
+      - name: Rename IPA
+        script: |
+          mv build/ios/ipa/*.ipa $CM_BUILD_DIR/$APP_NAME.ipa
+          echo "✅ IPA ready at $CM_BUILD_DIR/$APP_NAME.ipa"
+
+    artifacts:
+      - $CM_BUILD_DIR/$APP_NAME.ipa
+
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
