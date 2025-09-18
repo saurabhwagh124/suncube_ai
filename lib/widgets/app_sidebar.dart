@@ -22,7 +22,7 @@ class AppSidebar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UserData userData = UserData();
-    int index = userData.read<String>('email')!.indexOf("@");
+    int index = userData.read<String>('email')?.indexOf("@") ?? 0;
     return Drawer(
       backgroundColor: Colors.transparent,
       child: ClipRRect(
