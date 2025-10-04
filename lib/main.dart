@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:suncube_ai/view/splash_screen.dart';
+import 'package:suncube_ai/view/sustainability_page.dart';
 
 void main() {
   runApp(const MainApp());
