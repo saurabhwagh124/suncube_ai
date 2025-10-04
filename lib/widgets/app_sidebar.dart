@@ -124,12 +124,12 @@ class AppSidebar extends StatelessWidget {
                       _SidebarItem(
                         icon: Icons.security,
                         label: 'Blockchain Security',
-                        onTap: () => _navPush(context, const BlockchainSecurityPage()),
+                        onTap: () => _navPush(context,  BlockchainSecurityPage()),
                       ),
                       _SidebarItem(
                         icon: Icons.visibility,
                         label: 'Transparency',
-                        onTap: () => _navPush(context, const TransparencyPage()),
+                        onTap: () => _navPush(context,  TransparencyPage()),
                       ),
                     ],
                   ),

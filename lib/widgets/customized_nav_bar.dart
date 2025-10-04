@@ -180,7 +180,7 @@ class CustomizedNavBar extends StatelessWidget {
             icon: LucideIcons.wallet,
             index: 3,
             label: 'Billings', // Updated label
-            page: const BillingPage(), // Updated page widget
+            page:  BillingPage(), // Updated page widget
           ),
         ],
       ),
