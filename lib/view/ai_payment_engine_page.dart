@@ -23,21 +23,41 @@ class AiPaymentEnginePage extends StatelessWidget {
         designSize: const Size(360, 780), minTextAdapt: true, splitScreenMode: true);
 
     return Scaffold(
-      backgroundColor: Colors.white,
-      endDrawer: _drawer(),          // hamburger menu
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _navbar(context),
-            _hero(),
-            _kpiCards(),
-            _chart(),
-            _aiLogic(),
-            _invoiceDemo(),
-            _forecast(),
-            _cta(),
-            _footer(),
-          ],
+      extendBodyBehindAppBar: true,
+      backgroundColor: const Color(0xFF060C09),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back, color: Colors.white, size: 30.sp),
+        ),
+        backgroundColor: const Color(0xFF060C09).withOpacity(0.9),
+        elevation: 0,
+        title: Text(
+          'AI Payment Engine',
+          style: GoogleFonts.inter(
+            fontWeight: FontWeight.w800,
+            fontSize: 20.sp,
+            color: Colors.white,
+          ),
+        ),
+      ),         // hamburger menu
+      body: Container(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // _navbar(context),
+              _hero(),
+              _kpiCards(),
+              _chart(),
+              _aiLogic(),
+              _invoiceDemo(),
+              _forecast(),
+              _cta(),
+              _footer(),
+            ],
+          ),
         ),
       ),
     );

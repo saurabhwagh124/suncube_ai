@@ -34,25 +34,35 @@ class _SustainabilityPageState extends State<SustainabilityPage> {
         ),
       ),
       child: Scaffold(
-        backgroundColor: themeGreen, // Set scaffold background to themeGreen
-        body: SafeArea(
+        extendBodyBehindAppBar: true,
+        backgroundColor: const Color(0xFF060C09),
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back, color: Colors.white, size: 30.sp),
+          ),
+          backgroundColor: const Color(0xFF060C09).withOpacity(0.9),
+          elevation: 0,
+          title: Text(
+            'Sustainability',
+            style: GoogleFonts.inter(
+              fontWeight: FontWeight.w800,
+              fontSize: 20.sp,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        body: SingleChildScrollView(
           child: Column(
             children: [
-              _buildAppBar(),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      _buildHeroSection(),
-                      _buildImpactDashboard(),
-                      _buildComparisonSection(),
-                      _buildGoalSection(),
-                      _buildShareSection(),
-                      _buildGlobalImpact(),
-                    ],
-                  ),
-                ),
-              ),
+              _buildHeroSection(),
+              _buildImpactDashboard(),
+              _buildComparisonSection(),
+              _buildGoalSection(),
+              _buildShareSection(),
+              _buildGlobalImpact(),
             ],
           ),
         ),

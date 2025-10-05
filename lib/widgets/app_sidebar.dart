@@ -59,8 +59,8 @@ class AppSidebar extends StatelessWidget {
               ),
             ),
             child: SafeArea(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: ListView(
+                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   /*  ----  header  ----  */
                   _drawerHeader(index, userData),

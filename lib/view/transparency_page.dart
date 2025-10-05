@@ -20,11 +20,30 @@ class TransparencyPage extends StatelessWidget {
     ScreenUtil.init(context,
         designSize: const Size(360, 780), minTextAdapt: true, splitScreenMode: true);
     return Scaffold(
-      backgroundColor: Colors.white,
+      extendBodyBehindAppBar: true,
+      backgroundColor: const Color(0xFF060C09),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back, color: Colors.white, size: 30.sp),
+        ),
+        backgroundColor: const Color(0xFF060C09).withOpacity(0.9),
+        elevation: 0,
+        title: Text(
+          'Transparency',
+          style: GoogleFonts.inter(
+            fontWeight: FontWeight.w800,
+            fontSize: 20.sp,
+            color: Colors.white,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            _navbar(),
+            // _navbar(),
             _hero(),
             _performanceReports(),
             _complianceLog(),
@@ -33,28 +52,6 @@ class TransparencyPage extends StatelessWidget {
             _footer(),
           ],
         ),
-      ),
-    );
-  }
-
-  /* ============================================================
-     1. NAVBAR  –  mobile hamburger  –  desktop tabs
-     ============================================================ */
-  Widget _navbar() {
-    final bool isMobile = 1.sw < 600;
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: primaryBg.withOpacity(.95),
-        border: Border(bottom: BorderSide(color: Colors.white.withOpacity(.1))),
-      ),
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-      child: Row(
-        children: [
-          _logo(),
-          const Spacer(),
-          if (isMobile) _hamburger() else ..._desktopMenu(),
-        ],
       ),
     );
   }
