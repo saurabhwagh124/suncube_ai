@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
 import 'package:suncube_ai/utils/user_data.dart';
+import 'package:suncube_ai/view/Dashboards/user_dashboard.dart';
 import 'package:suncube_ai/view/about_us.dart';
 import 'package:suncube_ai/view/ai_payment_engine_page.dart';
 import 'package:suncube_ai/view/billings_blockchain.dart';
@@ -15,144 +16,237 @@ import 'package:suncube_ai/view/commitment_page.dart';
 import 'package:suncube_ai/view/contact_page.dart';
 import 'package:suncube_ai/view/landing_page.dart';
 import 'package:suncube_ai/view/login_screen.dart';
+import 'package:suncube_ai/view/services_screen.dart';
 import 'package:suncube_ai/view/success_stories_page.dart';
 import 'package:suncube_ai/view/sustainability_page.dart';
-import 'package:suncube_ai/view/transparency_page.dart';          // create if not exists
+import 'package:suncube_ai/view/transparency_page.dart';
 
 class AppSidebar extends StatelessWidget {
-  final String username;
-  const AppSidebar({super.key, this.username = 'User'});
+  const AppSidebar({super.key});
+
+  /* ----------------------------------------------------------
+     single navigation helper
+     ---------------------------------------------------------- */
+  void _handleNavigation(BuildContext c, String route) {
+    Navigator.pop(c);
+    Widget page;
+    switch (route) {
+      case 'home':
+        page = const LandingPage();
+        break;
+      case 'services':
+        page = const ServicesScreen(showAppBar: true);
+        break;
+      case 'dashboard':
+        page = const UserDashboardHome(showAppBar: true);
+        break;
+      case 'billings':
+        page = const BillingPage(showAppBar: true);
+        break;
+      case 'blogs':
+        page = const BlogsPage();
+        break;
+      case 'about':
+        page = AboutUsPage();
+        break;
+      case 'cases':
+        page = const CaseStudiesPage();
+        break;
+      case 'contact':
+        page = ContactPage();
+        break;
+      case 'success':
+        page = const SuccessStoriesPage();
+        break;
+      case 'commitment':
+        page = CommitmentPage();
+        break;
+      case 'ai-payment':
+        page = AiPaymentEnginePage();
+        break;
+      case 'blockchain':
+        page = BlockchainSecurityPage();
+        break;
+      case 'transparency':
+        page = TransparencyPage();
+        break;
+      case 'sustainability':
+        page = SustainabilityPage();
+        break;
+      default:
+        return;
+    }
+    Navigator.of(c).push(_fadeRoute(page));
+  }
+
+  Route _fadeRoute(Widget child) => PageRouteBuilder(
+    pageBuilder: (_, __, ___) => child,
+    transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+    transitionDuration: const Duration(milliseconds: 220),
+  );
+
+  /* ----------------------------------------------------------
+     drawer header – rebuilds automatically when email changes
+     ---------------------------------------------------------- */
+  /* ----------------------------------------------------------
+   card-style header
+   ---------------------------------------------------------- */
+  Widget _header() => Padding(
+    padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 8.h),
+    child: Material(
+      color: Colors.white.withOpacity(.09),
+      elevation: 4, // tweak for more/less lift
+      borderRadius: BorderRadius.circular(16.r),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(16.r),
+        onTap: () {}, // empty if you want no ripple
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+          child: ValueListenableBuilder<String?>(
+            valueListenable: ValueNotifier(UserData().read<String>('email')),
+            builder: (_, email, __) {
+              final name = email?.split('@').firstOrNull ?? 'User';
+              return Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 22.r,
+                    backgroundColor: AppColors.themeGreen,
+                    child: Icon(Icons.person, color: Colors.white, size: 25.sp),
+                  ),
+                  SizedBox(width: 12.w),
+                  Expanded(
+                    // ← let text compress
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Welcome',
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(.78),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15.sp,
+                            letterSpacing: 1.1,
+                          ),
+                        ),
+                        Text(
+                          name,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          // ← graceful truncation
+                          style: TextStyle(
+                            color: AppColors.themeGreen,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
+      ),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
-    final userData = UserData();
-    final index = userData.read<String>('email')?.indexOf('@') ?? 0;
+    final borderRadius = BorderRadius.horizontal(right: Radius.circular(30.r));
+
     return Drawer(
       backgroundColor: Colors.transparent,
       child: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(30.r),
-          bottomRight: Radius.circular(30.r),
-        ),
+        borderRadius: borderRadius,
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
           child: Container(
-            width: 270.w,
+            width: 340.w,
             decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.68),
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(30.r),
-                bottomRight: Radius.circular(30.r),
-              ),
+              color: Colors.black.withOpacity(.68),
+              borderRadius: borderRadius,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.18),
+                  color: Colors.black.withOpacity(.18),
                   blurRadius: 18,
                   offset: const Offset(0, 6),
                 ),
               ],
               border: Border(
-                right: BorderSide(
-                  color: AppColors.themeGreen.withOpacity(0.23),
-                  width: 2,
-                ),
+                right: BorderSide(color: AppColors.themeGreen.withOpacity(.23)),
               ),
             ),
-            child: SafeArea(
-              child: ListView(
-                // crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  /*  ----  header  ----  */
-                  _drawerHeader(index, userData),
-                  /*  ----  normal items  ----  */
-                  _SidebarItem(
-                    icon: Icons.home_rounded,
-                    label: 'Home',
-                    onTap: () => _navPush(context, const LandingPage()),
-                  ),
-                  _SidebarItem(
-                    icon: Icons.library_books_outlined,
-                    label: 'Blogs',
-                    onTap: () => _navPush(context, const BlogsPage()),
-                  ),
-                  _SidebarItem(
-                    icon: Icons.auto_graph_rounded,
-                    label: 'About Us',
-                    onTap: () => _navPush(context, AboutUsPage()),
-                  ),
-                  _SidebarItem(
-                    icon: Icons.receipt_long_rounded,
-                    label: 'Case Studies',
-                    onTap: () => _navPush(context, const CaseStudiesPage()),
-                  ),
-                  _SidebarItem(
-                    icon: Icons.mail_outline_rounded,
-                    label: 'Contact',
-                    onTap: () => _navPush(context, ContactPage()),
-                  ),
-                  _SidebarItem(
-                    icon: Icons.check_circle_outline,
-                    label: 'Success Stories',
-                    onTap: () => _navPush(context, const SuccessStoriesPage()),
-                  ),
-                  _SidebarItem(
-                    icon: Icons.verified_rounded,
-                    label: 'Our Commitment',
-                    onTap: () => _navPush(context, CommitmentPage()),
-                  ),
-                  /*  =========  NEW : BILLING & BLOCKCHAIN  =========  */
-                  ExpansionTile(
-                    leading: Icon(Icons.payment_rounded, color: Colors.white70, size: 22.sp),
-                    title: Text(
-                      'Billing & Blockchain',
-                      style: TextStyle(
-                        color: Colors.white.withOpacity(0.92),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15.sp,
-                        letterSpacing: 0.1,
-                      ),
-                    ),
-                    iconColor: Colors.white70,
-                    collapsedIconColor: Colors.white70,
-                    childrenPadding: EdgeInsets.only(left: 40.w),
-                    children: [
-                      _SidebarItem(
-                        icon: Icons.electric_bolt,
-                        label: 'AI Payment Engine',
-                        onTap: () => _navPush(context, AiPaymentEnginePage()),
-                      ),
-                      _SidebarItem(
-                        icon: Icons.security,
-                        label: 'Blockchain Security',
-                        onTap: () => _navPush(context,  BlockchainSecurityPage()),
-                      ),
-                      _SidebarItem(
-                        icon: Icons.visibility,
-                        label: 'Transparency',
-                        onTap: () => _navPush(context,  TransparencyPage()),
-                      ),
-                    ],
-                  ),
-                  _SidebarItem(
-                    icon: LucideIcons.shield,
-                    label: 'Sustainability',
-                    onTap: () => _navPush(context, SustainabilityPage()),
-                  ),
-                  const Spacer(),
-                  _SidebarItem(
-                    icon: Icons.logout,
-                    label: 'Logout',
-                    color: Colors.redAccent,
-                    onTap: () {
-                      UserData().clear();
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (_) => LoginScreen()),
-                      );
-                    },
-                  ),
-                ],
-              ),
+            child: ListView(
+              children: [
+                SizedBox(height: 20.h),
+                _header(),
+                menuButton(
+                  Icons.home_rounded,
+                  'Home',
+                  () => _handleNavigation(context, 'home'),
+                ),
+                menuButton(
+                  LucideIcons.settings,
+                  'Services',
+                  () => _handleNavigation(context, 'services'),
+                ),
+                menuButton(
+                  LucideIcons.layoutDashboard,
+                  'Dashboard',
+                  () => _handleNavigation(context, 'dashboard'),
+                ),
+                menuButton(
+                  LucideIcons.wallet,
+                  'Billings',
+                  () => _handleNavigation(context, 'billings'),
+                ),
+                menuButton(
+                  Icons.library_books_outlined,
+                  'Blogs',
+                  () => _handleNavigation(context, 'blogs'),
+                ),
+                menuButton(
+                  Icons.auto_graph_rounded,
+                  'About Us',
+                  () => _handleNavigation(context, 'about'),
+                ),
+                menuButton(
+                  Icons.receipt_long_rounded,
+                  'Case Studies',
+                  () => _handleNavigation(context, 'cases'),
+                ),
+                menuButton(
+                  Icons.mail_outline_rounded,
+                  'Contact',
+                  () => _handleNavigation(context, 'contact'),
+                ),
+                menuButton(
+                  Icons.check_circle_outline,
+                  'Success Stories',
+                  () => _handleNavigation(context, 'success'),
+                ),
+                menuButton(
+                  Icons.verified_rounded,
+                  'Our Commitment',
+                  () => _handleNavigation(context, 'commitment'),
+                ),
+                menuButton(
+                  LucideIcons.shield,
+                  'Sustainability',
+                  () => _handleNavigation(context, 'sustainability'),
+                ),
+                billingCard(context),
+                menuButton(
+                  Icons.logout,
+                  'Logout',
+                  () => _logout(context),
+                  color: Colors.redAccent,
+                ),
+                SizedBox(height: 12.h),
+              ],
             ),
           ),
         ),
@@ -161,95 +255,135 @@ class AppSidebar extends StatelessWidget {
   }
 
   /* ----------------------------------------------------------
-     helper widgets
-     ---------------------------------------------------------- */
-  Widget _drawerHeader(int index, UserData userData) => DrawerHeader(
-    margin: EdgeInsets.zero,
-    padding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 8.w),
-    decoration: const BoxDecoration(color: Colors.transparent),
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        CircleAvatar(
-          radius: 30.r,
-          backgroundColor: AppColors.themeGreen,
-          child: Icon(Icons.person, color: Colors.white, size: 25.sp),
-        ),
-        SizedBox(width: 12.w),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.start,
+   single widget – card-style expansion block
+   ---------------------------------------------------------- */
+  /* ----------------------------------------------------------
+   single card – all three billing rows
+   ---------------------------------------------------------- */
+  Widget billingCard(BuildContext context) => Padding(
+    padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+    child: Material(
+      color: Colors.white.withOpacity(.09),
+      borderRadius: BorderRadius.circular(16.r),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              'Welcome',
-              style: TextStyle(
-                color: Colors.white.withOpacity(0.78),
-                fontWeight: FontWeight.w500,
-                fontSize: 15.sp,
-                letterSpacing: 1.1,
-              ),
-            ),
-            Wrap(
+            Row(
               children: [
+                Icon(
+                  LucideIcons.creditCard,
+                  color: Colors.white70,
+                  size: 18.sp,
+                ),
+                SizedBox(width: 12.w),
                 Text(
-                  (userData.read<String>('email') != null)
-                      ? userData.read<String>('email')!.substring(0, index)
-                      : username,
+                  "Billings & Blockchain",
                   style: TextStyle(
-                    color: AppColors.themeGreen,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.sp,
-                    overflow: TextOverflow.ellipsis,
+                    color: Colors.white.withOpacity(.92),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12.sp,
+                    letterSpacing: .1,
                   ),
                 ),
               ],
             ),
+            Divider(color: AppColors.themeGreen),
+            _row(
+              context,
+              Icons.electric_bolt,
+              'AI Payment Engine',
+              () => _handleNavigation(context, 'ai-payment'),
+            ),
+            _row(
+              context,
+              Icons.security,
+              'Blockchain Security',
+              () => _handleNavigation(context, 'blockchain'),
+            ),
+            _row(
+              context,
+              Icons.visibility,
+              'Transparency',
+              () => _handleNavigation(context, 'transparency'),
+            ),
           ],
         ),
-      ],
+      ),
     ),
   );
 
-  void _navPush(BuildContext ctx, Widget page) {
-    Navigator.pop(ctx);
-    Navigator.push(ctx, MaterialPageRoute(builder: (_) => page));
-  }
-}
-
-/* ----------------------------------------------------------
-   reusable sidebar item
-   ---------------------------------------------------------- */
-class _SidebarItem extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final VoidCallback onTap;
-  final Color? color;
-
-  const _SidebarItem({
-    required this.icon,
-    required this.label,
-    required this.onTap,
-    this.color,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(icon, color: color ?? Colors.white70, size: 22.sp),
-      title: Text(
-        label,
-        style: TextStyle(
-          color: color ?? Colors.white.withOpacity(0.92),
-          fontWeight: FontWeight.w600,
-          fontSize: 15.sp,
-          letterSpacing: 0.1,
+  Widget _row(BuildContext c, IconData ic, String txt, VoidCallback tap) =>
+      InkWell(
+        borderRadius: BorderRadius.circular(12.r),
+        onTap: tap,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
+          child: Row(
+            children: [
+              Icon(ic, color: Colors.white70, size: 18.sp),
+              SizedBox(width: 12.w),
+              Expanded(
+                child: Text(
+                  txt,
+                  style: TextStyle(
+                    color: Colors.white.withOpacity(.92),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12.sp,
+                    letterSpacing: .1,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
+      );
+
+  /* ----------------------------------------------------------
+     unified menu row
+     ---------------------------------------------------------- */
+  Widget menuButton(
+    IconData icon,
+    String label,
+    VoidCallback onTap, {
+    Color? color,
+  }) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(.09),
+        borderRadius: BorderRadius.circular(15.r),
       ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13.r)),
-      onTap: onTap,
-      minLeadingWidth: 28,
-      horizontalTitleGap: 0,
+      child: ListTile(
+        leading: Icon(icon, color: color ?? Colors.white70, size: 18.sp),
+        title: Text(
+          label,
+          style: TextStyle(
+            color: color ?? Colors.white.withOpacity(.92),
+            fontWeight: FontWeight.w600,
+            fontSize: 12.sp,
+            letterSpacing: .1,
+          ),
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(13.r),
+        ),
+        onTap: onTap,
+        minLeadingWidth: 28,
+        horizontalTitleGap: 0,
+      ),
+    );
+  }
+
+  /* ----------------------------------------------------------
+     logout
+     ---------------------------------------------------------- */
+  void _logout(BuildContext c) {
+    UserData().clear();
+    Navigator.pushReplacement(
+      c,
+      MaterialPageRoute(builder: (_) => const LoginScreen()),
     );
   }
 }

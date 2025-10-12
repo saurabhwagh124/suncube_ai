@@ -16,13 +16,13 @@ class BenefitsSection extends StatelessWidget {
     (
       'Blockchain Security',
       'Transparent, secure transactions with immutable blockchain records',
-      LucideIcons.shield,
+      LucideIcons.keySquare,
       Color(0xFF73E0A9),
     ),
     (
       'Predictive Maintenance',
       'Get alerts before issues occur, maximizing uptime and system efficiency',
-      LucideIcons.trendingUp,
+      LucideIcons.wrench,
       Color(0xFF73E0A9),
     ),
     (

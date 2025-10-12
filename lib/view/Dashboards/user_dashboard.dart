@@ -4,10 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:suncube_ai/utils/user_data.dart';
 import 'package:suncube_ai/view/login_screen.dart';
-import 'package:suncube_ai/widgets/customized_nav_bar.dart';
 
 class UserDashboardHome extends StatefulWidget {
-  const UserDashboardHome({super.key});
+  final bool showAppBar;
+
+  const UserDashboardHome({super.key, this.showAppBar = false});
 
   @override
   State<UserDashboardHome> createState() => _UserDashboardHomeState();
@@ -26,20 +27,32 @@ class _UserDashboardHomeState extends State<UserDashboardHome> {
   @override
   Widget build(BuildContext context) {
     final statusBarHeight = MediaQuery.of(context).padding.top;
-
     return Scaffold(
       backgroundColor: const Color(0xFF060C09),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(64.h + statusBarHeight),
+        preferredSize: Size.fromHeight(60.h + statusBarHeight),
         child: Container(
           padding: EdgeInsets.only(top: statusBarHeight),
           decoration: BoxDecoration(
             color: const Color(0xFF060C09).withOpacity(.9),
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+            padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 8.h),
             child: Row(
               children: [
+                (widget.showAppBar)
+                    ? IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: Colors.white,
+                        size: 20.sp,
+                      ),
+                    )
+                    : SizedBox.shrink(),
+                Spacer(),
                 Container(
                   width: 32.w,
                   height: 32.w,
@@ -55,7 +68,7 @@ class _UserDashboardHomeState extends State<UserDashboardHome> {
                     size: 20.sp,
                   ),
                 ),
-                SizedBox(width: 8.w),
+                SizedBox(width: 5.w),
                 SizedBox(
                   width: 150.w,
                   child: Wrap(
@@ -63,7 +76,7 @@ class _UserDashboardHomeState extends State<UserDashboardHome> {
                       Text(
                         'Suncube AI Dashboard',
                         style: GoogleFonts.inter(
-                          fontSize: 18.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -71,17 +84,16 @@ class _UserDashboardHomeState extends State<UserDashboardHome> {
                     ],
                   ),
                 ),
-                const Spacer(),
                 Text(
                   (userData.read<String>("role") != null)
                       ? userData.read<String>("role") ?? ""
                       : 'User',
                   style: GoogleFonts.inter(
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                     color: Colors.white70,
                   ),
                 ),
-                SizedBox(width: 12.w),
+                SizedBox(width: 10.w),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pushReplacement(
@@ -94,8 +106,8 @@ class _UserDashboardHomeState extends State<UserDashboardHome> {
                     backgroundColor: Colors.red,
                     foregroundColor: Colors.black,
                     padding: EdgeInsets.symmetric(
-                      horizontal: 16.w,
-                      vertical: 8.h,
+                      horizontal: 10.w,
+                      vertical: 5.h,
                     ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.r),
@@ -112,27 +124,27 @@ class _UserDashboardHomeState extends State<UserDashboardHome> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+        padding: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Energy Overview',
               style: GoogleFonts.inter(
-                fontSize: 24.sp,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
             SizedBox(height: 16.h),
             Expanded(
-              child: GridView(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisExtent: 120.h,
-                  mainAxisSpacing: 10.h,
-                  crossAxisSpacing: 10.w,
-                  crossAxisCount: 2,
-                ),
+              child: ListView(
+                // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                //   // mainAxisExtent: 120.h,
+                //   mainAxisSpacing: 10.h,
+                //   crossAxisSpacing: 10.w,
+                //   crossAxisCount: 2,
+                // ),
                 children: [
                   _metric(
                     'Solar Generation',
@@ -174,39 +186,39 @@ class _UserDashboardHomeState extends State<UserDashboardHome> {
                 ],
               ),
             ),
-            SizedBox(height: 100.h),
+            // SizedBox(height: 100.h),
           ],
         ),
       ),
-      floatingActionButton: Padding(
-        padding: EdgeInsets.only(bottom: 16.h),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(12.r),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
-              ),
-            ],
-            gradient: LinearGradient(
-              colors: [
-                Colors.white.withOpacity(0.05),
-                Colors.grey.withOpacity(0.1),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-          child: CustomizedNavBar(
-            selectedIndex: _selectedIndex,
-            onItemTapped: _onItemTapped,
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      // floatingActionButton: Padding(
+      //   padding: EdgeInsets.only(bottom: 16.h),
+      //   child: Container(
+      //     decoration: BoxDecoration(
+      //       color: Colors.white.withOpacity(0.1),
+      //       borderRadius: BorderRadius.circular(12.r),
+      //       boxShadow: [
+      //         BoxShadow(
+      //           color: Colors.black.withOpacity(0.1),
+      //           blurRadius: 10,
+      //           offset: const Offset(0, 4),
+      //         ),
+      //       ],
+      //       gradient: LinearGradient(
+      //         colors: [
+      //           Colors.white.withOpacity(0.05),
+      //           Colors.grey.withOpacity(0.1),
+      //         ],
+      //         begin: Alignment.topLeft,
+      //         end: Alignment.bottomRight,
+      //       ),
+      //     ),
+      //     child: CustomizedNavBar(
+      //       selectedIndex: _selectedIndex,
+      //       onItemTapped: _onItemTapped,
+      //     ),
+      //   ),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 

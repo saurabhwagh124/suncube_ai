@@ -11,7 +11,9 @@ import 'package:suncube_ai/widgets/solutions/solution5.dart';
 import 'package:suncube_ai/widgets/solutions/solution6.dart';
 
 class ServicesScreen extends StatefulWidget {
-  const ServicesScreen({super.key});
+  final bool showAppBar;
+
+  const ServicesScreen({super.key, this.showAppBar = false});
 
   @override
   State<ServicesScreen> createState() => _ServicesScreenState();
@@ -61,50 +63,51 @@ class _ServicesScreenState extends State<ServicesScreen> {
 
     return Scaffold(
       backgroundColor: Colors.transparent,
-      // appBar: AppBar(
-      //   leading: InkWell(
-      //     onTap: () {
-      //       scaffoldKey.currentState?.openDrawer();
-      //     },
-      //     child: Icon(LucideIcons.menu, color: Colors.white, size: 22.sp),
-      //   ),
-      //   backgroundColor: Color(0xFF060C09).withOpacity(0.9),
-      //   automaticallyImplyLeading: false,
-      //
-      //   title: Text(
-      //     'Suncube AI',
-      //     style: GoogleFonts.inter(
-      //       fontWeight: FontWeight.w800,
-      //       fontSize: 20.sp,
-      //       color: Colors.white,
-      //     ),
-      //   ),
-      //   actions: [
-      //     TextButton(
-      //       onPressed: () {
-      //         Navigator.push(
-      //           context,
-      //           MaterialPageRoute(builder: (context) => const LoginScreen()),
-      //         );
-      //       },
-      //       style: TextButton.styleFrom(
-      //         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-      //         shape: RoundedRectangleBorder(
-      //           borderRadius: BorderRadius.circular(8.r),
-      //         ),
-      //       ),
-      //       child: Text(
-      //         'Login',
-      //         style: GoogleFonts.inter(
-      //           fontSize: 14.sp,
-      //           fontWeight: FontWeight.w600,
-      //           color: const Color(0xFF73E0A9),
-      //         ),
-      //       ),
-      //     ),
-      //   ],
-      // ),
-      // drawer: AppSidebar(),
+      appBar:
+          (widget.showAppBar)
+              ? AppBar(
+                leading: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                    size: 30.sp,
+                  ),
+                ),
+                title: Text(
+                  'Services',
+                  style: GoogleFonts.inter(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                centerTitle: true,
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                flexibleSpace: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        const Color(0xFF060C09).withOpacity(0.9),
+                        const Color(0xFF1A231F).withOpacity(0.9),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+              : null,
       body: Container(
         margin: EdgeInsets.only(top: 84.h),
         decoration: const BoxDecoration(

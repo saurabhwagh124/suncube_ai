@@ -17,6 +17,7 @@ dependencies:
   provider: ^6.1.5
   lucide_icons_flutter: ^3.0.7
   get_storage: ^2.1.1
+  percent_indicator: ^4.2.5
 
 dev_dependencies:
   flutter_test:

@@ -116,35 +116,39 @@ class _LandingPageState extends State<LandingPage> {
           });
         },
       ),
-      floatingActionButton: Padding(
-        padding: EdgeInsets.only(bottom: 16.h),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(12.r),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
-              ),
-            ],
-            gradient: LinearGradient(
-              colors: [
-                Colors.white.withOpacity(0.05),
-                Colors.grey.withOpacity(0.1),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-          child: CustomizedNavBar(
-            selectedIndex: _selectedIndex,
-            onItemTapped: _onItemTapped,
-          ),
-        ),
+      // floatingActionButton: Padding(
+      //   padding: EdgeInsets.only(bottom: 16.h),
+      //   child: Container(
+      //     decoration: BoxDecoration(
+      //       color: Colors.white.withOpacity(0.1),
+      //       borderRadius: BorderRadius.circular(12.r),
+      //       boxShadow: [
+      //         BoxShadow(
+      //           color: Colors.black.withOpacity(0.1),
+      //           blurRadius: 10,
+      //           offset: const Offset(0, 4),
+      //         ),
+      //       ],
+      //       gradient: LinearGradient(
+      //         colors: [
+      //           Colors.white.withOpacity(0.05),
+      //           Colors.grey.withOpacity(0.1),
+      //         ],
+      //         begin: Alignment.topLeft,
+      //         end: Alignment.bottomRight,
+      //       ),
+      //     ),
+      //     child: CustomizedNavBar(
+      //       selectedIndex: _selectedIndex,
+      //       onItemTapped: _onItemTapped,
+      //     ),
+      //   ),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: CustomizedNavBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

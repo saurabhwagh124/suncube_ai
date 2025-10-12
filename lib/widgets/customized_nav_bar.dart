@@ -142,9 +142,10 @@ class CustomizedNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 220.w,
+      // margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+      // width: 220.w,
       // tight navbar
-      height: 70.h,
+      height: 80.h,
       padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 8.h),
       decoration: BoxDecoration(
         color: Colors.black, // SOLID BACKGROUND COLOR
@@ -153,6 +154,7 @@ class CustomizedNavBar extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
+        spacing: 15.w,
         children: [
           _buildNavItem(
             context,
@@ -172,7 +174,7 @@ class CustomizedNavBar extends StatelessWidget {
             context,
             icon: LucideIcons.layoutDashboard,
             index: 2,
-            label: 'Guidelines',
+            label: 'Dashboard',
             page: const UserDashboardHome(),
           ),
           _buildNavItem(
@@ -180,7 +182,7 @@ class CustomizedNavBar extends StatelessWidget {
             icon: LucideIcons.wallet,
             index: 3,
             label: 'Billings', // Updated label
-            page:  BillingPage(), // Updated page widget
+            page: BillingPage(), // Updated page widget
           ),
         ],
       ),
@@ -196,46 +198,58 @@ class CustomizedNavBar extends StatelessWidget {
   }) {
     bool isSelected = selectedIndex == index;
 
-    return GestureDetector(
-      onTap: () {
-        if (!isSelected) {
-          onItemTapped(index);
-          // Navigator.pushReplacement(
-          //   context,
-          //   MaterialPageRoute(builder: (_) => page),
-          // );
-        }
-      },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        width: 44.w,
-        height: 44.h,
-        margin: EdgeInsets.symmetric(horizontal: 2.w),
-        decoration: BoxDecoration(
-          color:
-              isSelected ? Colors.white.withOpacity(0.18) : Colors.transparent,
-          borderRadius: BorderRadius.circular(15.r),
-          boxShadow:
-              isSelected
-                  ? [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.15),
-                      blurRadius: 5,
-                      offset: const Offset(0, 3),
-                    ),
-                  ]
-                  : [],
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            if (!isSelected) {
+              onItemTapped(index);
+              // Navigator.pushReplacement(
+              //   context,
+              //   MaterialPageRoute(builder: (_) => page),
+              // );
+            }
+          },
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            width: 44.w,
+            height: 44.h,
+            margin: EdgeInsets.symmetric(horizontal: 2.w),
+            decoration: BoxDecoration(
+              color:
+                  isSelected
+                      ? Colors.white.withOpacity(0.18)
+                      : Colors.transparent,
+              borderRadius: BorderRadius.circular(15.r),
+              boxShadow:
+                  isSelected
+                      ? [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.15),
+                          blurRadius: 5,
+                          offset: const Offset(0, 3),
+                        ),
+                      ]
+                      : [],
+            ),
+            alignment: Alignment.center,
+            child: Icon(
+              icon,
+              color:
+                  isSelected
+                      ? const Color(0xFF73E0A9)
+                      : Colors.white.withOpacity(0.6),
+              size: 24.sp,
+            ),
+          ),
         ),
-        alignment: Alignment.center,
-        child: Icon(
-          icon,
-          color:
-              isSelected
-                  ? const Color(0xFF73E0A9)
-                  : Colors.white.withOpacity(0.6),
-          size: 24.sp,
+        Text(
+          label,
+          style: TextStyle(
+            color: isSelected ? Color(0xFF73E0A9) : Colors.white,
+          ),
         ),
-      ),
+      ],
     );
   }
 }

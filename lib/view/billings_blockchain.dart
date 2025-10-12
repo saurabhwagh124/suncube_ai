@@ -5,7 +5,9 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
 
 class BillingPage extends StatefulWidget {
-  const BillingPage({super.key});
+  final bool showAppBar;
+
+  const BillingPage({super.key, this.showAppBar = false});
 
   @override
   State<BillingPage> createState() => _BillingPageState();
@@ -23,6 +25,51 @@ class _BillingPageState extends State<BillingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:
+          (widget.showAppBar)
+              ? AppBar(
+                leading: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                    size: 30.sp,
+                  ),
+                ),
+                title: Text(
+                  'Billings',
+                  style: GoogleFonts.inter(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                centerTitle: true,
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                flexibleSpace: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        const Color(0xFF060C09).withOpacity(0.9),
+                        const Color(0xFF1A231F).withOpacity(0.9),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+              : null,
       backgroundColor: const Color(0xFF060C09),
       body: Container(
         margin: EdgeInsets.only(top: 84.h),

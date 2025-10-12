@@ -157,19 +157,16 @@ class PredictiveAlerts extends StatelessWidget {
                   _AlertTile(
                     'Panel Cleaning Required',
                     'Dust accumulation detected on panels 3-7. Efficiency reduced by 8%.',
-                    94,
                     const Color(0xFF73E0A9),
                   ),
                   _AlertTile(
                     'Temporary Shading Detected',
                     'Tree shadow affecting Panel Row B...',
-                    87,
                     const Color(0xFF73E0A9),
                   ),
                   _AlertTile(
                     'Inverter Anomaly',
                     'Inverter 2 showing irregular output patterns...',
-                    96,
                     const Color(0xFF73E0A9),
                   ),
                 ],
@@ -185,12 +182,18 @@ class PredictiveAlerts extends StatelessWidget {
 /* ------------------------------------------------------------------ */
 /* Glass-style Alert Tile                                               */
 /* ------------------------------------------------------------------ */
-class _AlertTile extends StatelessWidget {
+class _AlertTile extends StatefulWidget {
   final String title, desc;
-  final int confidence;
   final Color color;
 
-  const _AlertTile(this.title, this.desc, this.confidence, this.color);
+  const _AlertTile(this.title, this.desc, this.color);
+
+  @override
+  State<_AlertTile> createState() => _AlertTileState();
+}
+
+class _AlertTileState extends State<_AlertTile> {
+  bool _resolved = false;
 
   @override
   Widget build(BuildContext context) {
@@ -198,7 +201,7 @@ class _AlertTile extends StatelessWidget {
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
       margin: EdgeInsets.only(bottom: 12.h),
-      padding: EdgeInsets.all(14.w),
+      padding: EdgeInsets.all(10.w),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.1),
         borderRadius: BorderRadius.circular(12.r),
@@ -217,42 +220,58 @@ class _AlertTile extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  title,
-                  style: GoogleFonts.inter(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF73E0A9).withOpacity(0.15),
-                  borderRadius: BorderRadius.circular(8.r),
-                ),
-                child: Text(
-                  '$confidence% AI Confidence',
-                  style: GoogleFonts.inter(
-                    fontSize: 11.sp,
-                    fontWeight: FontWeight.w500,
-                    color: const Color(0xFF73E0A9),
-                  ),
-                ),
-              ),
-            ],
+          Text(
+            widget.title,
+            style: GoogleFonts.inter(
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+            ),
           ),
           SizedBox(height: 6.h),
           Text(
-            desc,
+            widget.desc,
+            maxLines: 4,
             style: GoogleFonts.inter(
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
               color: Colors.white.withOpacity(0.75),
+            ),
+          ),
+          SizedBox(height: 8.h),
+          Align(
+            alignment: Alignment.centerRight,
+            child: GestureDetector(
+              onTap: () => setState(() => _resolved = !_resolved),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 250),
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                decoration: BoxDecoration(
+                  color:
+                      _resolved
+                          ? const Color(0xFF73E0A9) // theme green
+                          : const Color(0xFFFF3162), // neon red
+                  borderRadius: BorderRadius.circular(8.r),
+                  boxShadow: [
+                    BoxShadow(
+                      color: (_resolved
+                              ? const Color(0xFF73E0A9)
+                              : const Color(0xFFFF3162))
+                          .withOpacity(0.5),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Text(
+                  _resolved ? 'Resolved' : 'Resolve',
+                  style: GoogleFonts.inter(
+                    fontSize: 11.sp,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
           ),
         ],

@@ -12,24 +12,28 @@ class HowItWorks extends StatelessWidget {
       LucideIcons.sun,
       '01',
       'AI-optimized panel placement for maximum efficiency',
+      'assets/fs01.png',
     ),
     (
       'Real-time Monitoring',
       LucideIcons.activity,
       '02',
       'Continuous tracking of system performance',
+      'assets/fs02.png',
     ),
     (
       'Smart Grid Integration',
       LucideIcons.grid3x3,
       '03',
       'Seamless connection to smart energy grids',
+      'assets/fs03.png',
     ),
     (
       'Automated Payments',
       LucideIcons.battery,
       '04',
       'Secure blockchain-based transactions',
+      'assets/fs04.png',
     ),
   ];
 
@@ -114,18 +118,13 @@ class HowItWorks extends StatelessWidget {
             SizedBox(height: 32.h),
 
             /* --- Step Cards (2 per row) --- */
-            GridView.builder(
+            ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               padding: EdgeInsets.zero,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 16.w,
-                mainAxisSpacing: 16.h,
-                childAspectRatio: 0.75, // Adjusted for better fit
-              ),
               itemCount: steps.length,
               itemBuilder: (_, i) => _StepCard(steps[i]),
+              separatorBuilder: (context, index) => SizedBox(height: 10.h),
             ),
           ],
         ),
@@ -138,13 +137,14 @@ class HowItWorks extends StatelessWidget {
 /* Glass-style Step Card                                                */
 /* ------------------------------------------------------------------ */
 class _StepCard extends StatelessWidget {
-  final (String title, IconData icon, String step, String desc) data;
+  final (String title, IconData icon, String step, String desc, String image)
+  data;
 
   const _StepCard(this.data);
 
   @override
   Widget build(BuildContext context) {
-    final (title, icon, step, desc) = data;
+    final (title, icon, step, desc, image) = data;
     return Container(
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
@@ -175,60 +175,75 @@ class _StepCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           /* Icon Circle */
-          Container(
-            width: 48.w,
-            height: 48.h,
-            decoration: BoxDecoration(
-              color: const Color(0xFF73E0A9).withOpacity(0.15),
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: const Color(0xFF73E0A9).withOpacity(0.3),
-                width: 1.w,
+          Row(
+            children: [
+              Container(
+                width: 40.w,
+                height: 40.h,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF73E0A9).withOpacity(0.15),
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: const Color(0xFF73E0A9).withOpacity(0.3),
+                    width: 1.w,
+                  ),
+                ),
+                child: Icon(icon, size: 20.sp, color: const Color(0xFF73E0A9)),
               ),
-            ),
-            child: Icon(icon, size: 22.sp, color: const Color(0xFF73E0A9)),
-          ),
-          const SizedBox(height: 12),
+              SizedBox(width: 10.w),
 
-          /* Step Number */
-          Text(
-            step,
-            style: GoogleFonts.inter(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w800,
-              color: Colors.white,
-            ),
+              /* Step Number */
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.inter(
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                  height: 1.2,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 6),
-
-          /* Title */
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: GoogleFonts.inter(
-              fontSize: 13.sp,
-              fontWeight: FontWeight.w600,
-              color: Colors.white,
-              height: 1.2,
-            ),
-          ),
-          const SizedBox(height: 4),
-
+          SizedBox(height: 6.h),
           /* Description */
-          Flexible(
-            child: Text(
-              desc,
-              textAlign: TextAlign.center,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-              style: GoogleFonts.inter(
-                fontSize: 10.5.sp, // Reduced font size
-                fontWeight: FontWeight.w400,
-                color: Colors.white.withOpacity(0.75),
-                height: 1.2, // Reduced line spacing
-              ),
+          // Flexible(
+          //   child: Text(
+          //     desc,
+          //     textAlign: TextAlign.center,
+          //     maxLines: 3,
+          //     overflow: TextOverflow.ellipsis,
+          //     style: GoogleFonts.inter(
+          //       fontSize: 10.5.sp, // Reduced font size
+          //       fontWeight: FontWeight.w400,
+          //       color: Colors.white.withOpacity(0.75),
+          //       height: 1.2, // Reduced line spacing
+          //     ),
+          //   ),
+          // ),
+          SizedBox(
+            height: 60.h,
+            child: Stack(
+              children: [
+                Row(children: [Spacer(), Image.asset(image)]),
+                SizedBox(
+                  width: 120.w,
+                  child: Text(
+                    desc,
+                    textAlign: TextAlign.center,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.inter(
+                      fontSize: 10.5.sp, // Reduced font size
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white.withOpacity(0.75),
+                      height: 1.2, // Reduced line spacing
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
