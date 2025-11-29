@@ -1,11 +1,4 @@
-// import 'dart:ui';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:lucide_icons_flutter/lucide_icons.dart';
-// import 'package:suncube_ai/view/about_us.dart';
-// import 'package:suncube_ai/view/dashboard_screen.dart';
-// import 'package:suncube_ai/view/landing_page.dart';
-// import 'package:suncube_ai/view/services_screen.dart';
+
 
 // class CustomizedNavBar extends StatelessWidget {
 //   final int selectedIndex;
@@ -123,10 +116,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:suncube_ai/view/Dashboards/user_dashboard.dart';
-import 'package:suncube_ai/view/billings_blockchain.dart';
-import 'package:suncube_ai/view/landing_page.dart';
-import 'package:suncube_ai/view/services_screen.dart';
+import 'package:suncube_ai/view/dashboard/Dashboards/user_dashboard.dart';
+import 'package:suncube_ai/view/pages/services/billings_blockchain.dart';
+import 'package:suncube_ai/view/landing/landing_page.dart';
+import 'package:suncube_ai/view/pages/services/services_screen.dart';
 // import 'package:suncube_ai/view/billings_page.dart'; // Add your billing page import here
 
 class CustomizedNavBar extends StatelessWidget {

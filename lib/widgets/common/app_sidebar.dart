@@ -5,21 +5,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
 import 'package:suncube_ai/utils/user_data.dart';
-import 'package:suncube_ai/view/Dashboards/user_dashboard.dart';
-import 'package:suncube_ai/view/about_us.dart';
-import 'package:suncube_ai/view/ai_payment_engine_page.dart';
-import 'package:suncube_ai/view/billings_blockchain.dart';
-import 'package:suncube_ai/view/blockchain_security_page.dart';
-import 'package:suncube_ai/view/blogs_page.dart';
-import 'package:suncube_ai/view/case_studies_page.dart';
-import 'package:suncube_ai/view/commitment_page.dart';
-import 'package:suncube_ai/view/contact_page.dart';
-import 'package:suncube_ai/view/landing_page.dart';
-import 'package:suncube_ai/view/login_screen.dart';
-import 'package:suncube_ai/view/services_screen.dart';
-import 'package:suncube_ai/view/success_stories_page.dart';
-import 'package:suncube_ai/view/sustainability_page.dart';
-import 'package:suncube_ai/view/transparency_page.dart';
+import 'package:suncube_ai/view/dashboard/Dashboards/user_dashboard.dart';
+import 'package:suncube_ai/view/pages/about/about_us.dart';
+import 'package:suncube_ai/view/pages/services/ai_payment_engine_page.dart';
+import 'package:suncube_ai/view/pages/services/billings_blockchain.dart';
+import 'package:suncube_ai/view/pages/services/blockchain_security_page.dart';
+import 'package:suncube_ai/view/pages/content/blogs_page.dart';
+import 'package:suncube_ai/view/pages/content/case_studies_page.dart';
+import 'package:suncube_ai/view/pages/about/commitment_page.dart';
+import 'package:suncube_ai/view/pages/contact/contact_page.dart';
+import 'package:suncube_ai/view/landing/landing_page.dart';
+import 'package:suncube_ai/view/auth/login_screen.dart';
+import 'package:suncube_ai/view/pages/services/services_screen.dart';
+import 'package:suncube_ai/view/pages/content/success_stories_page.dart';
+import 'package:suncube_ai/view/pages/about/sustainability_page.dart';
+import 'package:suncube_ai/view/pages/about/transparency_page.dart';
 
 class AppSidebar extends StatelessWidget {
   const AppSidebar({super.key});
@@ -105,7 +105,7 @@ class AppSidebar extends StatelessWidget {
           child: ValueListenableBuilder<String?>(
             valueListenable: ValueNotifier(UserData().read<String>('email')),
             builder: (_, email, __) {
-              final name = email?.split('@').firstOrNull ?? 'User';
+              final name = email?.split('@').firstOrNull ?? 'Guest';
               return Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -156,6 +156,7 @@ class AppSidebar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.horizontal(right: Radius.circular(30.r));
+    final isLogged = UserData().read<bool>('isLogged') ?? false;
 
     return Drawer(
       backgroundColor: Colors.transparent,
@@ -239,12 +240,28 @@ class AppSidebar extends StatelessWidget {
                   () => _handleNavigation(context, 'sustainability'),
                 ),
                 billingCard(context),
-                menuButton(
-                  Icons.logout,
-                  'Logout',
-                  () => _logout(context),
-                  color: Colors.redAccent,
-                ),
+                if (isLogged)
+                  menuButton(
+                    Icons.logout,
+                    'Logout',
+                    () => _logout(context),
+                    color: Colors.redAccent,
+                  )
+                else
+                  menuButton(
+                    Icons.login,
+                    'Login',
+                    () {
+                      Navigator.pop(context); // Close drawer
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                      );
+                    },
+                    color: AppColors.themeGreen,
+                  ),
                 SizedBox(height: 12.h),
               ],
             ),

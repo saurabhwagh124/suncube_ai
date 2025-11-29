@@ -23,64 +23,9 @@ class AdminDashboardHome extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
             child: Row(
               children: [
-                Container(
-                  width: 32.w,
-                  height: 32.w,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF73E0A9), Color(0xFF34B87C)],
-                    ),
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
-                  child: Icon(
-                    LucideIcons.zap,
-                    color: Colors.white,
-                    size: 20.sp,
-                  ),
-                ),
-                SizedBox(width: 8.w),
-                SizedBox(
-                  width: 150.w,
-                  child: Wrap(
-                    children: [
-                      Text(
-                        'Suncube AI Dashboard',
-                        style: GoogleFonts.inter(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // Icon removed as per request
                 const Spacer(),
-                Text(
-                  'Admin',
-                  style: GoogleFonts.inter(
-                    fontSize: 14.sp,
-                    color: Colors.white70,
-                  ),
-                ),
-                SizedBox(width: 12.w),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    foregroundColor: Colors.black,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 16.w,
-                      vertical: 8.h,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                  ),
-                  child: Text(
-                    'Logout',
-                    style: GoogleFonts.inter(fontWeight: FontWeight.w600),
-                  ),
-                ),
+                // Removed redundant title, role, and logout button as per request
               ],
             ),
           ),

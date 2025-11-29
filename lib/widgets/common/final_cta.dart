@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:suncube_ai/view/contact_page.dart';
+import 'package:suncube_ai/view/pages/contact/contact_page.dart';
 
 class FinalCTA extends StatelessWidget {
   const FinalCTA({super.key});

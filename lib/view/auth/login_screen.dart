@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
 import 'package:suncube_ai/utils/user_data.dart';
-import 'package:suncube_ai/view/landing_page.dart';
+import 'package:suncube_ai/view/landing/landing_page.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

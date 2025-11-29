@@ -3,18 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:suncube_ai/utils/user_data.dart';
-import 'package:suncube_ai/view/Dashboards/user_dashboard.dart';
-import 'package:suncube_ai/view/billings_blockchain.dart';
-import 'package:suncube_ai/view/login_screen.dart';
-import 'package:suncube_ai/view/services_screen.dart';
-import 'package:suncube_ai/widgets/app_sidebar.dart';
-import 'package:suncube_ai/widgets/benefits_section.dart';
-import 'package:suncube_ai/widgets/customized_nav_bar.dart';
-import 'package:suncube_ai/widgets/final_cta.dart';
-import 'package:suncube_ai/widgets/hero_section.dart';
-import 'package:suncube_ai/widgets/how_it_works.dart';
-import 'package:suncube_ai/widgets/impact_section.dart';
-import 'package:suncube_ai/widgets/predictive_alert.dart';
+import 'package:suncube_ai/view/dashboard/Dashboards/user_dashboard.dart';
+import 'package:suncube_ai/view/pages/services/billings_blockchain.dart';
+import 'package:suncube_ai/view/auth/login_screen.dart';
+import 'package:suncube_ai/view/pages/services/services_screen.dart';
+import 'package:suncube_ai/widgets/common/app_sidebar.dart';
+import 'package:suncube_ai/widgets/landing/benefits_section.dart';
+import 'package:suncube_ai/widgets/common/customized_nav_bar.dart';
+import 'package:suncube_ai/widgets/common/final_cta.dart';
+import 'package:suncube_ai/widgets/landing/hero_section.dart';
+import 'package:suncube_ai/widgets/landing/how_it_works.dart';
+import 'package:suncube_ai/widgets/landing/impact_section.dart';
+import 'package:suncube_ai/widgets/solutions/predictive_alert.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -72,7 +72,23 @@ class _LandingPageState extends State<LandingPage> {
         ),
         actions: [
           (userData.read<bool>('isLogged') ?? false)
-              ? SizedBox.shrink()
+              ? (_selectedIndex == 2)
+                  ? Padding(
+                    padding: EdgeInsets.only(right: 16.w),
+                    child: Center(
+                      child: Text(
+                        (userData.read<String>("role") != null)
+                            ? userData.read<String>("role") ?? ""
+                            : 'User',
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  )
+                  : SizedBox.shrink()
               : TextButton(
                 onPressed: () {
                   Navigator.push(
