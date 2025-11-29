@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
+import 'package:suncube_ai/widgets/common/liquid_background.dart';
+import 'package:suncube_ai/widgets/common/glass_container.dart';
 
 class BillingPage extends StatefulWidget {
   final bool showAppBar;
@@ -14,14 +16,6 @@ class BillingPage extends StatefulWidget {
 }
 
 class _BillingPageState extends State<BillingPage> {
-  int _selectedIndex = 3;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,46 +64,41 @@ class _BillingPageState extends State<BillingPage> {
                 ),
               )
               : null,
-      backgroundColor: const Color(0xFF060C09),
-      body: Container(
-        margin: EdgeInsets.only(top: 84.h),
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF060C09), Color(0xFF1A231F)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _hero(context),
-              SizedBox(height: 40.h),
-              _sectionTitle('Performance Reports'),
-              SizedBox(height: 16.h),
-              _kpiCards(),
-              SizedBox(height: 24.h),
-              _energyBalanceCard(),
-              SizedBox(height: 24.h),
-              _exportReportsCard(),
-              SizedBox(height: 40.h),
-              _sectionTitle('Regulatory Compliance Log'),
-              SizedBox(height: 16.h),
-              _complianceTable(),
-              SizedBox(height: 40.h),
-              _sectionTitle('Stakeholder Dashboard'),
-              SizedBox(height: 16.h),
-              _roleSelector(),
-              SizedBox(height: 16.h),
-              _gridMetrics(),
-              SizedBox(height: 40.h),
-              _sectionTitle('Monthly & Yearly Digest'),
-              SizedBox(height: 16.h),
-              _digestCards(),
-              SizedBox(height: 100.h),
-            ],
+      backgroundColor: Colors.transparent,
+      body: LiquidBackground(
+        child: Container(
+          margin: EdgeInsets.only(top: 84.h),
+          child: SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _hero(context),
+                SizedBox(height: 40.h),
+                _sectionTitle('Performance Reports'),
+                SizedBox(height: 16.h),
+                _kpiCards(),
+                SizedBox(height: 24.h),
+                _energyBalanceCard(),
+                SizedBox(height: 24.h),
+                _exportReportsCard(),
+                SizedBox(height: 40.h),
+                _sectionTitle('Regulatory Compliance Log'),
+                SizedBox(height: 16.h),
+                _complianceTable(),
+                SizedBox(height: 40.h),
+                _sectionTitle('Stakeholder Dashboard'),
+                SizedBox(height: 16.h),
+                _roleSelector(),
+                SizedBox(height: 16.h),
+                _gridMetrics(),
+                SizedBox(height: 40.h),
+                _sectionTitle('Monthly & Yearly Digest'),
+                SizedBox(height: 16.h),
+                _digestCards(),
+                SizedBox(height: 100.h),
+              ],
+            ),
           ),
         ),
       ),
@@ -120,41 +109,24 @@ class _BillingPageState extends State<BillingPage> {
   // HERO
   // --------------------------------------------------
   Widget _hero(BuildContext context) {
-    return Container(
-      width: double.infinity,
+    return GlassContainer(
+      margin: EdgeInsets.only(bottom: 24.h),
       padding: EdgeInsets.symmetric(vertical: 48.h, horizontal: 24.w),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            AppColors.themeGreen.withOpacity(0.3),
-            const Color(0xFF106B43).withOpacity(0.2),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
+      blur: 20,
+      opacity: 0.15,
+      color: AppColors.themeGreen,
+      borderRadius: BorderRadius.circular(28.r),
       child: Column(
         children: [
           Container(
             padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.white.withOpacity(0.1),
-                  Colors.white.withOpacity(0.05),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
+              color: Colors.white.withOpacity(0.1),
               borderRadius: BorderRadius.circular(20.r),
+              border: Border.all(
+                color: Colors.white.withOpacity(0.2),
+                width: 1,
+              ),
             ),
             child: Text(
               'Our transparent billing system shows you exactly how we calculate your energy costs and credits.',
@@ -269,9 +241,14 @@ class _BillingPageState extends State<BillingPage> {
                         style: OutlinedButton.styleFrom(
                           side: BorderSide(
                             color: Colors.white.withOpacity(0.3),
+                            width: 1.5,
                           ),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.r),
+                            borderRadius: BorderRadius.circular(12.r),
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16.w,
+                            vertical: 12.h,
                           ),
                         ),
                       ),
@@ -392,27 +369,34 @@ class _BillingPageState extends State<BillingPage> {
 
   Widget _statusChip(String label) {
     Color bgColor;
-    Color textColor = Colors.white;
     switch (label) {
       case 'Compliant':
-        bgColor = AppColors.themeGreen.withOpacity(0.7);
+        bgColor = AppColors.themeGreen;
         break;
       case 'Pending':
-        bgColor = Colors.orange.withOpacity(0.7);
+        bgColor = Colors.orange;
         break;
       case 'Scheduled':
-        bgColor = Colors.blue.withOpacity(0.7);
+        bgColor = Colors.blue;
         break;
       default:
-        bgColor = Colors.grey.withOpacity(0.7);
+        bgColor = Colors.grey;
     }
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
       decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: BorderRadius.circular(12.r),
+        color: bgColor.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(color: bgColor.withOpacity(0.5), width: 1),
       ),
-      child: Text(label, style: TextStyle(fontSize: 12.sp, color: textColor)),
+      child: Text(
+        label,
+        style: GoogleFonts.inter(
+          fontSize: 11.sp,
+          fontWeight: FontWeight.w600,
+          color: bgColor,
+        ),
+      ),
     );
   }
 
@@ -445,7 +429,27 @@ class _BillingPageState extends State<BillingPage> {
             size: 18,
             color: Colors.white,
           ),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.r),
+            borderSide: BorderSide(
+              color: Colors.white.withOpacity(0.2),
+              width: 1,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.r),
+            borderSide: BorderSide(
+              color: Colors.white.withOpacity(0.2),
+              width: 1,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.r),
+            borderSide: BorderSide(
+              color: AppColors.themeGreen.withOpacity(0.5),
+              width: 2,
+            ),
+          ),
           contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
           filled: true,
           fillColor: Colors.white.withOpacity(0.1),
@@ -608,47 +612,52 @@ class _BillingPageState extends State<BillingPage> {
   }
 
   Widget _glassCard(String label, String value, IconData icon, Color color) {
-    return Container(
+    return GlassContainer(
       margin: EdgeInsets.symmetric(vertical: 4.h),
-      padding: EdgeInsets.all(12.w),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Colors.white.withOpacity(0.05),
-            Colors.white.withOpacity(0.1),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(12.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 8,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
+      padding: EdgeInsets.all(16.w),
+      blur: 15,
+      opacity: 0.1,
+      color: color,
+      borderRadius: BorderRadius.circular(20.r),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                label,
-                style: TextStyle(fontSize: 12.sp, color: Colors.white70),
+              Flexible(
+                child: Text(
+                  label,
+                  style: GoogleFonts.inter(
+                    fontSize: 11.sp,
+                    color: Colors.white.withOpacity(0.8),
+                  ),
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
-              Icon(icon, color: color, size: 16.sp),
+              SizedBox(width: 8.w),
+              Container(
+                padding: EdgeInsets.all(6.w),
+                decoration: BoxDecoration(
+                  color: color.withOpacity(0.2),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(icon, color: color, size: 16.sp),
+              ),
             ],
           ),
           SizedBox(height: 6.h),
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: 20.sp,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Text(
+              value,
+              style: GoogleFonts.inter(
+                fontSize: 20.sp,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
           ),
         ],
@@ -661,45 +670,42 @@ class _BillingPageState extends State<BillingPage> {
     required IconData icon,
     required Widget child,
   }) {
-    return Container(
+    return GlassContainer(
       margin: EdgeInsets.symmetric(vertical: 4.h),
-      padding: EdgeInsets.all(16.w),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Colors.white.withOpacity(0.05),
-            Colors.white.withOpacity(0.1),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(12.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 8,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
+      padding: EdgeInsets.all(20.w),
+      blur: 15,
+      opacity: 0.1,
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(24.r),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(icon, color: AppColors.themeGreen, size: 22.sp),
-              SizedBox(width: 8.w),
-              Text(
-                title,
-                style: GoogleFonts.inter(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
+              Container(
+                padding: EdgeInsets.all(8.w),
+                decoration: BoxDecoration(
+                  color: AppColors.themeGreen.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(12.r),
+                ),
+                child: Icon(icon, color: AppColors.themeGreen, size: 22.sp),
+              ),
+              SizedBox(width: 12.w),
+              Expanded(
+                child: Text(
+                  title,
+                  style: GoogleFonts.inter(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
           ),
-          SizedBox(height: 12.h),
+          SizedBox(height: 16.h),
           child,
         ],
       ),
@@ -717,20 +723,30 @@ class _BillingPageState extends State<BillingPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 14.sp,
-              fontWeight: bold ? FontWeight.w600 : FontWeight.normal,
-              color: Colors.white70,
+          Flexible(
+            child: Text(
+              label,
+              style: TextStyle(
+                fontSize: 13.sp,
+                fontWeight: bold ? FontWeight.w600 : FontWeight.normal,
+                color: Colors.white70,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: 14.sp,
-              fontWeight: bold ? FontWeight.bold : FontWeight.normal,
-              color: color,
+          SizedBox(width: 8.w),
+          Flexible(
+            child: Text(
+              value,
+              style: TextStyle(
+                fontSize: 13.sp,
+                fontWeight: bold ? FontWeight.bold : FontWeight.normal,
+                color: color,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.right,
             ),
           ),
         ],

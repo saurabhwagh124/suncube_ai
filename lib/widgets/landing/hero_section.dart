@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:suncube_ai/widgets/common/glass_container.dart';
 
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key});
@@ -14,30 +15,13 @@ class HeroSection extends StatelessWidget {
       opacity: 1.0,
       duration: const Duration(milliseconds: 1000),
       curve: Curves.easeInOut,
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
-        padding: EdgeInsets.fromLTRB(20.w, 50.h, 20.w, 40.h),
-        decoration: BoxDecoration(
-          color: const Color(0xFF060C09).withOpacity(0.4),
-          borderRadius: BorderRadius.circular(24.r),
-          border: Border.all(color: Colors.white.withOpacity(0.1), width: 1.w),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 20,
-              offset: const Offset(0, 4),
-            ),
-          ],
-          // Glass effect
-          gradient: LinearGradient(
-            colors: [
-              Colors.white.withOpacity(0.05),
-              const Color(0xFF1A231F).withOpacity(0.3),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
+      child: GlassContainer(
+        margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
+        padding: EdgeInsets.fromLTRB(20.w, 40.h, 20.w, 32.h),
+        blur: 15,
+        opacity: 0.1,
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(28.r),
         child: Column(
           children: [
             Container(
@@ -75,54 +59,54 @@ class HeroSection extends StatelessWidget {
               'AI-Powered Solar\nFuture-Ready Energy',
               textAlign: TextAlign.center,
               style: GoogleFonts.inter(
-                fontSize: 28.sp,
+                fontSize: 32.sp,
                 fontWeight: FontWeight.w800,
                 height: 1.2,
                 color: Colors.white,
                 letterSpacing: -0.5,
               ),
             ),
-            SizedBox(height: 14.h),
+            SizedBox(height: 16.h),
             Text(
               'Optimize energy with AI-driven insights, predictive maintenance, and secure blockchain transactions.',
               textAlign: TextAlign.center,
               style: GoogleFonts.inter(
-                fontSize: 14.sp,
+                fontSize: 15.sp,
                 fontWeight: FontWeight.w400,
-                color: Colors.white.withOpacity(0.75),
+                color: Colors.white.withOpacity(0.8),
                 height: 1.5,
               ),
             ),
-            SizedBox(height: 28.h),
+            SizedBox(height: 32.h),
             MetricCard(
               'Solar Output',
               '4.3 kW',
               LucideIcons.sun,
-              Color(0xFF73E0A9),
+              const Color(0xFFF59E0B),
               image: _DottedStripPainter(_heartRates),
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 16.h),
             MetricCard(
               'Usage',
               '3.2 kW',
               LucideIcons.zap,
-              Color(0xFF73E0A9),
+              const Color(0xFF3B82F6),
               image: _SteppedBarPainter(),
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 16.h),
             MetricCard(
               'Battery',
               '82%',
               LucideIcons.battery,
-              Color(0xFF73E0A9),
+              const Color(0xFF22C55E),
               image: _BreathWavePainter(),
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 16.h),
             MetricCard(
               'Grid Export',
               '1.5 kW',
               LucideIcons.trendingUp,
-              Color(0xFF73E0A9),
+              const Color(0xFF22C55E),
               image: _DottedStripPainter(_heartRates),
             ),
           ],
@@ -152,35 +136,12 @@ class MetricCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-        width: double.infinity,
+      child: GlassContainer(
+        blur: 10,
+        opacity: 0.08,
+        color: accentColor,
+        borderRadius: BorderRadius.circular(16.r),
         padding: EdgeInsets.all(14.w),
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(16.r),
-          border: Border.all(
-            color: const Color(0xFF73E0A9).withOpacity(0.15),
-            width: 1.w,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 2),
-            ),
-          ],
-          // Glass effect
-          gradient: LinearGradient(
-            colors: [
-              Colors.white.withOpacity(0.05),
-              const Color(0xFF73E0A9).withOpacity(0.05),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -190,31 +151,27 @@ class MetricCard extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.all(10.w),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF73E0A9).withOpacity(0.15),
+                    color: accentColor.withOpacity(0.15),
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: const Color(0xFF73E0A9).withOpacity(0.3),
+                      color: accentColor.withOpacity(0.3),
                       width: 1.w,
                     ),
                   ),
-                  child: Icon(
-                    icon,
-                    size: 15.sp,
-                    color: const Color(0xFF73E0A9),
-                  ),
+                  child: Icon(icon, size: 18.sp, color: accentColor),
                 ),
-                SizedBox(width: 20.w),
+                SizedBox(width: 16.w),
                 Text(
                   title,
                   style: GoogleFonts.inter(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 5.h),
+            SizedBox(height: 8.h),
             SizedBox(
               height: 50.h,
               child: Row(
@@ -222,14 +179,14 @@ class MetricCard extends StatelessWidget {
                   Text(
                     value,
                     style: GoogleFonts.inter(
-                      fontSize: 20.sp,
+                      fontSize: 22.sp,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF73E0A9),
+                      color: accentColor,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   SizedBox(
-                    width: 90.w, // tweak to taste
+                    width: 90.w,
                     height: 35.h,
                     child: CustomPaint(painter: image),
                   ),

@@ -38,93 +38,90 @@ class GridOperatorDashboardHome extends StatelessWidget {
             ),
           ),
         ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Energy Overview',
-              style: GoogleFonts.inter(
-                fontSize: 24.sp,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(height: 16.h),
-            Expanded(
-              child: GridView(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisExtent: 120.h,
-                  mainAxisSpacing: 10.h,
-                  crossAxisSpacing: 10.w,
-                  crossAxisCount: 2,
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Energy Overview',
+                style: GoogleFonts.inter(
+                  fontSize: 24.sp,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
-                children: [
-                  MetricCard(
-                    title: 'Solar Generation',
-                    value: '4.3 kW',
-                    icon: LucideIcons.sun,
-                    color: const Color(0xFFF59E0B),
-                  ),
-                  MetricCard(
-                    title: 'Consumption',
-                    value: '3.1 kW',
-                    icon: LucideIcons.zap,
-                    color: const Color(0xFF3B82F6),
-                  ),
-                  MetricCard(
-                    title: 'Battery Level',
-                    value: '85%',
-                    icon: LucideIcons.batteryFull,
-                    color: const Color(0xFF22C55E),
-                  ),
-                  MetricCard(
-                    title: 'Grid Feed-in',
-                    value: '1.0 kW',
-                    icon: LucideIcons.trendingUp,
-                    color: const Color(0xFF22C55E),
-                  ),
-                ],
               ),
-            ),
-            SizedBox(height: 16.h),
-            Expanded(
-              child: GridView(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisExtent: 120.h,
-                  mainAxisSpacing: 10.h,
-                  crossAxisSpacing: 10.w,
-                  crossAxisCount: 2,
+              SizedBox(height: 16.h),
+              Expanded(
+                child: GridView(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisExtent: 120.h,
+                    mainAxisSpacing: 10.h,
+                    crossAxisSpacing: 10.w,
+                    crossAxisCount: 2,
+                  ),
+                  children: [
+                    MetricCard(
+                      title: 'Solar Generation',
+                      value: '4.3 kW',
+                      icon: LucideIcons.sun,
+                      color: const Color(0xFFF59E0B),
+                    ),
+                    MetricCard(
+                      title: 'Consumption',
+                      value: '3.1 kW',
+                      icon: LucideIcons.zap,
+                      color: const Color(0xFF3B82F6),
+                    ),
+                    MetricCard(
+                      title: 'Battery Level',
+                      value: '85%',
+                      icon: LucideIcons.batteryFull,
+                      color: const Color(0xFF22C55E),
+                    ),
+                    MetricCard(
+                      title: 'Grid Feed-in',
+                      value: '1.0 kW',
+                      icon: LucideIcons.trendingUp,
+                      color: const Color(0xFF22C55E),
+                    ),
+                  ],
                 ),
-                children: [
-                  MetricCard(
-                    title: 'Total Systems',
-                    value: '1,247',
-                    icon: Icons.home,
-                    color: Colors.white54,
-                  ),
-                  MetricCard(
-                    title: 'Total Capacity',
-                    value: '47.3 MW',
-                    icon: LucideIcons.house,
-                    color: Colors.white54,
-                  ),
-                  MetricCard(
-                    title: 'System Uptime',
-                    value: '99.2%',
-                    icon: LucideIcons.activity,
-                    color: Colors.white54,
-                  ),
-                ],
               ),
-            ),
-          ],
+              SizedBox(height: 16.h),
+              Expanded(
+                child: GridView(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisExtent: 120.h,
+                    mainAxisSpacing: 10.h,
+                    crossAxisSpacing: 10.w,
+                    crossAxisCount: 2,
+                  ),
+                  children: [
+                    MetricCard(
+                      title: 'Total Systems',
+                      value: '1,247',
+                      icon: Icons.home,
+                      color: Colors.white54,
+                    ),
+                    MetricCard(
+                      title: 'Total Capacity',
+                      value: '47.3 MW',
+                      icon: LucideIcons.house,
+                      color: Colors.white54,
+                    ),
+                    MetricCard(
+                      title: 'System Uptime',
+                      value: '99.2%',
+                      icon: LucideIcons.activity,
+                      color: Colors.white54,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
-  }
-
       ),
     );
   }

@@ -15,6 +15,7 @@ import 'package:suncube_ai/widgets/landing/hero_section.dart';
 import 'package:suncube_ai/widgets/landing/how_it_works.dart';
 import 'package:suncube_ai/widgets/landing/impact_section.dart';
 import 'package:suncube_ai/widgets/solutions/predictive_alert.dart';
+import 'package:suncube_ai/widgets/common/liquid_background.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -170,47 +171,26 @@ class _LandingPageState extends State<LandingPage> {
 }
 
 Widget landingPageView() {
-  return Container(
-    margin: EdgeInsets.only(top: 64.h),
-    decoration: const BoxDecoration(
-      gradient: LinearGradient(
-        colors: [Color(0xFF060C09), Color(0xFF1A231F)],
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
+  return LiquidBackground(
+    child: Container(
+      margin: EdgeInsets.only(top: 64.h),
+      child: CustomScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        slivers: [
+          SliverList(
+            delegate: SliverChildListDelegate([
+              const HeroSection(),
+              const BenefitsSection(),
+              const HowItWorks(),
+              const PredictiveAlerts(),
+              const ImpactSection(),
+              const FinalCTA(),
+              SizedBox(height: 50.h),
+            ]),
+          ),
+        ],
       ),
     ),
-    child: CustomScrollView(
-      physics: const AlwaysScrollableScrollPhysics(),
-      slivers: [
-        SliverList(
-          delegate: SliverChildListDelegate([
-            const HeroSection(),
-            // SizedBox(
-            //   // height: 20.h,
-            // ), // reduce from large values like 50.h or 60.h
-            const BenefitsSection(),
-            // SizedBox(height: 20.h),
-            const HowItWorks(),
-            // SizedBox(height: 20.h),
-            const PredictiveAlerts(),
-            // SizedBox(height: 20.h),
-            const ImpactSection(),
-            // SizedBox(height: 20.h),
-            const FinalCTA(),
-            SizedBox(height: 50.h), // bottom padding if desired
-          ]),
-        ),
-      ],
-    ),
-    // IndexedStack(
-    //   index: _selectedIndex,
-    //   children: [
-    //
-    //     const ServicesScreen(),
-    //     const DashboardScreen(),
-    //     const BillingPage(),
-    //   ],
-    // ),
   );
 }
 

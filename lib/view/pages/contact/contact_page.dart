@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
+import 'package:suncube_ai/widgets/common/glass_container.dart';
+import 'package:suncube_ai/widgets/common/liquid_background.dart';
 
 class ContactPage extends StatelessWidget {
   const ContactPage({super.key});
@@ -47,495 +50,372 @@ class ContactPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF060C09), Color(0xFF1A231F)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
+      body: LiquidBackground(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header Section
-              Container(
+              GlassContainer(
+                margin: EdgeInsets.only(bottom: 20.h),
                 padding: EdgeInsets.all(20.w),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      AppColors.themeGreen.withOpacity(0.3),
-                      const Color(0xFF106B43).withOpacity(0.2),
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  borderRadius: BorderRadius.circular(16.r),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 10,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
-                ),
+                blur: 15,
+                opacity: 0.1,
+                color: AppColors.themeGreen,
+                borderRadius: BorderRadius.circular(28.r),
                 child: Column(
                   children: [
                     Text(
-                      'Contact Us',
-                      style: GoogleFonts.inter(
-                        color: Colors.white,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 10.h),
-                    Text(
                       'Get in Touch with Our Solar Experts',
+                      textAlign: TextAlign.center,
                       style: GoogleFonts.inter(
                         color: Colors.white,
-                        fontSize: 32.sp,
+                        fontSize: 28.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 10.h),
+                    SizedBox(height: 12.h),
                     Text(
-                      'Ready to transform your energy future? Our team of solar and AI experts is here to help you every step of the way. Get your free consultation today.',
-                      style: GoogleFonts.inter(
-                        color: Colors.white70,
-                        fontSize: 18.sp,
-                      ),
+                      'Ready to transform your energy future? Our team of solar and AI experts is here to help you every step of the way.',
                       textAlign: TextAlign.center,
+                      style: GoogleFonts.inter(
+                        color: Colors.white.withOpacity(0.8),
+                        fontSize: 15.sp,
+                      ),
                     ),
                     SizedBox(height: 20.h),
                     ElevatedButton(
                       onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.themeGreen,
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.r),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 24.w,
+                          vertical: 12.h,
+                        ),
+                      ),
                       child: Text(
                         'Schedule Free Consultation',
-                        style: GoogleFonts.inter(fontSize: 14.sp),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: AppColors.themeGreen,
-                        backgroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.r),
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 20.h),
               // Contact Methods Section
-              GlassCard(
-                child: Padding(
-                  padding: EdgeInsets.all(20.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Multiple Ways to Reach Us',
-                        style: GoogleFonts.inter(
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+              GlassContainer(
+                margin: EdgeInsets.only(bottom: 20.h),
+                padding: EdgeInsets.all(20.w),
+                blur: 15,
+                opacity: 0.1,
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(28.r),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Multiple Ways to Reach Us',
+                      style: GoogleFonts.inter(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
-                      SizedBox(height: 10.h),
-                      Text(
-                        'Choose the contact method that works best for you. Our team is ready to help.',
-                        style: GoogleFonts.inter(
-                          fontSize: 18.sp,
-                          color: Colors.white70,
-                        ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      'Choose the contact method that works best for you.',
+                      style: GoogleFonts.inter(
+                        fontSize: 14.sp,
+                        color: Colors.white.withOpacity(0.8),
                       ),
-                      SizedBox(height: 20.h),
-                      SizedBox(
-                        height: 220.h,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            ContactCard(
-                              icon: Icons.email,
-                              title: 'Email Us',
-                              description: 'Get in touch via email',
-                              contactInfo: 'hello@suncube.ai',
-                              actionText: 'Send Email',
-                              action: () {},
-                            ),
-                            ContactCard(
-                              icon: Icons.phone,
-                              title: 'Call Us',
-                              description: 'Speak with our experts',
-                              contactInfo: '+1 (555) 123-4567',
-                              actionText: 'Call Now',
-                              action: () {},
-                            ),
-                            ContactCard(
-                              icon: Icons.chat,
-                              title: 'Live Chat',
-                              description: 'Chat with our support team',
-                              contactInfo: 'Available Mon-Fri 9AM-6PM',
-                              actionText: 'Start Chat',
-                              action: () {},
-                            ),
-                            ContactCard(
-                              icon: Icons.calendar_today,
-                              title: 'Schedule Demo',
-                              description: 'Book a personalized demo',
-                              contactInfo: '30-minute consultation',
-                              actionText: 'Book Demo',
-                              action: () {},
-                            ),
-                          ],
-                        ),
+                    ),
+                    SizedBox(height: 20.h),
+                    SizedBox(
+                      height: 240.h,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          ContactCard(
+                            icon: LucideIcons.mail,
+                            title: 'Email Us',
+                            description: 'Get in touch via email',
+                            contactInfo: 'hello@suncube.ai',
+                            actionText: 'Send Email',
+                            accentColor: const Color(0xFF73E0A9),
+                            action: () {},
+                          ),
+                          SizedBox(width: 12.w),
+                          ContactCard(
+                            icon: LucideIcons.phone,
+                            title: 'Call Us',
+                            description: 'Speak with our experts',
+                            contactInfo: '+1 (555) 123-4567',
+                            actionText: 'Call Now',
+                            accentColor: const Color(0xFF3B82F6),
+                            action: () {},
+                          ),
+                          SizedBox(width: 12.w),
+                          ContactCard(
+                            icon: LucideIcons.messageCircle,
+                            title: 'Live Chat',
+                            description: 'Chat with our support team',
+                            contactInfo: 'Mon-Fri 9AM-6PM',
+                            actionText: 'Start Chat',
+                            accentColor: const Color(0xFFF59E0B),
+                            action: () {},
+                          ),
+                          SizedBox(width: 12.w),
+                          ContactCard(
+                            icon: LucideIcons.calendar,
+                            title: 'Schedule Demo',
+                            description: 'Book a personalized demo',
+                            contactInfo: '30-min consultation',
+                            actionText: 'Book Demo',
+                            accentColor: const Color(0xFF22C55E),
+                            action: () {},
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: 20.h),
               // Contact Form Section
-              GlassCard(
-                child: Padding(
-                  padding: EdgeInsets.all(20.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Send Us a Message',
-                        style: GoogleFonts.inter(
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+              GlassContainer(
+                margin: EdgeInsets.only(bottom: 20.h),
+                padding: EdgeInsets.all(20.w),
+                blur: 15,
+                opacity: 0.1,
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(28.r),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Send Us a Message',
+                      style: GoogleFonts.inter(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
-                      SizedBox(height: 10.h),
-                      Text(
-                        'Fill out the form below and we\'ll get back to you within 24 hours.',
-                        style: GoogleFonts.inter(
-                          fontSize: 18.sp,
-                          color: Colors.white70,
-                        ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      'Fill out the form below and we\'ll get back to you within 24 hours.',
+                      style: GoogleFonts.inter(
+                        fontSize: 14.sp,
+                        color: Colors.white.withOpacity(0.8),
                       ),
-                      SizedBox(height: 20.h),
-                      Card(
-                        color: Colors.white.withOpacity(0.1),
-                        child: Padding(
-                          padding: EdgeInsets.all(16.w),
-                          child: Column(
-                            children: [
-                              TextFormField(
-                                decoration: InputDecoration(
-                                  labelText: 'Full Name *',
-                                  labelStyle: GoogleFonts.inter(
-                                    color: Colors.white70,
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Colors.white70,
-                                    ),
-                                  ),
-                                ),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter your full name';
-                                  }
-                                  return null;
-                                },
-                              ),
-                              SizedBox(height: 10.h),
-                              TextFormField(
-                                decoration: InputDecoration(
-                                  labelText: 'Email Address *',
-                                  labelStyle: GoogleFonts.inter(
-                                    color: Colors.white70,
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Colors.white70,
-                                    ),
-                                  ),
-                                ),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter your email address';
-                                  }
-                                  return null;
-                                },
-                              ),
-                              SizedBox(height: 10.h),
-                              TextFormField(
-                                decoration: InputDecoration(
-                                  labelText: 'Company/Organization',
-                                  labelStyle: GoogleFonts.inter(
-                                    color: Colors.white70,
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Colors.white70,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 10.h),
-                              TextFormField(
-                                decoration: InputDecoration(
-                                  labelText: 'Phone Number',
-                                  labelStyle: GoogleFonts.inter(
-                                    color: Colors.white70,
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Colors.white70,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 10.h),
-                              TextFormField(
-                                decoration: InputDecoration(
-                                  labelText: 'Type of Inquiry *',
-                                  labelStyle: GoogleFonts.inter(
-                                    color: Colors.white70,
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Colors.white70,
-                                    ),
-                                  ),
-                                ),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter your inquiry type';
-                                  }
-                                  return null;
-                                },
-                              ),
-                              SizedBox(height: 10.h),
-                              TextFormField(
-                                decoration: InputDecoration(
-                                  labelText: 'Message *',
-                                  labelStyle: GoogleFonts.inter(
-                                    color: Colors.white70,
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Colors.white70,
-                                    ),
-                                  ),
-                                ),
-                                maxLines: 4,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter your message';
-                                  }
-                                  return null;
-                                },
-                              ),
-                              SizedBox(height: 20.h),
-                              ElevatedButton(
-                                onPressed: () {},
-                                child: Text(
-                                  'Send Message',
-                                  style: GoogleFonts.inter(fontSize: 14.sp),
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  foregroundColor: AppColors.themeGreen,
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8.r),
-                                  ),
-                                ),
-                              ),
-                            ],
+                    ),
+                    SizedBox(height: 20.h),
+                    GlassContainer(
+                      blur: 10,
+                      opacity: 0.05,
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16.r),
+                      padding: EdgeInsets.all(16.w),
+                      child: Column(
+                        children: [
+                          _buildTextFormField(
+                            'Full Name *',
+                            'Enter your full name',
                           ),
-                        ),
+                          SizedBox(height: 12.h),
+                          _buildTextFormField(
+                            'Email Address *',
+                            'Enter your email',
+                          ),
+                          SizedBox(height: 12.h),
+                          _buildTextFormField(
+                            'Company/Organization',
+                            'Enter your company',
+                          ),
+                          SizedBox(height: 12.h),
+                          _buildTextFormField(
+                            'Phone Number',
+                            'Enter your phone',
+                          ),
+                          SizedBox(height: 12.h),
+                          _buildTextFormField(
+                            'Type of Inquiry *',
+                            'Select inquiry type',
+                          ),
+                          SizedBox(height: 12.h),
+                          _buildTextFormField(
+                            'Message *',
+                            'Enter your message',
+                            maxLines: 4,
+                          ),
+                          SizedBox(height: 20.h),
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.themeGreen,
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 40.w,
+                                vertical: 14.h,
+                              ),
+                            ),
+                            child: Text(
+                              'Send Message',
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: 20.h),
               // Office Location Section
-              GlassCard(
-                child: Padding(
-                  padding: EdgeInsets.all(20.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Our Office',
-                        style: GoogleFonts.inter(
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+              GlassContainer(
+                margin: EdgeInsets.only(bottom: 20.h),
+                padding: EdgeInsets.all(20.w),
+                blur: 15,
+                opacity: 0.1,
+                color: const Color(0xFF73E0A9),
+                borderRadius: BorderRadius.circular(28.r),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Our Office',
+                      style: GoogleFonts.inter(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
-                      SizedBox(height: 10.h),
-                      Text(
-                        'Suncube AI Headquarters',
-                        style: GoogleFonts.inter(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                    ),
+                    SizedBox(height: 16.h),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          LucideIcons.mapPin,
+                          color: const Color(0xFF73E0A9),
+                          size: 20.sp,
                         ),
-                      ),
-                      Text(
-                        '123 Innovation Drive\nAustin, TX 78701\nUnited States',
-                        style: GoogleFonts.inter(
-                          fontSize: 16.sp,
-                          color: Colors.white70,
-                        ),
-                      ),
-                      SizedBox(height: 10.h),
-                      Text(
-                        'Monday - Friday: 9:00 AM - 6:00 PM CST',
-                        style: GoogleFonts.inter(
-                          fontSize: 16.sp,
-                          color: Colors.white70,
-                        ),
-                      ),
-                      SizedBox(height: 20.h),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Get Directions',
-                          style: GoogleFonts.inter(fontSize: 14.sp),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: AppColors.themeGreen,
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.r),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 20.h),
-              // Download Resources Section
-              GlassCard(
-                child: Padding(
-                  padding: EdgeInsets.all(20.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Download Resources',
-                        style: GoogleFonts.inter(
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      SizedBox(height: 10.h),
-                      Card(
-                        color: Colors.white.withOpacity(0.1),
-                        child: Padding(
-                          padding: EdgeInsets.all(16.w),
+                        SizedBox(width: 12.w),
+                        Expanded(
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              ListTile(
-                                title: Text(
-                                  'Company Brochure',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 16.sp,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                subtitle: Text(
-                                  'Complete overview of our solutions',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 14.sp,
-                                    color: Colors.white70,
-                                  ),
-                                ),
-                                trailing: ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    'Download',
-                                    style: GoogleFonts.inter(fontSize: 12.sp),
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                    foregroundColor: AppColors.themeGreen,
-                                    backgroundColor: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8.r),
-                                    ),
-                                  ),
+                              Text(
+                                'Suncube AI Headquarters',
+                                style: GoogleFonts.inter(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
                               ),
-                              ListTile(
-                                title: Text(
-                                  'Technical Specifications',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 16.sp,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                subtitle: Text(
-                                  'Detailed technical documentation',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 14.sp,
-                                    color: Colors.white70,
-                                  ),
-                                ),
-                                trailing: ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    'Download',
-                                    style: GoogleFonts.inter(fontSize: 12.sp),
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                    foregroundColor: AppColors.themeGreen,
-                                    backgroundColor: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8.r),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              ListTile(
-                                title: Text(
-                                  'ROI Calculator',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 16.sp,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                subtitle: Text(
-                                  'Calculate your solar investment returns',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 14.sp,
-                                    color: Colors.white70,
-                                  ),
-                                ),
-                                trailing: ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    'Download',
-                                    style: GoogleFonts.inter(fontSize: 12.sp),
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                    foregroundColor: AppColors.themeGreen,
-                                    backgroundColor: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8.r),
-                                    ),
-                                  ),
+                              SizedBox(height: 4.h),
+                              Text(
+                                '123 Innovation Drive\nAustin, TX 78701\nUnited States',
+                                style: GoogleFonts.inter(
+                                  fontSize: 14.sp,
+                                  color: Colors.white.withOpacity(0.8),
                                 ),
                               ),
                             ],
                           ),
                         ),
+                      ],
+                    ),
+                    SizedBox(height: 16.h),
+                    Row(
+                      children: [
+                        Icon(
+                          LucideIcons.clock,
+                          color: const Color(0xFF73E0A9),
+                          size: 20.sp,
+                        ),
+                        SizedBox(width: 12.w),
+                        Text(
+                          'Monday - Friday: 9:00 AM - 6:00 PM CST',
+                          style: GoogleFonts.inter(
+                            fontSize: 14.sp,
+                            color: Colors.white.withOpacity(0.8),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20.h),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: const Color(0xFF73E0A9),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.r),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 24.w,
+                          vertical: 12.h,
+                        ),
                       ),
-                    ],
-                  ),
+                      child: Text(
+                        'Get Directions',
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // Download Resources Section
+              GlassContainer(
+                margin: EdgeInsets.only(bottom: 20.h),
+                padding: EdgeInsets.all(20.w),
+                blur: 15,
+                opacity: 0.1,
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(28.r),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Download Resources',
+                      style: GoogleFonts.inter(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 16.h),
+                    _buildResourceItem(
+                      'Company Brochure',
+                      'Complete overview of our solutions',
+                      const Color(0xFF73E0A9),
+                    ),
+                    SizedBox(height: 12.h),
+                    _buildResourceItem(
+                      'Technical Specifications',
+                      'Detailed technical documentation',
+                      const Color(0xFF3B82F6),
+                    ),
+                    SizedBox(height: 12.h),
+                    _buildResourceItem(
+                      'ROI Calculator',
+                      'Calculate your solar investment returns',
+                      const Color(0xFFF59E0B),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -544,36 +424,120 @@ class ContactPage extends StatelessWidget {
       ),
     );
   }
-}
 
-class GlassCard extends StatelessWidget {
-  final Widget child;
-
-  GlassCard({required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(16.w),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Colors.white.withOpacity(0.05),
-            Colors.white.withOpacity(0.1),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+  Widget _buildTextFormField(String label, String hint, {int maxLines = 1}) {
+    return TextFormField(
+      maxLines: maxLines,
+      decoration: InputDecoration(
+        labelText: label,
+        hintText: hint,
+        hintStyle: GoogleFonts.inter(
+          color: Colors.white.withOpacity(0.4),
+          fontSize: 14.sp,
         ),
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 8,
-            offset: const Offset(0, 4),
+        labelStyle: GoogleFonts.inter(
+          color: Colors.white.withOpacity(0.7),
+          fontSize: 14.sp,
+        ),
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.05),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+          borderSide: BorderSide(
+            color: Colors.white.withOpacity(0.2),
+            width: 1.w,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+          borderSide: BorderSide(
+            color: const Color(0xFF73E0A9).withOpacity(0.5),
+            width: 1.5.w,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+          borderSide: BorderSide(
+            color: Colors.white.withOpacity(0.15),
+            width: 1.w,
+          ),
+        ),
+      ),
+      style: GoogleFonts.inter(color: Colors.white, fontSize: 14.sp),
+    );
+  }
+
+  Widget _buildResourceItem(
+    String title,
+    String description,
+    Color accentColor,
+  ) {
+    return GlassContainer(
+      blur: 10,
+      opacity: 0.05,
+      color: accentColor,
+      borderRadius: BorderRadius.circular(12.r),
+      padding: EdgeInsets.all(14.w),
+      child: Row(
+        children: [
+          Container(
+            width: 44.w,
+            height: 44.h,
+            decoration: BoxDecoration(
+              color: accentColor.withOpacity(0.15),
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: accentColor.withOpacity(0.3),
+                width: 1.w,
+              ),
+            ),
+            child: Icon(LucideIcons.download, color: accentColor, size: 20.sp),
+          ),
+          SizedBox(width: 12.w),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: GoogleFonts.inter(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(height: 2.h),
+                Text(
+                  description,
+                  style: GoogleFonts.inter(
+                    fontSize: 12.sp,
+                    color: Colors.white.withOpacity(0.7),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(width: 8.w),
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              backgroundColor: accentColor,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 8.h),
+            ),
+            child: Text(
+              'Download',
+              style: GoogleFonts.inter(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ),
         ],
       ),
-      child: child,
     );
   }
 }
@@ -584,6 +548,7 @@ class ContactCard extends StatelessWidget {
   final String description;
   final String contactInfo;
   final String actionText;
+  final Color accentColor;
   final VoidCallback action;
 
   const ContactCard({
@@ -592,59 +557,88 @@ class ContactCard extends StatelessWidget {
     required this.description,
     required this.contactInfo,
     required this.actionText,
+    required this.accentColor,
     required this.action,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white.withOpacity(0.1),
-      child: Padding(
-        padding: EdgeInsets.all(10.r),
-        child: Column(
-          // mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, size: 48.r, color: AppColors.themeGreen),
-            SizedBox(height: 10.h),
-            Text(
-              title,
+    return GlassContainer(
+      width: 160.w,
+      blur: 10,
+      opacity: 0.08,
+      color: accentColor,
+      borderRadius: BorderRadius.circular(16.r),
+      padding: EdgeInsets.all(14.w),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            width: 48.w,
+            height: 48.h,
+            decoration: BoxDecoration(
+              color: accentColor.withOpacity(0.15),
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: accentColor.withOpacity(0.3),
+                width: 1.w,
+              ),
+            ),
+            child: Icon(icon, size: 24.sp, color: accentColor),
+          ),
+          SizedBox(height: 12.h),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.inter(
+              fontSize: 14.sp,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          SizedBox(height: 4.h),
+          Text(
+            description,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.inter(
+              fontSize: 11.sp,
+              color: Colors.white.withOpacity(0.7),
+            ),
+          ),
+          SizedBox(height: 8.h),
+          Text(
+            contactInfo,
+            textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: GoogleFonts.inter(
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+            ),
+          ),
+          SizedBox(height: 12.h),
+          ElevatedButton(
+            onPressed: action,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: accentColor,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+            ),
+            child: Text(
+              actionText,
               style: GoogleFonts.inter(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+                fontSize: 11.sp,
+                fontWeight: FontWeight.w600,
               ),
             ),
-            Text(
-              description,
-              style: GoogleFonts.inter(fontSize: 14.sp, color: Colors.white70),
-            ),
-            SizedBox(height: 10.h),
-            Text(
-              contactInfo,
-              style: GoogleFonts.inter(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(height: 20.h),
-            ElevatedButton(
-              onPressed: action,
-              style: ElevatedButton.styleFrom(
-                foregroundColor: AppColors.themeGreen,
-                backgroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.r),
-                ),
-              ),
-              child: Text(
-                actionText,
-                style: GoogleFonts.inter(fontSize: 14.sp),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

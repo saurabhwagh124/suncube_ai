@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:suncube_ai/widgets/common/glass_container.dart';
 
 class FeatureCard extends StatelessWidget {
   final (String, String, IconData, Color) data;
@@ -9,35 +10,16 @@ class FeatureCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final (title, desc, icon, _) = data;
+    final (title, desc, icon, accentColor) = data;
     return GestureDetector(
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
+      onTap: () {},
+      child: GlassContainer(
         width: 260.w,
+        blur: 12,
+        opacity: 0.08,
+        color: accentColor,
+        borderRadius: BorderRadius.circular(24.r),
         padding: EdgeInsets.all(20.w),
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(20.r),
-          border: Border.all(
-            color: const Color(0xFF73E0A9).withOpacity(0.3),
-            width: 1.w,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 12.r,
-              offset: const Offset(0, 4),
-            ),
-          ],
-          gradient: LinearGradient(
-            colors: [
-              Colors.white.withOpacity(0.05),
-              const Color(0xFF73E0A9).withOpacity(0.08),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -45,10 +27,14 @@ class FeatureCard extends StatelessWidget {
               width: 60.w,
               height: 60.h,
               decoration: BoxDecoration(
-                color: const Color(0xFF73E0A9).withOpacity(0.15),
+                color: accentColor.withOpacity(0.15),
                 shape: BoxShape.circle,
+                border: Border.all(
+                  color: accentColor.withOpacity(0.3),
+                  width: 1.w,
+                ),
               ),
-              child: Icon(icon, size: 28.sp, color: const Color(0xFF73E0A9)),
+              child: Icon(icon, size: 28.sp, color: accentColor),
             ),
             SizedBox(height: 16.h),
             Text(

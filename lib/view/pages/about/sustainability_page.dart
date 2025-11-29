@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:suncube_ai/utils/app_theme.dart';
+import 'package:suncube_ai/widgets/common/glass_container.dart';
+import 'package:suncube_ai/widgets/common/liquid_background.dart';
 
 class SustainabilityPage extends StatefulWidget {
   const SustainabilityPage({super.key});
@@ -35,7 +37,7 @@ class _SustainabilityPageState extends State<SustainabilityPage> {
       ),
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        backgroundColor: const Color(0xFF060C09),
+        backgroundColor: Colors.transparent,
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
@@ -43,8 +45,14 @@ class _SustainabilityPageState extends State<SustainabilityPage> {
             },
             icon: Icon(Icons.arrow_back, color: Colors.white, size: 30.sp),
           ),
-          backgroundColor: const Color(0xFF060C09).withOpacity(0.9),
+          backgroundColor: Colors.transparent,
           elevation: 0,
+          flexibleSpace: GlassContainer(
+            opacity: 0.2,
+            blur: 10,
+            borderRadius: BorderRadius.zero,
+            child: Container(),
+          ),
           title: Text(
             'Sustainability',
             style: GoogleFonts.inter(
@@ -54,56 +62,28 @@ class _SustainabilityPageState extends State<SustainabilityPage> {
             ),
           ),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              _buildHeroSection(),
-              _buildImpactDashboard(),
-              _buildComparisonSection(),
-              _buildGoalSection(),
-              _buildShareSection(),
-              _buildGlobalImpact(),
-            ],
+        body: LiquidBackground(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: 100.h),
+                _buildHeroSection(),
+                _buildImpactDashboard(),
+                _buildComparisonSection(),
+                _buildGoalSection(),
+                _buildShareSection(),
+                _buildGlobalImpact(),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget _buildAppBar() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-      decoration: BoxDecoration(
-        color: surfaceColor,
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 40.w,
-            height: 40.h,
-            decoration: BoxDecoration(
-              color: themeGreen,
-              borderRadius: BorderRadius.circular(12.r),
-            ),
-            child: Icon(Icons.flash_on, size: 24.sp, color: Colors.white),
-          ),
-          SizedBox(width: 8.w),
-          Text(
-            'Suncube AI',
-            style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white),
-          ),
-          const Spacer(),
-          IconButton(
-            icon: Icon(Icons.menu, size: 24.sp, color: Colors.white),
-            onPressed: () {},
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildHeroSection() {
-    return Container(
+    return GlassContainer(
+      opacity: 0.1,
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),
       child: Column(
         children: [
@@ -161,8 +141,8 @@ class _SustainabilityPageState extends State<SustainabilityPage> {
   }
 
   Widget _buildImpactDashboard() {
-    return Container(
-      color: surfaceColor.withOpacity(0.9),
+    return GlassContainer(
+      opacity: 0.05,
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),
       child: Column(
         children: [
@@ -269,59 +249,57 @@ class _SustainabilityPageState extends State<SustainabilityPage> {
   }
 
   Widget _buildImpactCard(String title, String value, String unit, Color color, IconData icon, int progress) {
-    return Card(
-      color: surfaceColor,
-      child: Padding(
-        padding: EdgeInsets.all(16.w),
-        child: Column(
-          children: [
-            Icon(icon, color: color, size: 32.sp),
-            SizedBox(height: 8.h),
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.labelSmall!.copyWith(color: onSurfaceVariant),
-            ),
-            SizedBox(height: 12.h),
-            Text(
-              value,
-              style: Theme.of(context).textTheme.displayLarge!.copyWith(color: color),
-            ),
-            Text(
-              unit,
-              style: Theme.of(context).textTheme.labelSmall!.copyWith(color: onSurfaceVariant),
-            ),
-            SizedBox(height: 12.h),
-            Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Progress', style: Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: 9.sp, color: onSurfaceVariant)),
-                    Text('$progress%', style: Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: 9.sp, color: onSurfaceVariant)),
-                  ],
+    return GlassContainer(
+      opacity: 0.1,
+      padding: EdgeInsets.all(16.w),
+      child: Column(
+        children: [
+          Icon(icon, color: color, size: 32.sp),
+          SizedBox(height: 8.h),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.labelSmall!.copyWith(color: onSurfaceVariant),
+          ),
+          SizedBox(height: 12.h),
+          Text(
+            value,
+            style: Theme.of(context).textTheme.displayLarge!.copyWith(color: color),
+          ),
+          Text(
+            unit,
+            style: Theme.of(context).textTheme.labelSmall!.copyWith(color: onSurfaceVariant),
+          ),
+          SizedBox(height: 12.h),
+          Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Progress', style: Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: 9.sp, color: onSurfaceVariant)),
+                  Text('$progress%', style: Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: 9.sp, color: onSurfaceVariant)),
+                ],
+              ),
+              SizedBox(height: 4.h),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(4.r),
+                child: LinearProgressIndicator(
+                  value: progress / 100,
+                  backgroundColor: color.withOpacity(0.2),
+                  valueColor: AlwaysStoppedAnimation<Color>(color),
+                  minHeight: 6.h,
                 ),
-                SizedBox(height: 4.h),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(4.r),
-                  child: LinearProgressIndicator(
-                    value: progress / 100,
-                    backgroundColor: color.withOpacity(0.2),
-                    valueColor: AlwaysStoppedAnimation<Color>(color),
-                    minHeight: 6.h,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
 
   Widget _buildComparisonSection() {
-    return Container(
-      color: surfaceColor.withOpacity(0.9),
+    return GlassContainer(
+      opacity: 0.05,
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),
       child: Column(
         children: [
@@ -334,43 +312,41 @@ class _SustainabilityPageState extends State<SustainabilityPage> {
   }
 
   Widget _buildComparisonCard() {
-    return Card(
-      color: surfaceColor,
-      child: Padding(
-        padding: EdgeInsets.all(20.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Carbon Intensity Comparison',
-              style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white),
+    return GlassContainer(
+      opacity: 0.1,
+      padding: EdgeInsets.all(20.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Carbon Intensity Comparison',
+            style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white),
+          ),
+          SizedBox(height: 24.h),
+          _buildComparisonBar('Solar Energy', '0.04 kg CO₂/kWh', tertiaryColor, 0.047),
+          SizedBox(height: 16.h),
+          _buildComparisonBar('Grid Electricity', '0.85 kg CO₂/kWh', Colors.redAccent, 1.0),
+          SizedBox(height: 24.h),
+          Container(
+            padding: EdgeInsets.all(16.w),
+            decoration: BoxDecoration(
+              color: tertiaryColor.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(12.r),
             ),
-            SizedBox(height: 24.h),
-            _buildComparisonBar('Solar Energy', '0.04 kg CO₂/kWh', tertiaryColor, 0.047),
-            SizedBox(height: 16.h),
-            _buildComparisonBar('Grid Electricity', '0.85 kg CO₂/kWh', Colors.redAccent, 1.0),
-            SizedBox(height: 24.h),
-            Container(
-              padding: EdgeInsets.all(16.w),
-              decoration: BoxDecoration(
-                color: tertiaryColor.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(12.r),
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    '95%',
-                    style: Theme.of(context).textTheme.displayLarge!.copyWith(color: tertiaryColor),
-                  ),
-                  Text(
-                    'Less Carbon Emissions',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: tertiaryColor),
-                  ),
-                ],
-              ),
+            child: Column(
+              children: [
+                Text(
+                  '95%',
+                  style: Theme.of(context).textTheme.displayLarge!.copyWith(color: tertiaryColor),
+                ),
+                Text(
+                  'Less Carbon Emissions',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: tertiaryColor),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -424,79 +400,77 @@ class _SustainabilityPageState extends State<SustainabilityPage> {
   }
 
   Widget _buildGoalSection() {
-    return Container(
-      color: surfaceColor.withOpacity(0.9),
+    return GlassContainer(
+      opacity: 0.05,
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),
       child: Column(
         children: [
           _buildSectionHeader('Goal Setting', 'Set Your Sustainability Goals'),
           SizedBox(height: 24.h),
-          Card(
-            color: surfaceColor,
-            child: Padding(
-              padding: EdgeInsets.all(20.w),
-              child: Column(
-                children: [
-                  Text(
-                    'I want to offset: ${_goalValue.toInt()} tons of CO₂',
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white),
+          GlassContainer(
+            opacity: 0.1,
+            padding: EdgeInsets.all(20.w),
+            child: Column(
+              children: [
+                Text(
+                  'I want to offset: ${_goalValue.toInt()} tons of CO₂',
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white),
+                ),
+                SizedBox(height: 16.h),
+                Slider(
+                  value: _goalValue,
+                  min: 1,
+                  max: 50,
+                  divisions: 49,
+                  activeColor: tertiaryColor,
+                  inactiveColor: onSurfaceVariant.withOpacity(0.2),
+                  onChanged: (value) => setState(() => _goalValue = value),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('1 ton', style: Theme.of(context).textTheme.labelSmall!.copyWith(color: onSurfaceVariant)),
+                    Text('50 tons', style: Theme.of(context).textTheme.labelSmall!.copyWith(color: onSurfaceVariant)),
+                  ],
+                ),
+                SizedBox(height: 24.h),
+                Row(
+                  children: [
+                    Expanded(child: _buildGoalMetric('1', 'Months to reach', tertiaryColor)),
+                    SizedBox(width: 12.w),
+                    Expanded(child: _buildGoalMetric('125', 'Trees equivalent', secondaryColor)),
+                  ],
+                ),
+                SizedBox(height: 12.h),
+                _buildGoalMetric('230k', 'Miles of driving', tertiaryColor),
+                SizedBox(height: 16.h),
+                Container(
+                  padding: EdgeInsets.all(16.w),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [tertiaryColor, secondaryColor],
+                    ),
+                    borderRadius: BorderRadius.circular(12.r),
                   ),
-                  SizedBox(height: 16.h),
-                  Slider(
-                    value: _goalValue,
-                    min: 1,
-                    max: 50,
-                    divisions: 49,
-                    activeColor: tertiaryColor,
-                    inactiveColor: onSurfaceVariant.withOpacity(0.2),
-                    onChanged: (value) => setState(() => _goalValue = value),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: Column(
                     children: [
-                      Text('1 ton', style: Theme.of(context).textTheme.labelSmall!.copyWith(color: onSurfaceVariant)),
-                      Text('50 tons', style: Theme.of(context).textTheme.labelSmall!.copyWith(color: onSurfaceVariant)),
-                    ],
-                  ),
-                  SizedBox(height: 24.h),
-                  Row(
-                    children: [
-                      Expanded(child: _buildGoalMetric('1', 'Months to reach', tertiaryColor)),
-                      SizedBox(width: 12.w),
-                      Expanded(child: _buildGoalMetric('125', 'Trees equivalent', secondaryColor)),
-                    ],
-                  ),
-                  SizedBox(height: 12.h),
-                  _buildGoalMetric('230k', 'Miles of driving', tertiaryColor),
-                  SizedBox(height: 16.h),
-                  Container(
-                    padding: EdgeInsets.all(16.w),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [tertiaryColor, secondaryColor],
+                      Text(
+                        '🎯 Goal Progress Tracker',
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white),
                       ),
-                      borderRadius: BorderRadius.circular(12.r),
-                    ),
-                    child: Column(
-                      children: [
-                        Text(
-                          '🎯 Goal Progress Tracker',
-                          style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white),
-                        ),
-                        SizedBox(height: 8.h),
-                        Text(
-                          '12500.0%',
-                          style: Theme.of(context).textTheme.displayLarge!.copyWith(color: Colors.white),
-                        ),
-                        Text(
-                          'Goal achieved! 🎉',
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.white),
-                        ),
-                      ],
-                    ),
+                      SizedBox(height: 8.h),
+                      Text(
+                        '12500.0%',
+                        style: Theme.of(context).textTheme.displayLarge!.copyWith(color: Colors.white),
+                      ),
+                      Text(
+                        'Goal achieved! 🎉',
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.white),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],
@@ -505,12 +479,10 @@ class _SustainabilityPageState extends State<SustainabilityPage> {
   }
 
   Widget _buildGoalMetric(String value, String label, Color color) {
-    return Container(
+    return GlassContainer(
+      color: color,
+      opacity: 0.1,
       padding: EdgeInsets.all(16.w),
-      decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(12.r),
-      ),
       child: Column(
         children: [
           Text(
@@ -529,8 +501,8 @@ class _SustainabilityPageState extends State<SustainabilityPage> {
   }
 
   Widget _buildShareSection() {
-    return Container(
-      color: surfaceColor.withOpacity(0.9),
+    return GlassContainer(
+      opacity: 0.05,
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),
       child: Column(
         children: [
@@ -555,48 +527,43 @@ class _SustainabilityPageState extends State<SustainabilityPage> {
   }
 
   Widget _buildShareCard(IconData icon, String title, String description, Color color) {
-    return Card(
-      color: surfaceColor,
-      child: Padding(
-        padding: EdgeInsets.all(20.w),
-        child: Column(
-          children: [
-            Icon(icon, size: 48.sp, color: color),
-            SizedBox(height: 16.h),
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white),
+    return GlassContainer(
+      opacity: 0.1,
+      padding: EdgeInsets.all(20.w),
+      child: Column(
+        children: [
+          Icon(icon, size: 48.sp, color: color),
+          SizedBox(height: 16.h),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white),
+          ),
+          SizedBox(height: 8.h),
+          Text(
+            description,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.labelSmall!.copyWith(color: onSurfaceVariant),
+          ),
+          SizedBox(height: 16.h),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: color,
+              foregroundColor: Colors.white,
             ),
-            SizedBox(height: 8.h),
-            Text(
-              description,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.labelSmall!.copyWith(color: onSurfaceVariant),
-            ),
-            SizedBox(height: 16.h),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: color,
-                foregroundColor: Colors.white,
-              ),
-              onPressed: () {},
-              child: Text(icon == Icons.download ? 'Download Report' : 'Share Now'),
-            ),
-          ],
-        ),
+            onPressed: () {},
+            child: Text(icon == Icons.download ? 'Download Report' : 'Share Now'),
+          ),
+        ],
       ),
     );
   }
 
   Widget _buildGlobalImpact() {
-    return Container(
+    return GlassContainer(
+      color: tertiaryColor,
+      opacity: 0.2,
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [tertiaryColor, tertiaryColor.withOpacity(0.7)],
-        ),
-      ),
       child: Column(
         children: [
           Text(

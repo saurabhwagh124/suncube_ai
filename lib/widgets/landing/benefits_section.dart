@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:suncube_ai/widgets/common/glass_container.dart';
 
 class BenefitsSection extends StatelessWidget {
   const BenefitsSection({super.key});
@@ -17,19 +18,19 @@ class BenefitsSection extends StatelessWidget {
       'Blockchain Security',
       'Transparent, secure transactions with immutable blockchain records',
       LucideIcons.keySquare,
-      Color(0xFF73E0A9),
+      Color(0xFF3B82F6),
     ),
     (
       'Predictive Maintenance',
       'Get alerts before issues occur, maximizing uptime and system efficiency',
       LucideIcons.wrench,
-      Color(0xFF73E0A9),
+      Color(0xFFF59E0B),
     ),
     (
-      'Carbon Footprint Tracking',
-      'Monitor your real-time impact',
+      'Carbon Tracking',
+      'Monitor your real-time environmental impact',
       LucideIcons.leaf,
-      Color(0xFF73E0A9),
+      Color(0xFF22C55E),
     ),
   ];
 
@@ -39,30 +40,13 @@ class BenefitsSection extends StatelessWidget {
       opacity: 1.0,
       duration: const Duration(milliseconds: 1000),
       curve: Curves.easeInOut,
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
-        padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 20.w),
-        decoration: BoxDecoration(
-          color: const Color(0xFF060C09).withOpacity(0.4),
-          borderRadius: BorderRadius.circular(24.r),
-          border: Border.all(color: Colors.white.withOpacity(0.1), width: 1.w),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 20,
-              offset: const Offset(0, 4),
-            ),
-          ],
-          // Glass effect
-          gradient: LinearGradient(
-            colors: [
-              Colors.white.withOpacity(0.05),
-              const Color(0xFF1A231F).withOpacity(0.3),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
+      child: GlassContainer(
+        margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
+        padding: EdgeInsets.symmetric(vertical: 36.h, horizontal: 20.w),
+        blur: 15,
+        opacity: 0.1,
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(28.r),
         child: Column(
           children: [
             Container(
@@ -101,7 +85,7 @@ class BenefitsSection extends StatelessWidget {
               style: GoogleFonts.inter(
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w400,
-                color: Colors.white.withOpacity(0.75),
+                color: Colors.white.withOpacity(0.8),
                 height: 1.5,
               ),
             ),
@@ -114,11 +98,10 @@ class BenefitsSection extends StatelessWidget {
                 crossAxisCount: 2,
                 crossAxisSpacing: 12.w,
                 mainAxisSpacing: 12.h,
-
-                childAspectRatio: 0.78,
+                childAspectRatio: 0.85,
               ),
               itemCount: cards.length,
-              itemBuilder: (_, i) => FeatureCard(cards[i]),
+              itemBuilder: (_, i) => BenefitCard(cards[i]),
             ),
           ],
         ),
@@ -127,65 +110,38 @@ class BenefitsSection extends StatelessWidget {
   }
 }
 
-class FeatureCard extends StatelessWidget {
+class BenefitCard extends StatelessWidget {
   final (String title, String description, IconData icon, Color accentColor)
   cardData;
 
-  const FeatureCard(this.cardData, {super.key});
+  const BenefitCard(this.cardData, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-        width: 160.w,
-        padding: EdgeInsets.all(10.r),
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(16.r),
-          border: Border.all(
-            color: const Color(0xFF73E0A9).withOpacity(0.15),
-            width: 1.w,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 2),
-            ),
-          ],
-          // Glass effect
-          gradient: LinearGradient(
-            colors: [
-              Colors.white.withOpacity(0.05),
-              const Color(0xFF73E0A9).withOpacity(0.05),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
+      child: GlassContainer(
+        blur: 10,
+        opacity: 0.08,
+        color: cardData.$4,
+        borderRadius: BorderRadius.circular(16.r),
+        padding: EdgeInsets.all(14.w),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
               padding: EdgeInsets.all(10.r),
               decoration: BoxDecoration(
-                color: const Color(0xFF73E0A9).withOpacity(0.15),
+                color: cardData.$4.withOpacity(0.15),
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: const Color(0xFF73E0A9).withOpacity(0.3),
+                  color: cardData.$4.withOpacity(0.3),
                   width: 1.w,
                 ),
               ),
-              child: Icon(
-                cardData.$3,
-                size: 20.sp,
-                color: const Color(0xFF73E0A9),
-              ),
+              child: Icon(cardData.$3, size: 22.sp, color: cardData.$4),
             ),
-            SizedBox(height: 10.h),
+            SizedBox(height: 12.h),
             Text(
               cardData.$1,
               textAlign: TextAlign.center,
@@ -195,14 +151,14 @@ class FeatureCard extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 6.h),
+            SizedBox(height: 8.h),
             Text(
               cardData.$2,
               textAlign: TextAlign.center,
-              maxLines: 3, // ← cap height
+              maxLines: 3,
               overflow: TextOverflow.ellipsis,
               style: GoogleFonts.inter(
-                fontSize: 10.5.sp, // ← 0.5 pt smaller
+                fontSize: 11.sp,
                 fontWeight: FontWeight.w400,
                 color: Colors.white.withOpacity(0.75),
                 height: 1.3,

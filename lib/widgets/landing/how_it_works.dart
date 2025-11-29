@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:suncube_ai/widgets/common/glass_container.dart';
 
 class HowItWorks extends StatelessWidget {
   const HowItWorks({super.key});
@@ -43,33 +44,16 @@ class HowItWorks extends StatelessWidget {
       opacity: 1,
       duration: const Duration(milliseconds: 800),
       curve: Curves.easeInOut,
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 30.h),
-        padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 24.w),
-        decoration: BoxDecoration(
-          color: const Color(0xFF060C09).withOpacity(0.4),
-          borderRadius: BorderRadius.circular(24.r),
-          border: Border.all(color: Colors.white.withOpacity(0.1), width: 1.w),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 20.r,
-              offset: const Offset(0, 4),
-            ),
-          ],
-          gradient: LinearGradient(
-            colors: [
-              Colors.white.withOpacity(0.05),
-              const Color(0xFF1A231F).withOpacity(0.3),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
+      child: GlassContainer(
+        margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
+        padding: EdgeInsets.symmetric(vertical: 36.h, horizontal: 20.w),
+        blur: 15,
+        opacity: 0.1,
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(28.r),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            /* --- Section Tag --- */
             Container(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
               decoration: BoxDecoration(
@@ -89,9 +73,7 @@ class HowItWorks extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 16.h),
-
-            /* --- Headline --- */
+            SizedBox(height: 20.h),
             Text(
               'Simple, Smart, Sustainable',
               textAlign: TextAlign.center,
@@ -102,29 +84,25 @@ class HowItWorks extends StatelessWidget {
                 letterSpacing: -0.5,
               ),
             ),
-            const SizedBox(height: 12),
-
-            /* --- Sub-headline --- */
+            SizedBox(height: 12.h),
             Text(
               'Discover the seamless process behind our AI-powered solar solutions.',
               textAlign: TextAlign.center,
               style: GoogleFonts.inter(
-                fontSize: 16.sp,
+                fontSize: 15.sp,
                 fontWeight: FontWeight.w400,
-                color: Colors.white.withOpacity(0.75),
-                height: 1.5.h,
+                color: Colors.white.withOpacity(0.8),
+                height: 1.5,
               ),
             ),
             SizedBox(height: 32.h),
-
-            /* --- Step Cards (2 per row) --- */
             ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               padding: EdgeInsets.zero,
               itemCount: steps.length,
-              itemBuilder: (_, i) => _StepCard(steps[i]),
-              separatorBuilder: (context, index) => SizedBox(height: 10.h),
+              itemBuilder: (_, i) => _StepCard(steps[i], i + 1),
+              separatorBuilder: (context, index) => SizedBox(height: 12.h),
             ),
           ],
         ),
@@ -133,118 +111,94 @@ class HowItWorks extends StatelessWidget {
   }
 }
 
-/* ------------------------------------------------------------------ */
-/* Glass-style Step Card                                                */
-/* ------------------------------------------------------------------ */
 class _StepCard extends StatelessWidget {
   final (String title, IconData icon, String step, String desc, String image)
   data;
+  final int stepNumber;
 
-  const _StepCard(this.data);
+  const _StepCard(this.data, this.stepNumber);
 
   @override
   Widget build(BuildContext context) {
     final (title, icon, step, desc, image) = data;
-    return Container(
+    final colors = [
+      const Color(0xFFF59E0B),
+      const Color(0xFF73E0A9),
+      const Color(0xFF3B82F6),
+      const Color(0xFF22C55E),
+    ];
+    final color = colors[(stepNumber - 1) % colors.length];
+
+    return GlassContainer(
+      blur: 10,
+      opacity: 0.08,
+      color: color,
+      borderRadius: BorderRadius.circular(16.r),
       padding: EdgeInsets.all(16.w),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(
-          color: const Color(0xFF73E0A9).withOpacity(0.15),
-          width: 1.w,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
-        gradient: LinearGradient(
-          colors: [
-            Colors.white.withOpacity(0.05),
-            const Color(0xFF73E0A9).withOpacity(0.05),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          /* Icon Circle */
           Row(
             children: [
               Container(
-                width: 40.w,
-                height: 40.h,
+                width: 44.w,
+                height: 44.h,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF73E0A9).withOpacity(0.15),
+                  color: color.withOpacity(0.15),
                   shape: BoxShape.circle,
-                  border: Border.all(
-                    color: const Color(0xFF73E0A9).withOpacity(0.3),
-                    width: 1.w,
-                  ),
+                  border: Border.all(color: color.withOpacity(0.3), width: 1.w),
                 ),
-                child: Icon(icon, size: 20.sp, color: const Color(0xFF73E0A9)),
+                child: Icon(icon, size: 22.sp, color: color),
               ),
-              SizedBox(width: 10.w),
-
-              /* Step Number */
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.inter(
-                  fontSize: 13.sp,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                  height: 1.2,
+              SizedBox(width: 12.w),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.inter(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 4.h),
+                    Text(
+                      desc,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.inter(
+                        fontSize: 11.sp,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white.withOpacity(0.75),
+                        height: 1.2,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(width: 8.w),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
+                decoration: BoxDecoration(
+                  color: color.withOpacity(0.15),
+                  borderRadius: BorderRadius.circular(8.r),
+                  border: Border.all(color: color.withOpacity(0.3), width: 1.w),
+                ),
+                child: Text(
+                  step,
+                  style: GoogleFonts.inter(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w700,
+                    color: color,
+                  ),
                 ),
               ),
             ],
-          ),
-          SizedBox(height: 6.h),
-          /* Description */
-          // Flexible(
-          //   child: Text(
-          //     desc,
-          //     textAlign: TextAlign.center,
-          //     maxLines: 3,
-          //     overflow: TextOverflow.ellipsis,
-          //     style: GoogleFonts.inter(
-          //       fontSize: 10.5.sp, // Reduced font size
-          //       fontWeight: FontWeight.w400,
-          //       color: Colors.white.withOpacity(0.75),
-          //       height: 1.2, // Reduced line spacing
-          //     ),
-          //   ),
-          // ),
-          SizedBox(
-            height: 60.h,
-            child: Stack(
-              children: [
-                Row(children: [Spacer(), Image.asset(image)]),
-                SizedBox(
-                  width: 120.w,
-                  child: Text(
-                    desc,
-                    textAlign: TextAlign.center,
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.inter(
-                      fontSize: 10.5.sp, // Reduced font size
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white.withOpacity(0.75),
-                      height: 1.2, // Reduced line spacing
-                    ),
-                  ),
-                ),
-              ],
-            ),
           ),
         ],
       ),

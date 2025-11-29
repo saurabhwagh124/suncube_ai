@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
+import 'package:suncube_ai/widgets/common/glass_container.dart';
+import 'package:suncube_ai/widgets/common/liquid_background.dart';
 
 class AboutUsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -25,60 +28,24 @@ class AboutUsPage extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.transparent,
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                const Color(0xFF060C09).withOpacity(0.9),
-                const Color(0xFF1A231F).withOpacity(0.9),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.2),
-                blurRadius: 8,
-                offset: const Offset(0, 2),
-              ),
-            ],
-          ),
+        flexibleSpace: GlassContainer(
+          opacity: 0.2,
+          blur: 10,
+          borderRadius: BorderRadius.zero,
+          child: Container(), // Empty child for the app bar background
         ),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF060C09), Color(0xFF1A231F)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
+      body: LiquidBackground(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 100.h), // Spacing for the extended app bar
               // Header Section
-              Container(
+              GlassContainer(
                 padding: EdgeInsets.all(20.w),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      AppColors.themeGreen.withOpacity(0.3),
-                      const Color(0xFF106B43).withOpacity(0.2),
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  borderRadius: BorderRadius.circular(16.r),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 10,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
-                ),
+                opacity: 0.1,
                 child: Column(
                   children: [
                     Text(
@@ -127,353 +94,302 @@ class AboutUsPage extends StatelessWidget {
               ),
               SizedBox(height: 20.h),
               // Content Section
-              GlassCard(
-                child: Padding(
-                  padding: EdgeInsets.all(20.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Born from Innovation, Driven by Purpose',
-                        style: GoogleFonts.inter(
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+              GlassContainer(
+                padding: EdgeInsets.all(20.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Born from Innovation, Driven by Purpose',
+                      style: GoogleFonts.inter(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
-                      SizedBox(height: 10.h),
-                      Text(
-                        'Suncube AI was founded in 2021 by a team of energy experts and AI researchers who saw the untapped potential of combining artificial intelligence with solar energy management.',
-                        style: GoogleFonts.inter(
-                          fontSize: 18.sp,
-                          color: Colors.white70,
-                        ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      'Suncube AI was founded in 2021 by a team of energy experts and AI researchers who saw the untapped potential of combining artificial intelligence with solar energy management.',
+                      style: GoogleFonts.inter(
+                        fontSize: 18.sp,
+                        color: Colors.white70,
                       ),
-                      SizedBox(height: 10.h),
-                      Text(
-                        'After witnessing the inefficiencies in traditional solar installations and the missed opportunities for optimization, our founders set out to create a platform that would revolutionize how solar energy systems operate, maintain themselves, and integrate with the smart grid.',
-                        style: GoogleFonts.inter(
-                          fontSize: 18.sp,
-                          color: Colors.white70,
-                        ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      'After witnessing the inefficiencies in traditional solar installations and the missed opportunities for optimization, our founders set out to create a platform that would revolutionize how solar energy systems operate, maintain themselves, and integrate with the smart grid.',
+                      style: GoogleFonts.inter(
+                        fontSize: 18.sp,
+                        color: Colors.white70,
                       ),
-                      SizedBox(height: 10.h),
-                      Text(
-                        'Today, we\'re proud to be leading the charge in AI-powered solar management, helping thousands of customers maximize their energy production while contributing to a sustainable future.',
-                        style: GoogleFonts.inter(
-                          fontSize: 18.sp,
-                          color: Colors.white70,
-                        ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      'Today, we\'re proud to be leading the charge in AI-powered solar management, helping thousands of customers maximize their energy production while contributing to a sustainable future.',
+                      style: GoogleFonts.inter(
+                        fontSize: 18.sp,
+                        color: Colors.white70,
                       ),
-                      SizedBox(height: 20.h),
-                      Card(
-                        color: Colors.white.withOpacity(0.1),
-                        child: Padding(
-                          padding: EdgeInsets.all(16.w),
-                          child: Column(
+                    ),
+                    SizedBox(height: 20.h),
+                    GlassContainer(
+                      opacity: 0.05,
+                      padding: EdgeInsets.all(16.w),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
                             children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Founded',
-                                    style: GoogleFonts.inter(
-                                      fontSize: 14.sp,
-                                      color: Colors.white70,
-                                    ),
-                                  ),
-                                  Text(
-                                    '2021',
-                                    style: GoogleFonts.inter(
-                                      fontSize: 14.sp,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
+                              Text(
+                                'Founded',
+                                style: GoogleFonts.inter(
+                                  fontSize: 14.sp,
+                                  color: Colors.white70,
+                                ),
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'kWh Managed',
-                                    style: GoogleFonts.inter(
-                                      fontSize: 14.sp,
-                                      color: Colors.white70,
-                                    ),
-                                  ),
-                                  Text(
-                                    '50M+',
-                                    style: GoogleFonts.inter(
-                                      fontSize: 14.sp,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Customers',
-                                    style: GoogleFonts.inter(
-                                      fontSize: 14.sp,
-                                      color: Colors.white70,
-                                    ),
-                                  ),
-                                  Text(
-                                    '1,500+',
-                                    style: GoogleFonts.inter(
-                                      fontSize: 14.sp,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Tons CO₂ Saved',
-                                    style: GoogleFonts.inter(
-                                      fontSize: 14.sp,
-                                      color: Colors.white70,
-                                    ),
-                                  ),
-                                  Text(
-                                    '25,000',
-                                    style: GoogleFonts.inter(
-                                      fontSize: 14.sp,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
+                              Text(
+                                '2021',
+                                style: GoogleFonts.inter(
+                                  fontSize: 14.sp,
+                                  color: Colors.white,
+                                ),
                               ),
                             ],
                           ),
-                        ),
+                          Row(
+                            mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'kWh Managed',
+                                style: GoogleFonts.inter(
+                                  fontSize: 14.sp,
+                                  color: Colors.white70,
+                                ),
+                              ),
+                              Text(
+                                '50M+',
+                                style: GoogleFonts.inter(
+                                  fontSize: 14.sp,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Customers',
+                                style: GoogleFonts.inter(
+                                  fontSize: 14.sp,
+                                  color: Colors.white70,
+                                ),
+                              ),
+                              Text(
+                                '1,500+',
+                                style: GoogleFonts.inter(
+                                  fontSize: 14.sp,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Tons CO₂ Saved',
+                                style: GoogleFonts.inter(
+                                  fontSize: 14.sp,
+                                  color: Colors.white70,
+                                ),
+                              ),
+                              Text(
+                                '25,000',
+                                style: GoogleFonts.inter(
+                                  fontSize: 14.sp,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(height: 20.h),
               // Leadership Section
-              GlassCard(
-                child: Padding(
-                  padding: EdgeInsets.all(10.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Meet Our Leadership Team',
-                        style: GoogleFonts.inter(
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+              GlassContainer(
+                padding: EdgeInsets.all(10.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Meet Our Leadership Team',
+                      style: GoogleFonts.inter(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
-                      SizedBox(height: 10.h),
-                      Text(
-                        'Experienced leaders combining deep expertise in energy, technology, and sustainability.',
-                        style: GoogleFonts.inter(
-                          fontSize: 18.sp,
-                          color: Colors.white70,
-                        ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      'Experienced leaders combining deep expertise in energy, technology, and sustainability.',
+                      style: GoogleFonts.inter(
+                        fontSize: 18.sp,
+                        color: Colors.white70,
                       ),
-                      SizedBox(height: 20.h),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            LeadershipCard(
-                              name: 'Dr. Sarah Chen',
-                              role: 'CEO & Co-Founder',
-                              description:
-                                  'Former Tesla Energy VP with\n15+ years in renewable energy and AI research.',
-                              education:
-                                  'PhD in Electrical Engineering, Stanford University',
-                            ),
-                            LeadershipCard(
-                              name: 'Marcus Rodriguez',
-                              role: 'CTO & Co-Founder',
-                              description:
-                                  'Ex-Google AI researcher specializing in machine learning and energy optimization.',
-                              education: 'MS Computer Science, MIT',
-                            ),
-                            LeadershipCard(
-                              name: 'Dr. Emily Watson',
-                              role: 'VP of Sustainability',
-                              description:
-                                  'Environmental scientist and clean energy advocate with focus on carbon reduction.',
-                              education:
-                                  'PhD Environmental Science, UC Berkeley',
-                            ),
-                          ],
-                        ),
+                    ),
+                    SizedBox(height: 20.h),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          LeadershipCard(
+                            name: 'Dr. Sarah Chen',
+                            role: 'CEO & Co-Founder',
+                            description:
+                                'Former Tesla Energy VP with\n15+ years in renewable energy and AI research.',
+                            education:
+                                'PhD in Electrical Engineering, Stanford University',
+                          ),
+                          LeadershipCard(
+                            name: 'Marcus Rodriguez',
+                            role: 'CTO & Co-Founder',
+                            description:
+                                'Ex-Google AI researcher specializing in machine learning and energy optimization.',
+                            education: 'MS Computer Science, MIT',
+                          ),
+                          LeadershipCard(
+                            name: 'Dr. Emily Watson',
+                            role: 'VP of Sustainability',
+                            description:
+                                'Environmental scientist and clean energy advocate with focus on carbon reduction.',
+                            education:
+                                'PhD Environmental Science, UC Berkeley',
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(height: 20.h),
               // Mission & Values Section
-              GlassCard(
-                child: Padding(
-                  padding: EdgeInsets.all(20.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'What Drives Us',
-                        style: GoogleFonts.inter(
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+              GlassContainer(
+                padding: EdgeInsets.all(20.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'What Drives Us',
+                      style: GoogleFonts.inter(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
-                      SizedBox(height: 20.h),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            MissionCard(
-                              icon: Icons.track_changes_rounded,
-                              title: 'Mission',
-                              description:
-                                  'Accelerate global adoption of clean energy through intelligent automation and innovation.',
-                            ),
-                            MissionCard(
-                              icon: Icons.lightbulb,
-                              title: 'Innovation',
-                              description:
-                                  'Continuously push the boundaries of what\'s possible with AI and renewable energy.',
-                            ),
-                            MissionCard(
-                              icon: Icons.energy_savings_leaf_rounded,
-                              title: 'Sustainability',
-                              description:
-                                  'Every decision we make considers environmental impact and long-term sustainability.',
-                            ),
-                            MissionCard(
-                              icon: Icons.group,
-                              title: 'Community',
-                              description:
-                                  'Build strong partnerships and empower communities to achieve energy independence.',
-                            ),
-                          ],
-                        ),
+                    ),
+                    SizedBox(height: 20.h),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          MissionCard(
+                            icon: Icons.track_changes_rounded,
+                            title: 'Mission',
+                            description:
+                                'Accelerate global adoption of clean energy through intelligent automation and innovation.',
+                          ),
+                          MissionCard(
+                            icon: Icons.lightbulb,
+                            title: 'Innovation',
+                            description:
+                                'Continuously push the boundaries of what\'s possible with AI and renewable energy.',
+                          ),
+                          MissionCard(
+                            icon: Icons.energy_savings_leaf_rounded,
+                            title: 'Sustainability',
+                            description:
+                                'Every decision we make considers environmental impact and long-term sustainability.',
+                          ),
+                          MissionCard(
+                            icon: Icons.group,
+                            title: 'Community',
+                            description:
+                                'Build strong partnerships and empower communities to achieve energy independence.',
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(height: 20.h),
               // Sustainability Pledge Section
-              Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      AppColors.themeGreen.withOpacity(0.3),
-                      const Color(0xFF106B43).withOpacity(0.2),
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(20.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Our Sustainability Pledge',
-                        style: GoogleFonts.inter(
-                          color: Colors.white,
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
+              GlassContainer(
+                padding: EdgeInsets.all(20.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Our Sustainability Pledge',
+                      style: GoogleFonts.inter(
+                        color: Colors.white,
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
                       ),
-                      SizedBox(height: 10.h),
-                      Text(
-                        'We\'re committed to not just providing clean energy solutions, but operating as a carbon-negative company.',
-                        style: GoogleFonts.inter(
-                          color: Colors.white70,
-                          fontSize: 18.sp,
-                        ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      'We\'re committed to not just providing clean energy solutions, but operating as a carbon-negative company.',
+                      style: GoogleFonts.inter(
+                        color: Colors.white70,
+                        fontSize: 18.sp,
                       ),
-                      SizedBox(height: 20.h),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            PledgeCard(
-                              icon: Icons.bar_chart_outlined,
-                              title: 'Carbon Negative by 2025',
-                              description:
-                                  'We will remove more carbon from\nthe atmosphere than we produce\nacross all operations.',
-                            ),
-                            PledgeCard(
-                              icon: Icons.trending_up,
-                              title: '100% Renewable Energy',
-                              description:
-                                  'All our facilities and operations are\npowered by renewable\nenergy sources.',
-                            ),
-                            PledgeCard(
-                              icon: Icons.rate_review_sharp,
-                              title: 'B-Corp Certification',
-                              description:
-                                  'Certified as a business that meets the\nhighest standards of social\nand environmental performance.',
-                            ),
-                          ],
-                        ),
+                    ),
+                    SizedBox(height: 20.h),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          PledgeCard(
+                            icon: Icons.bar_chart_outlined,
+                            title: 'Carbon Negative by 2025',
+                            description:
+                                'We will remove more carbon from\nthe atmosphere than we produce\nacross all operations.',
+                          ),
+                          PledgeCard(
+                            icon: Icons.trending_up,
+                            title: '100% Renewable Energy',
+                            description:
+                                'All our facilities and operations are\npowered by renewable\nenergy sources.',
+                          ),
+                          PledgeCard(
+                            icon: Icons.rate_review_sharp,
+                            title: 'B-Corp Certification',
+                            description:
+                                'Certified as a business that meets the\nhighest standards of social\nand environmental performance.',
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
+              SizedBox(height: 20.h),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class GlassCard extends StatelessWidget {
-  final Widget child;
-
-  GlassCard({required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(16.w),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Colors.white.withOpacity(0.05),
-            Colors.white.withOpacity(0.1),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 8,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: child,
     );
   }
 }
@@ -497,53 +413,51 @@ class LeadershipCard extends StatelessWidget {
     return SizedBox(
       height: 310.h,
       width: 250.w,
-      child: Card(
-        color: Colors.white.withOpacity(0.1),
-        child: Padding(
-          padding: EdgeInsets.all(10.w),
-          child: Column(
-            children: [
-              CircleAvatar(
-                radius: 40.r,
-                backgroundColor: AppColors.themeGreen.withOpacity(0.3),
+      child: GlassContainer(
+        opacity: 0.1,
+        padding: EdgeInsets.all(10.w),
+        child: Column(
+          children: [
+            CircleAvatar(
+              radius: 40.r,
+              backgroundColor: AppColors.themeGreen.withOpacity(0.3),
+            ),
+            SizedBox(height: 10.h),
+            Text(
+              name,
+              style: GoogleFonts.inter(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
-              SizedBox(height: 10.h),
-              Text(
-                name,
-                style: GoogleFonts.inter(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+            ),
+            Text(
+              role,
+              style: GoogleFonts.inter(
+                fontSize: 14.sp,
+                color: Colors.white70,
               ),
-              Text(
-                role,
-                style: GoogleFonts.inter(
-                  fontSize: 14.sp,
-                  color: Colors.white70,
-                ),
-              ),
-              SizedBox(height: 10.h),
-              Wrap(
-                children: [
-                  Text(
-                    description,
-                    style: GoogleFonts.inter(
-                      fontSize: 14.sp,
-                      color: Colors.white70,
-                    ),
+            ),
+            SizedBox(height: 10.h),
+            Wrap(
+              children: [
+                Text(
+                  description,
+                  style: GoogleFonts.inter(
+                    fontSize: 14.sp,
+                    color: Colors.white70,
                   ),
-                  Text(
-                    education,
-                    style: GoogleFonts.inter(
-                      fontSize: 14.sp,
-                      color: Colors.white70,
-                    ),
+                ),
+                Text(
+                  education,
+                  style: GoogleFonts.inter(
+                    fontSize: 14.sp,
+                    color: Colors.white70,
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
@@ -567,33 +481,31 @@ class MissionCard extends StatelessWidget {
     return SizedBox(
       height: 220.h,
       width: 200.w,
-      child: Card(
-        color: Colors.white.withOpacity(0.1),
-        child: Padding(
-          padding: EdgeInsets.all(10.r),
-          child: Column(
-            children: [
-              Icon(icon, size: 48.r, color: AppColors.themeGreen),
-              SizedBox(height: 10.h),
-              Text(
-                title,
+      child: GlassContainer(
+        opacity: 0.1,
+        padding: EdgeInsets.all(10.r),
+        child: Column(
+          children: [
+            Icon(icon, size: 48.r, color: AppColors.themeGreen),
+            SizedBox(height: 10.h),
+            Text(
+              title,
+              style: GoogleFonts.inter(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            Expanded(
+              child: Text(
+                description,
                 style: GoogleFonts.inter(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  fontSize: 14.sp,
+                  color: Colors.white70,
                 ),
               ),
-              Expanded(
-                child: Text(
-                  description,
-                  style: GoogleFonts.inter(
-                    fontSize: 14.sp,
-                    color: Colors.white70,
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -613,28 +525,27 @@ class PledgeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: AppColors.themeGreen.withOpacity(0.2),
-      child: Padding(
-        padding: EdgeInsets.all(16.w),
-        child: Column(
-          children: [
-            Icon(icon, size: 48.r, color: Colors.white),
-            SizedBox(height: 10.h),
-            Text(
-              title,
-              style: GoogleFonts.inter(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+    return GlassContainer(
+      color: AppColors.themeGreen,
+      opacity: 0.2,
+      padding: EdgeInsets.all(16.w),
+      child: Column(
+        children: [
+          Icon(icon, size: 48.r, color: Colors.white),
+          SizedBox(height: 10.h),
+          Text(
+            title,
+            style: GoogleFonts.inter(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
-            Text(
-              description,
-              style: GoogleFonts.inter(fontSize: 14.sp, color: Colors.white70),
-            ),
-          ],
-        ),
+          ),
+          Text(
+            description,
+            style: GoogleFonts.inter(fontSize: 14.sp, color: Colors.white70),
+          ),
+        ],
       ),
     );
   }
