@@ -1,947 +1,447 @@
-// lib/screens/ai_payment_engine_page.dart
+// lib/view/pages/services/ai_payment_engine_page.dart
 
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-
-import 'package:suncube_ai/widgets/common/liquid_background.dart';
-import 'package:suncube_ai/widgets/common/glass_container.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
+import 'package:suncube_ai/widgets/common/glass_container.dart';
+import 'package:suncube_ai/widgets/common/liquid_background.dart';
 
 class AiPaymentEnginePage extends StatelessWidget {
-  AiPaymentEnginePage({super.key});
-
-  // Color tokens used in this page
-  static const Color primaryBg = Color(0xFF0E5A38);
-  static const Color lime = Color(0xFF84CC16);
-  static const Color solarY = Color(0xFFF59E0B);
-  static const Color gridB = Color(0xFF3B82F6);
-  static const Color ecoG = Color(0xFF10B981);
-
-  // Menu items
-  final List<String> solItems = [
-    'Residential Solar + AI',
-    'Commercial & Industrial Solar',
-    'Smart Grid & Virtual Power Plant',
-    'AI Monitoring & Predictive Maintenance',
-    'Data Insights & Weather Forecasting',
-    'Cloud Dashboard & Multi-Site Management',
-  ];
-  final List<String> billItems = [
-    'AI Payment Engine',
-    'Blockchain Security',
-    'Transparency',
-  ];
-  final List<String> caseItems = ['Flag Ship Projects', 'Success Stories'];
-  final List<String> moreItems = ['About', 'Blog', 'Contact'];
+  const AiPaymentEnginePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(360, 780),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-        return Scaffold(
-          extendBodyBehindAppBar: true,
-          backgroundColor: const Color(0xFF060C09),
-          appBar: AppBar(
-            leading: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: Icon(Icons.arrow_back, color: Colors.white, size: 30.sp),
-            ),
-            backgroundColor: const Color(0xFF060C09).withOpacity(0.9),
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.transparent,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight + 20.h),
+        child: GlassContainer(
+          opacity: 0.18,
+          blur: 20,
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(32.r)),
+          child: AppBar(
+            backgroundColor: Colors.transparent,
             elevation: 0,
             centerTitle: true,
             title: Text(
               'AI Payment Engine',
-              style: GoogleFonts.inter(
-                fontWeight: FontWeight.w800,
-                fontSize: 20.sp,
-                color: Colors.white,
-              ),
+              style: GoogleFonts.inter(fontWeight: FontWeight.w800, fontSize: 22.sp, color: Colors.white),
             ),
-          ),
-          body: LiquidBackground(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
-                children: [
-                  SizedBox(height: 100.h), // Clear AppBar
-                  _hero(),
-                  _kpiCards(),
-                  _chart(),
-                  _aiLogic(),
-                  _invoiceDemo(),
-                  _forecast(),
-                  _cta(),
-                  _footer(),
-                  SizedBox(height: 40.h),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  // ==================== 1. HERO ====================
-  Widget _hero() => GlassContainer(
-    margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-    padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 60.h),
-    blur: 20,
-    opacity: 0.15,
-    color: AppColors.themeGreen,
-    borderRadius: BorderRadius.circular(28.r),
-    child: Column(
-      children: [
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(.15),
-            border: Border.all(color: Colors.white.withOpacity(.3)),
-            borderRadius: BorderRadius.circular(999),
-          ),
-          child: Text(
-            'Automated billing with AI-optimized pricing',
-            style: GoogleFonts.inter(color: Colors.white, fontSize: 11.sp),
-          ),
-        ),
-        SizedBox(height: 20.h),
-        Text(
-          'Smarter Payments.\nAutomated Intelligence.',
-          textAlign: TextAlign.center,
-          style: GoogleFonts.inter(
-            fontSize: 32.sp,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-            height: 1.2,
-          ),
-        ),
-        SizedBox(height: 12.h),
-        Text(
-          'Our simulated AI engine calculates energy usage, credits and payables in real-time.',
-          textAlign: TextAlign.center,
-          style: GoogleFonts.inter(
-            fontSize: 15.sp,
-            color: Colors.white.withOpacity(0.9),
-            height: 1.4,
-          ),
-        ),
-        SizedBox(height: 24.h),
-        ElevatedButton.icon(
-          onPressed: () {},
-          icon: Icon(LucideIcons.arrowRight, size: 16.sp),
-          label: Text(
-            'Preview AI Payment Flow',
-            style: TextStyle(fontSize: 12.sp),
-          ),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.themeGreen,
-            foregroundColor: Colors.white,
-            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 14.h),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.r),
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white, size: 24.sp),
+              onPressed: () => Navigator.pop(context),
             ),
           ),
         ),
-      ],
-    ),
-  );
-
-  // ==================== 2. KPI CARDS ====================
-  Widget _kpiCards() {
-    final cards = [
-      _kpiCard('Solar Generation', '4.2 kW', LucideIcons.sun, solarY, '+15%'),
-      _kpiCard('Grid Export', '1.8 kW', LucideIcons.grid3x3, gridB, 'Earning'),
-      _kpiCard(
-        'Credits Earned',
-        '\$28.38',
-        LucideIcons.dollarSign,
-        ecoG,
-        'Month',
       ),
-      _kpiCard(
-        'Net Bill',
-        '\$106.17',
-        LucideIcons.fileText,
-        primaryBg,
-        'AI opt',
-      ),
-    ];
-
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 40.h),
-      child: Column(
-        children: [
-          Chip(
-            backgroundColor: AppColors.themeGreen.withOpacity(0.2),
-            label: Text(
-              'Real-Time Simulation',
-              style: TextStyle(fontSize: 10.sp, color: AppColors.themeGreen),
-            ),
-          ),
-          SizedBox(height: 12.h),
-          Text(
-            'Dynamic Energy Billing Simulation',
-            style: GoogleFonts.inter(
-              fontSize: 24.sp,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-          SizedBox(height: 8.h),
-          Text(
-            'Watch as our AI calculates your energy credits in real-time.',
-            style: GoogleFonts.inter(
-              fontSize: 14.sp,
-              color: Colors.white.withOpacity(0.7),
-            ),
-          ),
-          SizedBox(height: 20.h),
-          GridView.count(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            crossAxisCount: 1.sw < 600 ? 2 : 4,
-            mainAxisSpacing: 16.h,
-            crossAxisSpacing: 16.w,
-            childAspectRatio: 1.35,
-            children: cards,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _kpiCard(
-    String title,
-    String value,
-    IconData icon,
-    Color accent,
-    String footer,
-  ) => GlassContainer(
-    padding: EdgeInsets.all(20.w),
-    blur: 15,
-    opacity: 0.1,
-    color: accent,
-    borderRadius: BorderRadius.circular(20.r),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              title,
-              style: GoogleFonts.inter(
-                fontSize: 12.sp,
-                color: Colors.white.withOpacity(0.8),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(6.w),
-              decoration: BoxDecoration(
-                color: accent.withOpacity(0.2),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(icon, color: accent, size: 18.sp),
-            ),
-          ],
-        ),
-        SizedBox(height: 8.h),
-        Text(
-          value,
-          style: GoogleFonts.inter(
-            fontSize: 24.sp,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        SizedBox(height: 4.h),
-        Text(
-          footer,
-          style: GoogleFonts.inter(
-            fontSize: 11.sp,
-            color: Colors.white.withOpacity(0.7),
-          ),
-        ),
-      ],
-    ),
-  );
-
-  // ==================== 3. 24H CHART ====================
-  Widget _chart() => Padding(
-    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Container(
-              padding: EdgeInsets.all(8.w),
-              decoration: BoxDecoration(
-                color: AppColors.themeGreen.withOpacity(0.2),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                LucideIcons.chartBar300,
-                color: AppColors.themeGreen,
-                size: 20.sp,
-              ),
-            ),
-            SizedBox(width: 12.w),
-            Text(
-              '24-Hour Energy Flow Simulation',
-              style: GoogleFonts.inter(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 12.h),
-        GlassContainer(
-          height: 200.h,
-          child: GlassContainer(
-            padding: EdgeInsets.all(16.w),
-            blur: 15,
-            opacity: 0.1,
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(24.r),
+      body: LiquidBackground(
+        child: SafeArea(
+          top: false,
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            padding: EdgeInsets.only(top: kToolbarHeight + 40.h),
             child: Column(
               children: [
-                Expanded(child: _miniBars()),
-                SizedBox(height: 12.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _legend(solarY, 'Generation'),
-                    SizedBox(width: 16.w),
-                    _legend(gridB, 'Consumption'),
-                    SizedBox(width: 16.w),
-                    _legend(ecoG, 'Grid Export'),
-                  ],
-                ),
+                _heroSection(),
+                SizedBox(height: 50.h),
+                _kpiSection(),
+                SizedBox(height: 60.h),
+                _energyPieSection(),        // Gorgeous Pie Chart – No Overflow
+                SizedBox(height: 60.h),
+                _aiLogicSection(),
+                SizedBox(height: 60.h),
+                _invoiceSection(),
+                SizedBox(height: 60.h),
+                _forecastSection(),
+                SizedBox(height: 80.h),
+                _ctaSection(),
+                SizedBox(height: 60.h),
+                _footer(),
+                SizedBox(height: 40.h),
               ],
             ),
           ),
         ),
-      ],
-    ),
-  );
-
-  Widget _miniBars() => Row(
-    crossAxisAlignment: CrossAxisAlignment.end,
-    children: List.generate(24, (h) {
-      final gen = (30 + (h % 5) * 15).toDouble();
-      final cons = (45 + (h % 4) * 18).toDouble();
-      final exp = (8 + (h % 3) * 12).toDouble();
-      return Expanded(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 1.5.w),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              _bar(solarY, gen),
-              _bar(gridB, cons),
-              _bar(ecoG, exp),
-              SizedBox(height: 4.h),
-              Text(
-                '$h',
-                style: TextStyle(fontSize: 8.sp, color: Colors.white54),
-              ),
-            ],
-          ),
-        ),
-      );
-    }),
-  );
-
-  Widget _bar(Color c, double height) => Container(
-    width: double.infinity,
-    height: height.h,
-    margin: EdgeInsets.symmetric(vertical: 1.h),
-    decoration: BoxDecoration(
-      color: c,
-      borderRadius: BorderRadius.vertical(top: Radius.circular(3.r)),
-    ),
-  );
-
-  Widget _legend(Color c, String label) => Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Container(
-        width: 12.w,
-        height: 12.h,
-        decoration: BoxDecoration(
-          color: c,
-          borderRadius: BorderRadius.circular(3.r),
-        ),
       ),
-      SizedBox(width: 6.w),
-      Text(label, style: TextStyle(fontSize: 10.sp, color: Colors.white70)),
-    ],
-  );
-
-  // ==================== 4. AI LOGIC ====================
-  Widget _aiLogic() => Padding(
-    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 32.h),
-    child: Column(
-      children: [
-        Chip(
-          backgroundColor: AppColors.themeGreen.withOpacity(0.2),
-          label: Text(
-            'AI Intelligence',
-            style: TextStyle(fontSize: 10.sp, color: AppColors.themeGreen),
-          ),
-        ),
-        SizedBox(height: 12.h),
-        Text(
-          'AI Optimization Logic',
-          style: GoogleFonts.inter(
-            fontSize: 24.sp,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        SizedBox(height: 8.h),
-        Text(
-          'Our AI schedules payouts to avoid peak tariffs and maximise savings.',
-          style: GoogleFonts.inter(
-            fontSize: 14.sp,
-            color: Colors.white.withOpacity(0.7),
-          ),
-        ),
-        SizedBox(height: 20.h),
-        ..._logicItems(),
-      ],
-    ),
-  );
-
-  List<Widget> _logicItems() {
-    final data = [
-      (
-        'Peak Hour Detection',
-        'AI identifies high-tariff periods',
-        LucideIcons.clock,
-        Colors.blueAccent,
-      ),
-      (
-        'Optimal Timing',
-        'Schedules payments during low-rate hours',
-        LucideIcons.trendingUp,
-        AppColors.themeGreen,
-      ),
-      (
-        'Predictive Analysis',
-        'Forecasts future energy costs',
-        LucideIcons.sparkles,
-        solarY,
-      ),
-      (
-        'Automated Execution',
-        'Executes optimised payment schedule',
-        LucideIcons.bot,
-        ecoG,
-      ),
-    ];
-    return data
-        .map(
-          (e) => GlassContainer(
-            margin: EdgeInsets.only(bottom: 12.h),
-            padding: EdgeInsets.all(16.w),
-            blur: 15,
-            opacity: 0.1,
-            color: e.$4,
-            borderRadius: BorderRadius.circular(20.r),
-            child: Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(10.w),
-                  decoration: BoxDecoration(
-                    color: e.$4.withOpacity(0.2),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(e.$3, color: e.$4, size: 20.sp),
-                ),
-                SizedBox(width: 14.w),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        e.$1,
-                        style: GoogleFonts.inter(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      SizedBox(height: 4.h),
-                      Text(
-                        e.$2,
-                        style: GoogleFonts.inter(
-                          fontSize: 12.sp,
-                          color: Colors.white70,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        )
-        .toList();
-  }
-
-  // ==================== 5. INVOICE DEMO ====================
-  Widget _invoiceDemo() => Padding(
-    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 40.h),
-    child: Column(
-      children: [
-        Chip(
-          backgroundColor: AppColors.themeGreen.withOpacity(0.2),
-          label: Text(
-            'Smart Billing',
-            style: TextStyle(fontSize: 10.sp, color: AppColors.themeGreen),
-          ),
-        ),
-        SizedBox(height: 12.h),
-        Text(
-          'Smart Invoice Demo',
-          style: GoogleFonts.inter(
-            fontSize: 24.sp,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        SizedBox(height: 8.h),
-        Text(
-          'Experience AI-generated invoices with detailed breakdowns.',
-          style: GoogleFonts.inter(fontSize: 14.sp, color: Colors.white70),
-        ),
-        SizedBox(height: 20.h),
-        GlassContainer(
-          padding: EdgeInsets.zero,
-          blur: 15,
-          opacity: 0.1,
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(24.r),
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(20.w),
-                child: Column(
-                  children: [
-                    _invoiceTop(),
-                    _invoiceLines(),
-                    _invoiceTotal(),
-                    SizedBox(height: 16.h),
-                    _aiBanner(),
-                  ],
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.all(20.w),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.05),
-                  borderRadius: BorderRadius.vertical(
-                    bottom: Radius.circular(24.r),
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    OutlinedButton.icon(
-                      onPressed: () {},
-                      icon: Icon(LucideIcons.eye, size: 14.sp),
-                      label: Text('Preview', style: TextStyle(fontSize: 11.sp)),
-                    ),
-                    SizedBox(width: 12.w),
-                    ElevatedButton.icon(
-                      onPressed: () {},
-                      icon: Icon(LucideIcons.download, size: 14.sp),
-                      label: Text(
-                        'Download PDF',
-                        style: TextStyle(fontSize: 11.sp),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.themeGreen,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 20.w,
-                          vertical: 12.h,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.r),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
-  );
-
-  Widget _invoiceTop() => Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Bill To:',
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 11.sp),
-          ),
-          Text(
-            'John Smith',
-            style: TextStyle(fontSize: 12.sp, color: Colors.white),
-          ),
-          Text(
-            '123 Solar Street, Green City',
-            style: TextStyle(fontSize: 10.sp, color: Colors.white60),
-          ),
-        ],
-      ),
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Text(
-            'Invoice #: INV-2024-001',
-            style: TextStyle(fontSize: 10.sp, color: Colors.white70),
-          ),
-          Text(
-            'Date: 2024-01-15',
-            style: TextStyle(fontSize: 10.sp, color: Colors.white70),
-          ),
-          Text(
-            'Due: 2024-02-15',
-            style: TextStyle(fontSize: 10.sp, color: Colors.white70),
-          ),
-        ],
-      ),
-    ],
-  );
-
-  Widget _invoiceLines() {
-    final lines = [
-      ('Solar Generation (Panel A)', '245 kWh @ \$0.12', 29.40),
-      ('Solar Generation (Panel B)', '198 kWh @ \$0.12', 23.76),
-      ('Grid Export Credits', '156 kWh @ \$0.18', 28.08),
-      ('Peak Hour Optimisation', '1 month @ \$15.00', 15.00),
-    ];
-    return Column(
-      children:
-          lines
-              .map(
-                (e) => Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.h),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: Text(
-                          e.$1,
-                          style: TextStyle(
-                            fontSize: 11.sp,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: Text(
-                          e.$2,
-                          style: TextStyle(
-                            fontSize: 10.sp,
-                            color: Colors.white60,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        '\$${e.$3.toStringAsFixed(2)}',
-                        style: TextStyle(
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-              .toList(),
     );
   }
 
-  Widget _invoiceTotal() => Column(
-    children: [
-      Divider(color: Colors.white24),
-      _invoiceRow('Subtotal', '\$96.24'),
-      _invoiceRow('Tax (10%)', '\$9.62'),
-      Divider(color: Colors.white38),
-      _invoiceRow('Total', '\$105.86', isBold: true),
-    ],
-  );
-
-  Widget _invoiceRow(String label, String value, {bool isBold = false}) =>
-      Padding(
-        padding: EdgeInsets.symmetric(vertical: 4.h),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  // HERO SECTION
+  Widget _heroSection() => _paddedGlass(
+        child: Column(
           children: [
+            _chip('AI-Powered Billing • Real-Time Optimization'),
+            SizedBox(height: 24.h),
             Text(
-              label,
-              style: TextStyle(
-                fontSize: 11.sp,
-                fontWeight: isBold ? FontWeight.w700 : FontWeight.w500,
-              ),
+              'Smarter Payments.\nAutomated Intelligence.',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.inter(fontSize: 38.sp, fontWeight: FontWeight.w900, color: Colors.white, height: 1.15),
             ),
+            SizedBox(height: 16.h),
             Text(
-              value,
-              style: TextStyle(
-                fontSize: 12.sp,
-                fontWeight: isBold ? FontWeight.w800 : FontWeight.w600,
-                color: isBold ? AppColors.themeGreen : Colors.white,
+              'Our AI simulates energy flow, optimizes pricing, and generates invoices instantly.',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.inter(fontSize: 16.sp, color: Colors.white70, height: 1.6),
+            ),
+            SizedBox(height: 32.h),
+            ElevatedButton.icon(
+              onPressed: () {},
+              icon: Icon(LucideIcons.sparkles, size: 20.sp),
+              label: Text('Preview AI Engine', style: GoogleFonts.inter(fontWeight: FontWeight.w700, fontSize: 16.sp)),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.themeGreen,
+                padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 18.h),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
+                elevation: 15,
+                shadowColor: AppColors.themeGreen.withOpacity(0.6),
               ),
             ),
           ],
         ),
       );
 
-  Widget _aiBanner() => Container(
-    padding: EdgeInsets.all(14.w),
-    decoration: BoxDecoration(
-      color: primaryBg.withOpacity(0.15),
-      borderRadius: BorderRadius.circular(12.r),
-    ),
-    child: Row(
-      children: [
-        Icon(
-          LucideIcons.brainCircuit,
-          color: AppColors.themeGreen,
-          size: 20.sp,
-        ),
-        SizedBox(width: 12.w),
-        Expanded(
-          child: RichText(
-            text: TextSpan(
-              style: TextStyle(fontSize: 11.sp, color: Colors.white70),
+  // KPI SECTION – Fully Responsive
+  Widget _kpiSection() => Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        child: Column(
+          children: [
+            Text('Live Energy & Billing Simulation',
+                style: GoogleFonts.inter(fontSize: 26.sp, fontWeight: FontWeight.w800, color: Colors.white)),
+            SizedBox(height: 12.h),
+            Text('Watch AI optimize your bill in real-time',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.inter(fontSize: 15.sp, color: Colors.white60)),
+            SizedBox(height: 32.h),
+            Wrap(
+              spacing: 16.w,
+              runSpacing: 16.h,
+              alignment: WrapAlignment.center,
               children: [
-                TextSpan(
-                  text: 'AI Optimisation Applied — ',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.themeGreen,
-                  ),
-                ),
-                TextSpan(text: 'Saved you \$23.45 this month'),
+                _kpiCard('Solar Generation', '4.82 kW', LucideIcons.sun, const Color(0xFFF59E0B), '+18% today'),
+                _kpiCard('Grid Export', '2.1 kW', LucideIcons.zap, const Color(0xFF3B82F6), '\$31.20 earned'),
+                _kpiCard('Monthly Credits', '\$142.50', LucideIcons.coins, const Color(0xFF10B981), '+22% vs last'),
+                _kpiCard('Net Bill After AI', '\$89.30', LucideIcons.fileText, AppColors.themeGreen, 'Saved \$53.20'),
               ],
             ),
-          ),
-        ),
-      ],
-    ),
-  );
-
-  // ==================== 6. FORECAST ====================
-  Widget _forecast() => Padding(
-    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 32.h),
-    child: Column(
-      children: [
-        Chip(
-          backgroundColor: AppColors.themeGreen.withOpacity(0.2),
-          label: Text(
-            'Predictive Analytics',
-            style: TextStyle(fontSize: 10.sp, color: AppColors.themeGreen),
-          ),
-        ),
-        SizedBox(height: 12.h),
-        Text(
-          'Forecast-Based Billing',
-          style: GoogleFonts.inter(
-            fontSize: 24.sp,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        SizedBox(height: 8.h),
-        Text(
-          'AI-powered predictions help you plan your energy finances with confidence.',
-          style: GoogleFonts.inter(fontSize: 14.sp, color: Colors.white70),
-        ),
-        SizedBox(height: 20.h),
-        ..._forecastCards(),
-      ],
-    ),
-  );
-
-  List<Widget> _forecastCards() =>
-      [
-            _forecastCard(
-              'Weather Forecast',
-              '85%',
-              'Sunny Days This Month',
-              LucideIcons.sun,
-              solarY,
-              ['+12% Generation', '\$45.20 Credits'],
-            ),
-            _forecastCard(
-              'Seasonal Trends',
-              'Summer',
-              'Peak Generation Season',
-              LucideIcons.sunMedium,
-              primaryBg,
-              ['18.5 kWh/day', '\$89 savings'],
-            ),
-            _forecastCard(
-              'Financial Planning',
-              '\$1,247',
-              'Annual Savings Projected',
-              LucideIcons.trendingUp,
-              ecoG,
-              ['+23% ROI', '4.2 yr payback'],
-            ),
-          ]
-          .map((e) => Padding(padding: EdgeInsets.only(bottom: 16.h), child: e))
-          .toList();
-
-  Widget _forecastCard(
-    String title,
-    String big,
-    String subtitle,
-    IconData icon,
-    Color color,
-    List<String> details,
-  ) => GlassContainer(
-    padding: EdgeInsets.all(20.w),
-    blur: 15,
-    opacity: 0.12,
-    color: color,
-    borderRadius: BorderRadius.circular(24.r),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Container(
-              padding: EdgeInsets.all(10.w),
-              decoration: BoxDecoration(
-                color: color.withOpacity(0.2),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(icon, color: color, size: 24.sp),
-            ),
-            SizedBox(width: 14.w),
-            Text(
-              title,
-              style: GoogleFonts.inter(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
           ],
         ),
-        SizedBox(height: 16.h),
-        Text(
-          big,
-          style: GoogleFonts.inter(
-            fontSize: 32.sp,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        Text(
-          subtitle,
-          style: TextStyle(fontSize: 13.sp, color: Colors.white70),
-        ),
-        SizedBox(height: 12.h),
-        ...details.map(
-          (d) => Padding(
-            padding: EdgeInsets.only(top: 4.h),
-            child: Text(
-              '• $d',
-              style: TextStyle(fontSize: 12.sp, color: Colors.white),
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
+      );
 
-  // ==================== 7. CTA ====================
-  Widget _cta() => Padding(
-    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 48.h),
-    child: Column(
-      children: [
-        Text(
-          'Ready to start saving with AI?',
-          style: GoogleFonts.inter(
-            fontSize: 26.sp,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+  Widget _kpiCard(String title, String value, IconData icon, Color color, String subtitle) => GlassContainer(
+        opacity: 0.12,
+        blur: 18,
+        borderRadius: BorderRadius.circular(24.r),
+        padding: EdgeInsets.all(20.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Expanded(child: Text(title, style: GoogleFonts.inter(fontSize: 13.sp, color: Colors.white70))),
+                Container(
+                  padding: EdgeInsets.all(8.w),
+                  decoration: BoxDecoration(color: color.withOpacity(0.2), shape: BoxShape.circle),
+                  child: Icon(icon, color: color, size: 18.sp),
+                ),
+              ],
+            ),
+            SizedBox(height: 12.h),
+            Text(value, style: GoogleFonts.inter(fontSize: 28.sp, fontWeight: FontWeight.w900, color: Colors.white)),
+            SizedBox(height: 4.h),
+            Text(subtitle, style: GoogleFonts.inter(fontSize: 12.sp, color: Colors.white60)),
+          ],
+        ),
+      );
+
+  // PIE CHART SECTION – BEAUTIFUL & NO OVERFLOW
+  Widget _energyPieSection() => _section(
+        title: 'Today\'s Energy Breakdown',
+        subtitle: 'How your solar energy was used',
+        child: GlassContainer(
+          opacity: 0.11,
+          blur: 22,
+          borderRadius: BorderRadius.circular(32.r),
+          padding: EdgeInsets.all(28.w),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 280.h,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    // Animated Pie Chart
+                    SizedBox(
+                      width: 220.w,
+                      height: 220.w,
+                      child: CustomPaint(
+                        painter: EnergyPiePainter(),
+                      ),
+                    ),
+                    // Center Info
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text('443', style: GoogleFonts.inter(fontSize: 40.sp, fontWeight: FontWeight.w900, color: Colors.white)),
+                        Text('kWh', style: GoogleFonts.inter(fontSize: 20.sp, color: Colors.white70)),
+                        SizedBox(height: 8.h),
+                        // Text('Total Generated', style: GoogleFonts.inter(fontSize: 14.sp, color: Colors.white60)),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 32.h),
+              // Legend
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _pieLegend('Generated', const Color(0xFFF59E0B), '58%'),
+                  _pieLegend('Consumed', const Color(0xFF3B82F6), '35%'),
+                  _pieLegend('Exported', const Color(0xFF10B981), '7%'),
+                ],
+              ),
+            ],
           ),
         ),
-        SizedBox(height: 20.h),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+      );
+
+  Widget _pieLegend(String label, Color color, String percent) => Column(
+        children: [
+          Container(width: 16.w, height: 16.h, decoration: BoxDecoration(color: color, shape: BoxShape.circle)),
+          SizedBox(height: 8.h),
+          Text(label, style: GoogleFonts.inter(fontSize: 14.sp, color: Colors.white70)),
+          Text(percent, style: GoogleFonts.inter(fontSize: 20.sp, fontWeight: FontWeight.w800, color: Colors.white)),
+        ],
+      );
+
+  // AI LOGIC SECTION
+  Widget _aiLogicSection() => _section(
+        title: 'How AI Optimizes Your Bill',
+        subtitle: 'Intelligent automation at every step',
+        child: Column(
           children: [
+            _aiStep('Detects peak tariff hours', LucideIcons.clock, const Color(0xFF8B5CF6)),
+            _aiStep('Shifts export timing for max credit', LucideIcons.arrowUpRight, AppColors.themeGreen),
+            _aiStep('Predicts tomorrow\'s generation', LucideIcons.sun, const Color(0xFFF59E0B)),
+            _aiStep('Auto-generates optimized invoice', LucideIcons.fileCheck, const Color(0xFF10B981)),
+          ],
+        ),
+      );
+
+  Widget _aiStep(String text, IconData icon, Color color) => Padding(
+        padding: EdgeInsets.only(bottom: 16.h),
+        child: GlassContainer(
+          opacity: 0.1,
+          borderRadius: BorderRadius.circular(24.r),
+          padding: EdgeInsets.all(18.w),
+          child: Row(
+            children: [
+              Container(
+                padding: EdgeInsets.all(12.w),
+                decoration: BoxDecoration(color: color.withOpacity(0.2), shape: BoxShape.circle),
+                child: Icon(icon, color: color, size: 24.sp),
+              ),
+              SizedBox(width: 16.w),
+              Expanded(child: Text(text, style: GoogleFonts.inter(fontSize: 15.sp, color: Colors.white, fontWeight: FontWeight.w600))),
+              Icon(LucideIcons.arrowRight, color: AppColors.themeGreen.withOpacity(0.6), size: 24.sp),
+            ],
+          ),
+        ),
+      );
+
+  // INVOICE SECTION
+  Widget _invoiceSection() => _section(
+        title: 'Your AI-Generated Invoice',
+        subtitle: 'Transparent • Optimized • Instant',
+        child: GlassContainer(
+          opacity: 0.12,
+          blur: 20,
+          borderRadius: BorderRadius.circular(32.r),
+          padding: EdgeInsets.all(24.w),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Invoice #2025-001', style: GoogleFonts.inter(fontSize: 13.sp, color: Colors.white60)),
+                  Text('15 Jan 2025', style: GoogleFonts.inter(fontSize: 13.sp, color: Colors.white60)),
+                ],
+              ),
+              SizedBox(height: 20.h),
+              _invoiceLine('Solar Generation', '443 kWh × \$0.12', '\$53.16'),
+              _invoiceLine('Grid Export Credit', '156 kWh × \$0.18', '+\$28.08'),
+              _invoiceLine('AI Optimization Fee', '1 month', '\$15.00'),
+              Divider(color: Colors.white24, height: 40.h),
+              _invoiceLine('Total Due', '', '\$89.30', isTotal: true),
+              SizedBox(height: 20.h),
+              Container(
+                padding: EdgeInsets.all(14.w),
+                decoration: BoxDecoration(color: AppColors.themeGreen.withOpacity(0.15), borderRadius: BorderRadius.circular(16.r)),
+                child: Row(
+                  children: [
+                    Icon(LucideIcons.sparkles, color: AppColors.themeGreen, size: 20.sp),
+                    SizedBox(width: 10.w),
+                    Expanded(
+                      child: Text('AI saved you \$53.20 this month',
+                          style: GoogleFonts.inter(fontSize: 14.sp, fontWeight: FontWeight.w700, color: Colors.white)),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+  Widget _invoiceLine(String label, String detail, String amount, {bool isTotal = false}) => Padding(
+        padding: EdgeInsets.symmetric(vertical: 8.h),
+        child: Row(
+          children: [
+            Expanded(flex: 3, child: Text(label, style: GoogleFonts.inter(fontSize: 14.sp, color: Colors.white, fontWeight: isTotal ? FontWeight.w800 : FontWeight.w500))),
+            Expanded(flex: 2, child: Text(detail, textAlign: TextAlign.end, style: GoogleFonts.inter(fontSize: 13.sp, color: Colors.white60))),
+            SizedBox(width: 16.w),
+            Text(amount, style: GoogleFonts.inter(fontSize: 17.sp, fontWeight: isTotal ? FontWeight.w900 : FontWeight.w700, color: isTotal ? AppColors.themeGreen : Colors.white)),
+          ],
+        ),
+      );
+
+  // FORECAST SECTION
+  Widget _forecastSection() => _section(
+        title: 'AI Financial Forecast',
+        subtitle: 'Know your savings before they happen',
+        child: Row(
+          children: [
+            Expanded(child: _forecastCard('Next Month', '\$178', 'Predicted savings', const Color(0xFF10B981))),
+            SizedBox(width: 16.w),
+            Expanded(child: _forecastCard('Annual', '\$2,147', 'With AI optimization', const Color(0xFFF59E0B))),
+          ],
+        ),
+      );
+
+  Widget _forecastCard(String title, String amount, String subtitle, Color color) => GlassContainer(
+        opacity: 0.11,
+        borderRadius: BorderRadius.circular(28.r),
+        padding: EdgeInsets.all(20.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(title, style: GoogleFonts.inter(fontSize: 14.sp, color: Colors.white70)),
+            SizedBox(height: 8.h),
+            Text(amount, style: GoogleFonts.inter(fontSize: 34.sp, fontWeight: FontWeight.w900, color: Colors.white)),
+            Text(subtitle, style: GoogleFonts.inter(fontSize: 12.sp, color: Colors.white60)),
+          ],
+        ),
+      );
+
+  // CTA SECTION
+  Widget _ctaSection() => _paddedGlass(
+        child: Column(
+          children: [
+            Text('Start Saving with AI Today',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.inter(fontSize: 34.sp, fontWeight: FontWeight.w900, color: Colors.white, height: 1.2)),
+            SizedBox(height: 16.h),
+            Text('Join 10,000+ homes already saving with intelligent energy',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.inter(fontSize: 16.sp, color: Colors.white70)),
+            SizedBox(height: 32.h),
             ElevatedButton.icon(
               onPressed: () {},
-              icon: Icon(LucideIcons.sparkles, size: 18.sp),
-              label: Text(
-                'Start Free Trial',
-                style: TextStyle(fontSize: 14.sp),
-              ),
+              icon: Icon(LucideIcons.rocket, size: 24.sp),
+              label: Text('Get Started Free', style: GoogleFonts.inter(fontSize: 18.sp, fontWeight: FontWeight.w800)),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.themeGreen,
-                padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 16.h),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14.r),
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 20.h),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24.r)),
+                elevation: 20,
+                shadowColor: AppColors.themeGreen.withOpacity(0.8),
               ),
             ),
-            SizedBox(width: 16.w),
-            OutlinedButton(
-              onPressed: () {},
-              child: Text(
-                'Schedule Demo',
-                style: TextStyle(fontSize: 14.sp, color: Colors.white),
-              ),
-              style: OutlinedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 16.h),
-                side: BorderSide(color: Colors.white38, width: 1.5),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14.r),
-                ),
-              ),
-            ),
+            SizedBox(height: 16.h),
+            Text('7-day trial • No credit card required',
+                style: GoogleFonts.inter(fontSize: 14.sp, color: Colors.white60)),
           ],
         ),
-      ],
-    ),
-  );
+      );
 
-  // ==================== 8. FOOTER ====================
-  Widget _footer() => Padding(
-    padding: EdgeInsets.only(bottom: 40.h, top: 20.h),
-    child: Text(
-      '© 2025 Suncube AI – All rights reserved',
+  Widget _footer() => Text('© 2025 Suncube AI — Powering the Future of Solar Intelligence',
       textAlign: TextAlign.center,
-      style: GoogleFonts.inter(
-        fontSize: 12.sp,
-        color: Colors.white.withOpacity(0.5),
-      ),
-    ),
-  );
+      style: GoogleFonts.inter(fontSize: 13.sp, color: Colors.white38));
+
+  // HELPERS
+  Widget _chip(String text) => Container(
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.15),
+          borderRadius: BorderRadius.circular(30.r),
+          border: Border.all(color: Colors.white.withOpacity(0.3)),
+        ),
+        child: Text(text, style: GoogleFonts.inter(fontSize: 12.sp, color: Colors.white)),
+      );
+
+  Widget _section({required String title, required String subtitle, required Widget child}) => Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(title, style: GoogleFonts.inter(fontSize: 28.sp, fontWeight: FontWeight.w900, color: Colors.white)),
+            SizedBox(height: 10.h),
+            Text(subtitle, style: GoogleFonts.inter(fontSize: 15.sp, color: Colors.white60)),
+            SizedBox(height: 28.h),
+            child,
+          ],
+        ),
+      );
+
+  Widget _paddedGlass({required Widget child}) => Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        child: GlassContainer(
+          opacity: 0.14,
+          blur: 22,
+          borderRadius: BorderRadius.circular(36.r),
+          padding: EdgeInsets.all(36.w),
+          child: child,
+        ),
+      );
+}
+
+// GORGEOUS PIE CHART PAINTER
+class EnergyPiePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final center = Offset(size.width / 2, size.height / 2);
+    final radius = size.width / 2 * 0.85;
+
+    final paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 32
+      ..strokeCap = StrokeCap.round;
+
+    const double startAngle = -pi / 2;
+
+    // Generated 58%
+    paint.color = const Color(0xFF3B82F6);
+    canvas.drawArc(Rect.fromCircle(center: center, radius: radius), startAngle, 2.1 * pi, false, paint);
+
+    // Consumed 35%
+    paint.color = const Color(0xFFF59E0B);
+    canvas.drawArc(Rect.fromCircle(center: center, radius: radius), startAngle + 2.1 * pi, 1.26 * pi, false, paint);
+
+    // Exported 7%
+    paint.color = const Color(0xFF10B981);
+    canvas.drawArc(Rect.fromCircle(center: center, radius: radius), startAngle + 3.36 * pi, 0.24 * pi, false, paint);
+
+    // Inner glow
+    paint
+      ..color = Colors.white.withOpacity(0.2)
+      ..strokeWidth = 6;
+    canvas.drawCircle(center, radius * 0.65, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
