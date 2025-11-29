@@ -1,3 +1,5 @@
+// lib/view/pages/content/success_stories_page.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,9 +18,7 @@ class SuccessStoriesPage extends StatelessWidget {
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () => Navigator.pop(context),
           icon: Icon(Icons.arrow_back, color: Colors.white, size: 30.sp),
         ),
         backgroundColor: Colors.transparent,
@@ -53,7 +53,7 @@ class SuccessStoriesPage extends StatelessWidget {
               _GlobalSection(),
               SizedBox(height: 40.h),
               _MetricsSection(),
-              SizedBox(height: 40.h),
+              SizedBox(height: 80.h), // Safe bottom space
             ],
           ),
         ),
@@ -75,7 +75,6 @@ class _HeroSection extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 48.h, horizontal: 32.w),
       child: Column(
         children: [
-          // Badge
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
             decoration: BoxDecoration(
@@ -115,14 +114,11 @@ class _HeroSection extends StatelessWidget {
             ),
           ),
           SizedBox(height: 32.h),
-          // Title
           ShaderMask(
-            shaderCallback: (bounds) => LinearGradient(
-              colors: [
-                Colors.white,
-                AppColors.themeGreen.withOpacity(0.8),
-              ],
-            ).createShader(bounds),
+            shaderCallback:
+                (bounds) => LinearGradient(
+                  colors: [Colors.white, AppColors.themeGreen.withOpacity(0.8)],
+                ).createShader(bounds),
             child: Text(
               'Every Watt Counts.\nEvery Story Matters.',
               textAlign: TextAlign.center,
@@ -136,7 +132,6 @@ class _HeroSection extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20.h),
-          // Description
           Text(
             'Real homeowners achieving remarkable savings with AI-powered solar optimization',
             textAlign: TextAlign.center,
@@ -147,7 +142,6 @@ class _HeroSection extends StatelessWidget {
             ),
           ),
           SizedBox(height: 40.h),
-          // Button
           ElevatedButton.icon(
             onPressed: () {},
             icon: Icon(LucideIcons.arrowRight, size: 18.sp),
@@ -161,10 +155,7 @@ class _HeroSection extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.themeGreen,
               foregroundColor: Colors.white,
-              padding: EdgeInsets.symmetric(
-                horizontal: 28.w,
-                vertical: 18.h,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 18.h),
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.r),
@@ -312,7 +303,7 @@ class _IndustrialSection extends StatelessWidget {
 }
 
 /* -------------------------------------------------
-   GLOBAL SECTION
+   GLOBAL SECTION — OVERFLOW FIXED
 ------------------------------------------------- */
 class _GlobalSection extends StatelessWidget {
   @override
@@ -381,7 +372,7 @@ class _GlobalSection extends StatelessWidget {
 }
 
 /* -------------------------------------------------
-   METRICS SECTION
+   METRICS SECTION — RIGHT OVERFLOW FIXED
 ------------------------------------------------- */
 class _MetricsSection extends StatelessWidget {
   @override
@@ -423,10 +414,7 @@ class _MetricsSection extends StatelessWidget {
           Text(
             'Aggregate success metrics from our global user base',
             textAlign: TextAlign.center,
-            style: GoogleFonts.inter(
-              fontSize: 14.sp,
-              color: Colors.white60,
-            ),
+            style: GoogleFonts.inter(fontSize: 14.sp, color: Colors.white60),
           ),
           SizedBox(height: 40.h),
           Row(
@@ -459,12 +447,11 @@ class _MetricsSection extends StatelessWidget {
 }
 
 /* -------------------------------------------------
-   WIDGETS
+   STORY CARD — WITH 404 FALLBACK
 ------------------------------------------------- */
 class _StoryCard extends StatefulWidget {
   final String name, location, savings, before, after, image;
   final Color accentColor;
-
   const _StoryCard({
     required this.name,
     required this.location,
@@ -495,10 +482,9 @@ class _StoryCardState extends State<_StoryCard> {
         child: GlassContainer(
           opacity: _isHovered ? 0.15 : 0.1,
           borderRadius: BorderRadius.circular(20.r),
-          padding: EdgeInsets.all(24.w),
+          padding: EdgeInsets.all(20.w),
           child: Column(
             children: [
-              // Avatar with gradient border
               Container(
                 padding: EdgeInsets.all(4.w),
                 decoration: BoxDecoration(
@@ -511,12 +497,22 @@ class _StoryCardState extends State<_StoryCard> {
                   shape: BoxShape.circle,
                 ),
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage(widget.image),
-                  radius: 48.r,
+                  radius: 46.r,
+                  child: ClipOval(
+                    child: Image.network(
+                      widget.image,
+                      fit: BoxFit.cover,
+                      errorBuilder:
+                          (_, __, ___) => Icon(
+                            LucideIcons.user,
+                            size: 50.sp,
+                            color: widget.accentColor,
+                          ),
+                    ),
+                  ),
                 ),
               ),
               SizedBox(height: 16.h),
-              // Name
               Text(
                 widget.name,
                 style: GoogleFonts.inter(
@@ -526,7 +522,6 @@ class _StoryCardState extends State<_StoryCard> {
                 ),
               ),
               SizedBox(height: 4.h),
-              // Location
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -546,7 +541,6 @@ class _StoryCardState extends State<_StoryCard> {
                 ],
               ),
               SizedBox(height: 20.h),
-              // Savings
               Container(
                 padding: EdgeInsets.all(16.w),
                 decoration: BoxDecoration(
@@ -587,7 +581,6 @@ class _StoryCardState extends State<_StoryCard> {
               SizedBox(height: 20.h),
               Divider(color: Colors.white.withOpacity(0.1)),
               SizedBox(height: 16.h),
-              // Before/After
               _BeforeAfter(
                 'Before',
                 widget.before,
@@ -612,7 +605,6 @@ class _StoryCardState extends State<_StoryCard> {
 class _BeforeAfter extends StatelessWidget {
   final String label, text;
   final Color bgColor, textColor;
-
   const _BeforeAfter(this.label, this.text, this.bgColor, this.textColor);
 
   @override
@@ -622,10 +614,7 @@ class _BeforeAfter extends StatelessWidget {
       decoration: BoxDecoration(
         color: bgColor,
         borderRadius: BorderRadius.circular(8.r),
-        border: Border.all(
-          color: textColor.withOpacity(0.3),
-          width: 1,
-        ),
+        border: Border.all(color: textColor.withOpacity(0.3), width: 1),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -633,7 +622,9 @@ class _BeforeAfter extends StatelessWidget {
           Row(
             children: [
               Icon(
-                label == 'Before' ? LucideIcons.circle : LucideIcons.circleCheck,
+                label == 'Before'
+                    ? LucideIcons.circle
+                    : LucideIcons.circleCheck,
                 size: 14.sp,
                 color: textColor,
               ),
@@ -651,10 +642,7 @@ class _BeforeAfter extends StatelessWidget {
           SizedBox(height: 6.h),
           Text(
             text,
-            style: GoogleFonts.inter(
-              fontSize: 11.sp,
-              color: Colors.white,
-            ),
+            style: GoogleFonts.inter(fontSize: 11.sp, color: Colors.white),
           ),
         ],
       ),
@@ -662,10 +650,12 @@ class _BeforeAfter extends StatelessWidget {
   }
 }
 
+/* -------------------------------------------------
+   INDUSTRIAL CARD — UNCHANGED
+------------------------------------------------- */
 class _IndustrialCard extends StatefulWidget {
   final String title, location, stat, desc, quote, author;
   final Color accentColor;
-
   const _IndustrialCard({
     required this.title,
     required this.location,
@@ -700,12 +690,14 @@ class _IndustrialCardState extends State<_IndustrialCard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10.w,
+                      vertical: 4.h,
+                    ),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
@@ -736,7 +728,6 @@ class _IndustrialCardState extends State<_IndustrialCard> {
                 ],
               ),
               SizedBox(height: 16.h),
-              // Title
               Text(
                 widget.title,
                 style: GoogleFonts.inter(
@@ -746,7 +737,6 @@ class _IndustrialCardState extends State<_IndustrialCard> {
                 ),
               ),
               SizedBox(height: 16.h),
-              // Stat
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
@@ -782,7 +772,6 @@ class _IndustrialCardState extends State<_IndustrialCard> {
               SizedBox(height: 20.h),
               Divider(color: Colors.white.withOpacity(0.1)),
               SizedBox(height: 16.h),
-              // Quote
               Text(
                 '"${widget.quote}"',
                 style: GoogleFonts.inter(
@@ -793,7 +782,6 @@ class _IndustrialCardState extends State<_IndustrialCard> {
                 ),
               ),
               SizedBox(height: 12.h),
-              // Author
               Text(
                 widget.author,
                 style: GoogleFonts.inter(
@@ -810,11 +798,13 @@ class _IndustrialCardState extends State<_IndustrialCard> {
   }
 }
 
+/* -------------------------------------------------
+   GLOBAL SNIPPET — OVERFLOW FIXED
+------------------------------------------------- */
 class _GlobalSnippet extends StatefulWidget {
   final IconData icon;
   final String country, city, title, detail;
   final Color accentColor;
-
   const _GlobalSnippet({
     required this.icon,
     required this.country,
@@ -844,12 +834,12 @@ class _GlobalSnippetState extends State<_GlobalSnippet> {
         child: GlassContainer(
           opacity: _isHovered ? 0.15 : 0.1,
           borderRadius: BorderRadius.circular(16.r),
-          padding: EdgeInsets.all(20.w),
+          padding: EdgeInsets.all(16.w),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                padding: EdgeInsets.all(16.w),
+                padding: EdgeInsets.all(14.w),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
@@ -861,29 +851,33 @@ class _GlobalSnippetState extends State<_GlobalSnippet> {
                 ),
                 child: Icon(
                   widget.icon,
-                  size: 32.sp,
+                  size: 28.sp,
                   color: widget.accentColor,
                 ),
               ),
-              SizedBox(height: 16.h),
+              SizedBox(height: 12.h),
               Text(
                 widget.country,
                 style: GoogleFonts.inter(
-                  fontSize: 16.sp,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w700,
                   color: Colors.white,
                 ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
               Text(
                 widget.city,
                 style: GoogleFonts.inter(
-                  fontSize: 12.sp,
+                  fontSize: 11.sp,
                   color: Colors.white60,
                 ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
-              SizedBox(height: 12.h),
+              SizedBox(height: 10.h),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                 decoration: BoxDecoration(
                   color: widget.accentColor.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(8.r),
@@ -895,20 +889,24 @@ class _GlobalSnippetState extends State<_GlobalSnippet> {
                 child: Text(
                   widget.title,
                   style: GoogleFonts.inter(
-                    fontSize: 11.sp,
+                    fontSize: 10.5.sp,
                     fontWeight: FontWeight.w600,
                     color: widget.accentColor,
                   ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
-              SizedBox(height: 8.h),
+              SizedBox(height: 6.h),
               Text(
                 widget.detail,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.inter(
-                  fontSize: 10.sp,
+                  fontSize: 9.5.sp,
                   color: Colors.white70,
                 ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             ],
           ),
@@ -918,11 +916,13 @@ class _GlobalSnippetState extends State<_GlobalSnippet> {
   }
 }
 
+/* -------------------------------------------------
+   METRIC — RIGHT OVERFLOW FIXED WITH FLEXIBLE
+------------------------------------------------- */
 class _Metric extends StatelessWidget {
   final IconData icon;
   final String value, label;
   final Color color;
-
   const _Metric({
     required this.icon,
     required this.value,
@@ -932,40 +932,38 @@ class _Metric extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.all(16.w),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                color.withOpacity(0.3),
-                color.withOpacity(0.1),
-              ],
+    return Flexible(
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.all(14.w),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [color.withOpacity(0.3), color.withOpacity(0.1)],
+              ),
+              shape: BoxShape.circle,
             ),
-            shape: BoxShape.circle,
+            child: Icon(icon, size: 28.sp, color: color),
           ),
-          child: Icon(icon, size: 32.sp, color: color),
-        ),
-        SizedBox(height: 16.h),
-        Text(
-          value,
-          style: GoogleFonts.inter(
-            fontSize: 24.sp,
-            fontWeight: FontWeight.w900,
-            color: color,
+          SizedBox(height: 14.h),
+          Text(
+            value,
+            style: GoogleFonts.inter(
+              fontSize: 22.sp,
+              fontWeight: FontWeight.w900,
+              color: color,
+            ),
           ),
-        ),
-        SizedBox(height: 4.h),
-        Text(
-          label,
-          textAlign: TextAlign.center,
-          style: GoogleFonts.inter(
-            fontSize: 11.sp,
-            color: Colors.white70,
+          SizedBox(height: 4.h),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.inter(fontSize: 11.sp, color: Colors.white70),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

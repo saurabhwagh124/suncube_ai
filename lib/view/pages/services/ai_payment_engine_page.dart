@@ -425,7 +425,7 @@ class EnergyPiePainter extends CustomPainter {
 
     // Generated 58%
     paint.color = const Color(0xFF3B82F6);
-    canvas.drawArc(Rect.fromCircle(center: center, radius: radius), startAngle, 2.1 * pi, false, paint);
+    canvas.drawArc(Rect.fromCircle(center: center,  radius: radius), startAngle, 2.1 * pi, false, paint);
 
     // Consumed 35%
     paint.color = const Color(0xFFF59E0B);
