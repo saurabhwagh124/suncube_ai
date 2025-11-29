@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:suncube_ai/view/landing/landing_page.dart';
+import 'package:suncube_ai/widgets/common/glass_container.dart';
+import 'package:suncube_ai/widgets/common/liquid_background.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -46,38 +48,32 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: RadialGradient(
-            center: Alignment.center,
-            radius: 1.2.r,
-            colors: [Color(0xFF0F1F17), Color(0xFF0B1B14), Color(0xFF0A1612)],
-            stops: [0.2, 0.6, 1.0],
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AnimatedBuilder(
-              animation: _zoomAnimation,
-              builder:
-                  (context, child) => Transform.scale(
-                    scale: _zoomAnimation.value,
-                    child: Container(
-                      decoration: BoxDecoration(
+      body: LiquidBackground(
+        child: SizedBox(
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AnimatedBuilder(
+                animation: _zoomAnimation,
+                builder:
+                    (context, child) => Transform.scale(
+                      scale: _zoomAnimation.value,
+                      child: GlassContainer(
                         color: Color(0XFF34B87C),
                         borderRadius: BorderRadius.circular(25.r),
-                      ),
-                      padding: EdgeInsets.all(5.r),
-                      child: SvgPicture.asset(
-                        'assets/zap-icon.svg',
-                        width: 150.w,
-                        height: 150.h,
+                        padding: EdgeInsets.all(5.r),
+                        opacity: 0.2,
+                        child: SvgPicture.asset(
+                          'assets/zap-icon.svg',
+                          width: 150.w,
+                          height: 150.h,
+                        ),
                       ),
                     ),
-                  ),
-            ),
+              ),
             SizedBox(height: 100.h, width: double.infinity),
             SizedBox(
               child: AnimatedTextKit(
@@ -97,6 +93,8 @@ class _SplashScreenState extends State<SplashScreen>
               ),
             ),
           ],
+        ),
+          
         ),
       ),
     );

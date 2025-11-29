@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:suncube_ai/utils/user_data.dart';
 import 'package:suncube_ai/view/auth/login_screen.dart';
+import 'package:suncube_ai/widgets/common/glass_container.dart';
+import 'package:suncube_ai/widgets/common/liquid_background.dart';
 
 class UserDashboardHome extends StatefulWidget {
   final bool showAppBar;
@@ -34,47 +36,49 @@ class _UserDashboardHomeState extends State<UserDashboardHome> {
     final bool showAppBar = widget.showAppBar;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF060C09),
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.transparent, // Make scaffold transparent for LiquidBackground
       appBar: showAppBar
           ? PreferredSize(
-            preferredSize: Size.fromHeight(60.h + statusBarHeight),
-            child: Container(
-              padding: EdgeInsets.only(top: statusBarHeight),
-              decoration: BoxDecoration(
-                color: const Color(0xFF060C09).withOpacity(.9),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 8.h),
-                child: Row(
-                  children: [
-                    (widget.showAppBar)
-                        ? IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
-                            size: 20.sp,
-                          ),
-                        )
-                        : SizedBox.shrink(),
-                    if (!widget.showAppBar) Spacer(),
-                    // Icon removed as per request
-                    if (isLogged) ...[
-                      Spacer(),
-                      // Removed redundant title, role, and logout button as per request
-                    ],
-                  ],
+              preferredSize: Size.fromHeight(60.h + statusBarHeight),
+              child: GlassContainer(
+                borderRadius: BorderRadius.zero,
+                blur: 10,
+                opacity: 0.2,
+                color: Colors.black,
+                child: Container(
+                  padding: EdgeInsets.only(top: statusBarHeight),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 8.h),
+                    child: Row(
+                      children: [
+                        (widget.showAppBar)
+                            ? IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: Icon(
+                                  Icons.arrow_back,
+                                  color: Colors.white,
+                                  size: 20.sp,
+                                ),
+                              )
+                            : SizedBox.shrink(),
+                        if (!widget.showAppBar) Spacer(),
+                        if (isLogged) ...[
+                          Spacer(),
+                        ],
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-          )
+            )
           : null,
-      body:
-          isLogged
-              ? Padding(
-                padding: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 0),
+      body: LiquidBackground(
+        child: isLogged
+            ? Padding(
+                padding: EdgeInsets.fromLTRB(16.w, showAppBar ? 100.h : 16.h, 16.w, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -89,6 +93,7 @@ class _UserDashboardHomeState extends State<UserDashboardHome> {
                     SizedBox(height: 16.h),
                     Expanded(
                       child: ListView(
+                        padding: EdgeInsets.zero,
                         children: [
                           _metric(
                             'Solar Generation',
@@ -138,104 +143,121 @@ class _UserDashboardHomeState extends State<UserDashboardHome> {
                   ],
                 ),
               )
-              : Center(
+            : Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
-                      LucideIcons.lock,
-                      size: 64.sp,
-                      color: Colors.white.withOpacity(0.5),
-                    ),
-                    SizedBox(height: 16.h),
-                    Text(
-                      'Login Required',
-                      style: GoogleFonts.inter(
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(height: 8.h),
-                    Text(
-                      'Please login to access your dashboard.',
-                      style: GoogleFonts.inter(
-                        fontSize: 16.sp,
-                        color: Colors.white70,
-                      ),
-                    ),
-                    SizedBox(height: 24.h),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LoginScreen(),
+                    GlassContainer(
+                      padding: EdgeInsets.all(32.w),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            LucideIcons.lock,
+                            size: 64.sp,
+                            color: Colors.white.withOpacity(0.5),
                           ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF73E0A9),
-                        foregroundColor: Colors.black,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 32.w,
-                          vertical: 12.h,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.r),
-                        ),
-                      ),
-                      child: Text(
-                        'Login Now',
-                        style: GoogleFonts.inter(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
+                          SizedBox(height: 16.h),
+                          Text(
+                            'Login Required',
+                            style: GoogleFonts.inter(
+                              fontSize: 24.sp,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(height: 8.h),
+                          Text(
+                            'Please login to access your dashboard.',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.inter(
+                              fontSize: 16.sp,
+                              color: Colors.white70,
+                            ),
+                          ),
+                          SizedBox(height: 24.h),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginScreen(),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF73E0A9),
+                              foregroundColor: Colors.black,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 32.w,
+                                vertical: 12.h,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.r),
+                              ),
+                            ),
+                            child: Text(
+                              'Login Now',
+                              style: GoogleFonts.inter(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
+      ),
     );
   }
 
   Widget _metric(String title, String value, IconData icon, Color color) =>
-      Container(
-        padding: EdgeInsets.all(16.w),
-        decoration: BoxDecoration(
-          color: const Color(0xFF1E2622),
-          borderRadius: BorderRadius.circular(12.r),
-          border: Border.all(color: Colors.white12),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Text(
-                    title,
-                    style: GoogleFonts.inter(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
+      Padding(
+        padding: EdgeInsets.only(bottom: 12.h),
+        child: GlassContainer(
+          padding: EdgeInsets.all(16.w),
+          color: Colors.white,
+          opacity: 0.05,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: GoogleFonts.inter(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white70,
+                      ),
                     ),
                   ),
-                ),
-                Icon(icon, color: color, size: 24.sp),
-              ],
-            ),
-            SizedBox(height: 12.h),
-            Text(
-              value,
-              style: GoogleFonts.inter(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+                  Container(
+                    padding: EdgeInsets.all(8.w),
+                    decoration: BoxDecoration(
+                      color: color.withOpacity(0.2),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(icon, color: color, size: 20.sp),
+                  ),
+                ],
               ),
-            ),
-          ],
+              SizedBox(height: 12.h),
+              Text(
+                value,
+                style: GoogleFonts.inter(
+                  fontSize: 24.sp,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
         ),
       );
 }

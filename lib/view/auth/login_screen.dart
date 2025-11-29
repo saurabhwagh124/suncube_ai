@@ -7,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
 import 'package:suncube_ai/utils/user_data.dart';
 import 'package:suncube_ai/view/landing/landing_page.dart';
+import 'package:suncube_ai/widgets/common/glass_container.dart';
+import 'package:suncube_ai/widgets/common/liquid_background.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -56,52 +58,24 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          gradient: RadialGradient(
-            center: Alignment.center,
-            radius: 1.2.r,
-            colors: const [
-              Color(0xFF0F1F17),
-              Color(0xFF0B1B14),
-              Color(0xFF0A1612),
-            ],
-            stops: [0.2, 0.6, 1.0],
-          ),
-        ),
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
-        child: Center(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20.r),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+      body: LiquidBackground(
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+          child: Center(
+            child: GlassContainer(
+              borderRadius: BorderRadius.circular(20.r),
+              blur: 15,
+              opacity: 0.12,
+              borderGradient: LinearGradient(
+                colors: [
+                  Colors.white.withOpacity(0.18),
+                  Colors.white.withOpacity(0.05),
+                ],
+              ),
               child: Container(
                 width: 360.w,
                 padding: EdgeInsets.all(24.r),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.12),
-                  borderRadius: BorderRadius.circular(20.r),
-                  border: Border.all(
-                    color: Colors.white.withOpacity(0.18),
-                    width: 1.w,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.15),
-                      blurRadius: 12,
-                      offset: const Offset(0, 6),
-                    ),
-                  ],
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.white.withOpacity(0.07),
-                      Colors.white.withOpacity(0.05),
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
                 child: ConstrainedBox(
                   constraints: BoxConstraints(
                     maxHeight: MediaQuery.of(context).size.height * 0.85,
@@ -173,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         SizedBox(height: 16.h),
 
-                        /// Role Dropdown inline implementation
+                        /// Role Dropdown
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
@@ -220,49 +194,46 @@ class _LoginScreenState extends State<LoginScreen> {
                                     selectedRole = newValue;
                                   });
                                 },
-                                items:
-                                    roles.map((RoleOption role) {
-                                      return DropdownMenuItem<RoleOption>(
-                                        value: role,
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              role.icon,
-                                              color: const Color(0xFF73E0A9),
-                                              size: 20.sp,
-                                            ),
-                                            SizedBox(width: 10.w),
-                                            Flexible(
-                                              child: RichText(
-                                                overflow: TextOverflow.ellipsis,
-                                                text: TextSpan(
-                                                  children: [
-                                                    TextSpan(
-                                                      text: role.title,
-                                                      style: TextStyle(
-                                                        fontSize: 14.sp,
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    ),
-                                                    TextSpan(
-                                                      text: role.description,
-                                                      style: TextStyle(
-                                                        fontSize: 12.sp,
-                                                        color: Colors.white70,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ],
+                                items: roles.map((RoleOption role) {
+                                  return DropdownMenuItem<RoleOption>(
+                                    value: role,
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          role.icon,
+                                          color: const Color(0xFF73E0A9),
+                                          size: 20.sp,
                                         ),
-                                      );
-                                    }).toList(),
+                                        SizedBox(width: 10.w),
+                                        Flexible(
+                                          child: RichText(
+                                            overflow: TextOverflow.ellipsis,
+                                            text: TextSpan(
+                                              children: [
+                                                TextSpan(
+                                                  text: role.title,
+                                                  style: TextStyle(
+                                                    fontSize: 14.sp,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                                TextSpan(
+                                                  text: role.description,
+                                                  style: TextStyle(
+                                                    fontSize: 12.sp,
+                                                    color: Colors.white70,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }).toList(),
                               ),
                             ),
                           ),
@@ -281,30 +252,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                 userData.write('email', emailController.text);
                                 userData.write('role', selectedRole!.title);
                                 userData.write('isLogged', true);
-                                if (selectedRole!.title.toLowerCase() ==
-                                    "admin") {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => LandingPage(),
-                                    ),
-                                  );
-                                } else if (selectedRole!.title.toLowerCase() ==
-                                    "user") {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => LandingPage(),
-                                    ),
-                                  );
-                                } else {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => LandingPage(),
-                                    ),
-                                  );
-                                }
+
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const LandingPage(),
+                                  ),
+                                );
                               }
                             },
                             icon: const Icon(Icons.login, color: Colors.white),
@@ -348,7 +302,7 @@ class _LoginScreenState extends State<LoginScreen> {
         contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.r),
-          borderSide: BorderSide(color: Colors.white24),
+          borderSide: const BorderSide(color: Colors.white24),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.r),
@@ -389,7 +343,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
-              borderSide: BorderSide(color: Colors.white24),
+              borderSide: const BorderSide(color: Colors.white24),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
