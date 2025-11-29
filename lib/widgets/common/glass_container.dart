@@ -10,6 +10,8 @@ class GlassContainer extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
   final Gradient? borderGradient;
+  final double? width;
+  final double? height;
 
   const GlassContainer({
     super.key,
@@ -21,12 +23,16 @@ class GlassContainer extends StatelessWidget {
     this.padding,
     this.margin,
     this.borderGradient,
+    this.width,
+    this.height,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
+      width: width,
+      height: height,
       child: ClipRRect(
         borderRadius: borderRadius ?? BorderRadius.circular(16.0),
         child: BackdropFilter(

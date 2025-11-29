@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:suncube_ai/widgets/common/glass_container.dart';
 
 class PredictiveAlerts extends StatelessWidget {
   const PredictiveAlerts({super.key});
@@ -12,29 +13,12 @@ class PredictiveAlerts extends StatelessWidget {
       opacity: 1,
       duration: const Duration(milliseconds: 800),
       curve: Curves.easeInOut,
-      child: Container(
+      child: GlassContainer(
         margin: EdgeInsets.symmetric(vertical: 60.h, horizontal: 24.w),
         padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 24.w),
-        decoration: BoxDecoration(
-          color: const Color(0xFF060C09).withOpacity(0.4),
-          borderRadius: BorderRadius.circular(24.r),
-          border: Border.all(color: Colors.white.withOpacity(0.1), width: 1.w),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 20,
-              offset: const Offset(0, 4),
-            ),
-          ],
-          gradient: LinearGradient(
-            colors: [
-              Colors.white.withOpacity(0.05),
-              const Color(0xFF1A231F).withOpacity(0.3),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
+        color: const Color(0xFF060C09),
+        opacity: 0.4,
+        borderRadius: BorderRadius.circular(24.r),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -86,32 +70,19 @@ class PredictiveAlerts extends StatelessWidget {
             SizedBox(height: 32.h),
 
             /* Alerts Card */
-            Container(
+            GlassContainer(
               width: 600.w,
-              constraints: BoxConstraints(maxWidth: 600.w),
+              // constraints: BoxConstraints(maxWidth: 600.w), // GlassContainer wraps Container, so constraints should be handled carefully or passed if supported. GlassContainer doesn't have constraints param, but child does.
+              // Actually GlassContainer doesn't support constraints directly. I'll wrap the child in ConstrainedBox if needed, or just rely on width.
               padding: EdgeInsets.all(15.r),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(16.r),
-                border: Border.all(
-                  color: const Color(0xFF73E0A9).withOpacity(0.15),
-                  width: 1.w,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
-                    blurRadius: 10,
-                    offset: const Offset(0, 2),
-                  ),
+              color: Colors.white,
+              opacity: 0.1,
+              borderRadius: BorderRadius.circular(16.r),
+              borderGradient: LinearGradient(
+                colors: [
+                  const Color(0xFF73E0A9).withOpacity(0.15),
+                  const Color(0xFF73E0A9).withOpacity(0.05),
                 ],
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.white.withOpacity(0.05),
-                    const Color(0xFF73E0A9).withOpacity(0.05),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -197,24 +168,16 @@ class _AlertTileState extends State<_AlertTile> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
+    return GlassContainer(
       margin: EdgeInsets.only(bottom: 12.h),
       padding: EdgeInsets.all(10.w),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(
-          color: const Color(0xFF73E0A9).withOpacity(0.15),
-          width: 1.w,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
+      color: Colors.white,
+      opacity: 0.1,
+      borderRadius: BorderRadius.circular(12.r),
+      borderGradient: LinearGradient(
+        colors: [
+          const Color(0xFF73E0A9).withOpacity(0.15),
+          const Color(0xFF73E0A9).withOpacity(0.05),
         ],
       ),
       child: Column(
