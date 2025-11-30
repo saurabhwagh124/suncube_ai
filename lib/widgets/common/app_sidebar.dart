@@ -365,8 +365,8 @@ class _AppSidebarState extends State<AppSidebar> {
       case 'services':
         page = const ServicesScreen(showAppBar: true);
         break;
-      case 'dashboard':
-        page = const UserDashboardHome(showAppBar: true);
+      // case 'dashboard':
+      //   page = const UserDashboardHome(showAppBar: true);
         break;
       case 'billings':
         page = const BillingPage(showAppBar: true);
@@ -459,7 +459,7 @@ class _AppSidebarState extends State<AppSidebar> {
 
                 const _MenuTile(icon: LucideIcons.house, label: 'Home', route: 'home'),
                 const _MenuTile(icon: LucideIcons.zap, label: 'Services', route: 'services'),
-                const _MenuTile(icon: LucideIcons.layoutDashboard, label: 'Dashboard', route: 'dashboard'),
+                // const _MenuTile(icon: LucideIcons.layoutDashboard, label: 'Dashboard', route: 'dashboard'),
                 const _MenuTile(icon: LucideIcons.wallet, label: 'Billings', route: 'billings'),
                 const _MenuTile(icon: LucideIcons.mail, label: 'Contact', route: 'contact'),
 

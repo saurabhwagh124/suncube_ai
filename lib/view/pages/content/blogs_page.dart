@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
+import 'package:suncube_ai/widgets/common/common_app_%20bar.dart';
 import 'package:suncube_ai/widgets/common/glass_container.dart';
 import 'package:suncube_ai/widgets/common/liquid_background.dart';
 
@@ -13,48 +14,19 @@ class BlogsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      backgroundColor: Colors.transparent,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight + 20.h),
-        child: GlassContainer(
-          opacity: 0.22,
-          blur: 20,
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(32.r)),
-          child: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            centerTitle: true,
-            title: Text(
-              'Suncube AI Blog',
-              style: GoogleFonts.inter(
-                fontWeight: FontWeight.w800,
-                fontSize: 21.sp,
-                color: Colors.white,
-              ),
-            ),
-            leading: IconButton(
-              icon: Icon(
-                Icons.arrow_back_ios_new_rounded,
-                color: Colors.white,
-                size: 24.sp,
-              ),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ),
-        ),
-      ),
-      body: LiquidBackground(
-        child: SafeArea(
+    return LiquidBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: CommonAppBar(title: 'Suncube AI Blog'),
+        body: SafeArea(
           top: false,
           child: CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: [
               // Hero Section
-              SliverToBoxAdapter(child: SizedBox(height: 100.h)),
+              SliverToBoxAdapter(child: SizedBox(height: 20.h)),
               SliverToBoxAdapter(child: _HeroSection()),
-
+        
               // Articles Grid
               SliverPadding(
                 padding: EdgeInsets.fromLTRB(
@@ -65,7 +37,7 @@ class BlogsPage extends StatelessWidget {
                 ), // Reduced bottom padding
                 sliver: _ArticleGrid(),
               ),
-
+        
               // FINAL FIX: Only a tiny safe bottom padding — no huge empty space
               SliverToBoxAdapter(
                 child: SizedBox(

@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:suncube_ai/utils/user_data.dart';
 import 'package:suncube_ai/view/auth/login_screen.dart';
+import 'package:suncube_ai/widgets/common/common_app_%20bar.dart';
 import 'package:suncube_ai/widgets/common/glass_container.dart';
 import 'package:suncube_ai/widgets/common/liquid_background.dart';
 import 'package:suncube_ai/widgets/common/metric_card.dart';
@@ -37,49 +38,14 @@ class _UserDashboardHomeState extends State<UserDashboardHome> {
     final bool showAppBar = widget.showAppBar;
 
     return Scaffold(
-      extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent, // Make scaffold transparent for LiquidBackground
       appBar: showAppBar
-          ? PreferredSize(
-              preferredSize: Size.fromHeight(60.h + statusBarHeight),
-              child: GlassContainer(
-                borderRadius: BorderRadius.zero,
-                blur: 10,
-                opacity: 0.2,
-                color: Colors.black,
-                child: Container(
-                  padding: EdgeInsets.only(top: statusBarHeight),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 8.h),
-                    child: Row(
-                      children: [
-                        (widget.showAppBar)
-                            ? IconButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                icon: Icon(
-                                  Icons.arrow_back,
-                                  color: Colors.white,
-                                  size: 20.sp,
-                                ),
-                              )
-                            : SizedBox.shrink(),
-                        if (!widget.showAppBar) Spacer(),
-                        if (isLogged) ...[
-                          Spacer(),
-                        ],
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            )
+          ? CommonAppBar(title: "Dashboard")
           : null,
       body: LiquidBackground(
         child: isLogged
             ? Padding(
-                padding: EdgeInsets.fromLTRB(16.w, showAppBar ? 100.h : 16.h, 16.w, 0),
+                padding: EdgeInsets.fromLTRB(16.w, showAppBar ? 20.h : 16.h, 16.w, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

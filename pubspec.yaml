@@ -28,3 +28,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/fs01.png
+    - assets/fs02.png
+    - assets/fs03.png
+    - assets/fs04.png

@@ -16,8 +16,8 @@ class HeroSection extends StatelessWidget {
       duration: const Duration(milliseconds: 1000),
       curve: Curves.easeInOut,
       child: GlassContainer(
-        margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
-        padding: EdgeInsets.fromLTRB(20.w, 40.h, 20.w, 32.h),
+        margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+        padding: EdgeInsets.fromLTRB(20.w, 32.h, 20.w, 32.h),
         blur: 15,
         opacity: 0.1,
         color: Colors.white,

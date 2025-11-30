@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
+import 'package:suncube_ai/widgets/common/common_app_%20bar.dart';
 import 'package:suncube_ai/widgets/common/glass_container.dart';
 import 'package:suncube_ai/widgets/common/liquid_background.dart';
 
@@ -13,37 +14,14 @@ class SuccessStoriesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: Icon(Icons.arrow_back, color: Colors.white, size: 30.sp),
-        ),
+    return LiquidBackground(
+      child: Scaffold(
         backgroundColor: Colors.transparent,
-        elevation: 0,
-        flexibleSpace: GlassContainer(
-          opacity: 0.2,
-          blur: 10,
-          borderRadius: BorderRadius.zero,
-          child: Container(),
-        ),
-        title: Text(
-          'Success Stories',
-          style: GoogleFonts.inter(
-            fontWeight: FontWeight.w800,
-            fontSize: 20.sp,
-            color: Colors.white,
-          ),
-        ),
-      ),
-      body: LiquidBackground(
-        child: SingleChildScrollView(
+        appBar: CommonAppBar(title: 'Success Stories'),
+        body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
           child: Column(
             children: [
-              SizedBox(height: 100.h),
               _HeroSection(),
               SizedBox(height: 40.h),
               _ResidentialSection(),

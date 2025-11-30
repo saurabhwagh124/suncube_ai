@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
+import 'package:suncube_ai/widgets/common/common_app_%20bar.dart';
 import 'package:suncube_ai/widgets/common/liquid_background.dart';
 import 'package:suncube_ai/widgets/common/glass_container.dart';
 
@@ -18,87 +19,44 @@ class BillingPage extends StatefulWidget {
 class _BillingPageState extends State<BillingPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar:
-          (widget.showAppBar)
-              ? AppBar(
-                leading: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                    size: 30.sp,
-                  ),
-                ),
-                title: Text(
-                  'Billings',
-                  style: GoogleFonts.inter(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                centerTitle: true,
-                elevation: 0,
-                backgroundColor: Colors.transparent,
-                flexibleSpace: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        const Color(0xFF060C09).withOpacity(0.9),
-                        const Color(0xFF1A231F).withOpacity(0.9),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        blurRadius: 8,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-              : null,
-      backgroundColor: Colors.transparent,
-      body: LiquidBackground(
-        child: Container(
-          margin: EdgeInsets.only(top: 84.h),
-          child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _hero(context),
-                SizedBox(height: 40.h),
-                _sectionTitle('Performance Reports'),
-                SizedBox(height: 16.h),
-                _kpiCards(),
-                SizedBox(height: 24.h),
-                _energyBalanceCard(),
-                SizedBox(height: 24.h),
-                _exportReportsCard(),
-                SizedBox(height: 40.h),
-                _sectionTitle('Regulatory Compliance Log'),
-                SizedBox(height: 16.h),
-                _complianceTable(),
-                SizedBox(height: 40.h),
-                _sectionTitle('Stakeholder Dashboard'),
-                SizedBox(height: 16.h),
-                _roleSelector(),
-                SizedBox(height: 16.h),
-                _gridMetrics(),
-                SizedBox(height: 40.h),
-                _sectionTitle('Monthly & Yearly Digest'),
-                SizedBox(height: 16.h),
-                _digestCards(),
-                SizedBox(height: 100.h),
-              ],
-            ),
+    return LiquidBackground(
+      child: Scaffold(
+        appBar:
+            (widget.showAppBar)
+                ? CommonAppBar(title: "Billings")
+                : null,
+        backgroundColor: Colors.transparent,
+        body: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 20.h,),
+              _hero(context),
+              SizedBox(height: 20.h),
+              _sectionTitle('Performance Reports'),
+              SizedBox(height: 16.h),
+              _kpiCards(),
+              SizedBox(height: 24.h),
+              _energyBalanceCard(),
+              SizedBox(height: 24.h),
+              _exportReportsCard(),
+              SizedBox(height: 40.h),
+              _sectionTitle('Regulatory Compliance Log'),
+              SizedBox(height: 16.h),
+              _complianceTable(),
+              SizedBox(height: 40.h),
+              _sectionTitle('Stakeholder Dashboard'),
+              SizedBox(height: 16.h),
+              _roleSelector(),
+              SizedBox(height: 16.h),
+              _gridMetrics(),
+              SizedBox(height: 40.h),
+              _sectionTitle('Monthly & Yearly Digest'),
+              SizedBox(height: 16.h),
+              _digestCards(),
+              SizedBox(height: 100.h),
+            ],
           ),
         ),
       ),
@@ -111,7 +69,7 @@ class _BillingPageState extends State<BillingPage> {
   Widget _hero(BuildContext context) {
     return GlassContainer(
       margin: EdgeInsets.only(bottom: 24.h),
-      padding: EdgeInsets.symmetric(vertical: 48.h, horizontal: 24.w),
+      padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 24.w),
       blur: 20,
       opacity: 0.15,
       color: AppColors.themeGreen,

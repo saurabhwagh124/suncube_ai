@@ -80,7 +80,7 @@ class _SplashScreenState extends State<SplashScreen>
                 animatedTexts: [
                   TypewriterAnimatedText(
                     cursor: '.',
-                    speed: Duration(milliseconds: 150),
+                    speed: Duration(milliseconds: 100),
                     "Suncube AI",
                     textStyle: GoogleFonts.lato(
                       color: Colors.white,
@@ -89,7 +89,7 @@ class _SplashScreenState extends State<SplashScreen>
                     ),
                   ),
                 ],
-                isRepeatingAnimation: true,
+                isRepeatingAnimation: false,
               ),
             ),
           ],

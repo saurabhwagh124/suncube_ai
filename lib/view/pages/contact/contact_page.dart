@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
+import 'package:suncube_ai/widgets/common/common_app_%20bar.dart';
 import 'package:suncube_ai/widgets/common/glass_container.dart';
 import 'package:suncube_ai/widgets/common/liquid_background.dart';
 
@@ -11,47 +12,11 @@ class ContactPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back, color: Colors.white, size: 30.sp),
-        ),
-        title: Text(
-          'Contact Us',
-          style: GoogleFonts.inter(
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        centerTitle: true,
-        elevation: 0,
+    return LiquidBackground(
+      child: Scaffold(
         backgroundColor: Colors.transparent,
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                const Color(0xFF060C09).withOpacity(0.9),
-                const Color(0xFF1A231F).withOpacity(0.9),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.2),
-                blurRadius: 8,
-                offset: const Offset(0, 2),
-              ),
-            ],
-          ),
-        ),
-      ),
-      body: LiquidBackground(
-        child: SingleChildScrollView(
+        appBar:CommonAppBar(title: "Contact Us"),
+        body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -344,11 +309,14 @@ class ContactPage extends StatelessWidget {
                           size: 20.sp,
                         ),
                         SizedBox(width: 12.w),
-                        Text(
-                          'Monday - Friday: 9:00 AM - 6:00 PM CST',
-                          style: GoogleFonts.inter(
-                            fontSize: 14.sp,
-                            color: Colors.white.withOpacity(0.8),
+                        Flexible(
+                          child: Text(
+                            'Monday - Friday: 9:00 AM - 6:00 PM CST',
+                            style: GoogleFonts.inter(
+                              fontSize: 14.sp,
+                              color: Colors.white.withOpacity(0.8),
+                            ),
+                            maxLines: 2,
                           ),
                         ),
                       ],

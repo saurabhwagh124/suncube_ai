@@ -50,7 +50,6 @@ class _LandingPageState extends State<LandingPage> {
 
     return Scaffold(
       key: scaffoldKey,
-      extendBodyBehindAppBar: true,
       backgroundColor: const Color(0xFF060C09),
       drawer: const AppSidebar(),
       appBar: AppBar(
@@ -173,12 +172,13 @@ class _LandingPageState extends State<LandingPage> {
 Widget landingPageView() {
   return LiquidBackground(
     child: Container(
-      margin: EdgeInsets.only(top: 64.h),
+      margin: EdgeInsets.zero,
       child: CustomScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         slivers: [
           SliverList(
             delegate: SliverChildListDelegate([
+              SizedBox(height: 20,),
               const HeroSection(),
               const BenefitsSection(),
               const HowItWorks(),

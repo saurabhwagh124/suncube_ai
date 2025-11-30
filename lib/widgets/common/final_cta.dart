@@ -106,25 +106,25 @@ class FinalCTA extends StatelessWidget {
               ),
               SizedBox(height: 32.h),
               // Features row
-              Wrap(
-                spacing: 24.w,
-                runSpacing: 16.h,
-                alignment: WrapAlignment.center,
-                children: [
-                  _Feature(
-                    icon: LucideIcons.shield,
-                    text: 'Blockchain Secured',
-                  ),
-                  _Feature(
-                    icon: LucideIcons.zap,
-                    text: 'AI Optimized',
-                  ),
-                  _Feature(
-                    icon: LucideIcons.clock,
-                    text: '24/7 Monitoring',
-                  ),
-                ],
-              ),
+              // Wrap(
+              //   spacing: 24.w,
+              //   runSpacing: 16.h,
+              //   alignment: WrapAlignment.center,
+              //   children: [
+              //     _Feature(
+              //       icon: LucideIcons.shield,
+              //       text: 'Blockchain Secured',
+              //     ),
+              //     _Feature(
+              //       icon: LucideIcons.zap,
+              //       text: 'AI Optimized',
+              //     ),
+              //     _Feature(
+              //       icon: LucideIcons.clock,
+              //       text: '24/7 Monitoring',
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         ),

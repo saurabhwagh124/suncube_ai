@@ -2,37 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
+import 'package:suncube_ai/widgets/common/common_app_%20bar.dart';
 import 'package:suncube_ai/widgets/common/liquid_background.dart';
 import 'package:suncube_ai/widgets/common/glass_container.dart';
 
 class Solution4 extends StatelessWidget {
-  const Solution4({super.key});
+  final String title;
+  const Solution4({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return LiquidBackground(
       child: Scaffold(
         backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back, color: Colors.white, size: 30.sp),
-        ),
-        title: Text(
-          'Solution 4',
-          style: GoogleFonts.inter(
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        flexibleSpace: Container(),
-      ),
+      appBar: CommonAppBar(title: title),
       body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Column(

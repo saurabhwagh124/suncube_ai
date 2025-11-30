@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
+import 'package:suncube_ai/widgets/common/common_app_%20bar.dart';
 import 'package:suncube_ai/widgets/common/glass_container.dart';
 import 'package:suncube_ai/widgets/common/liquid_background.dart';
 
@@ -49,34 +50,13 @@ class BlockchainSecurityPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      backgroundColor: Colors.transparent,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: GlassContainer(
-          opacity: 0.18,
-          blur: 16,
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(28.r)),
-          child: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            centerTitle: true,
-            title: Text(
-              'Blockchain & Security',
-              style: GoogleFonts.inter(fontWeight: FontWeight.w800, fontSize: 21.sp, color: Colors.white),
-            ),
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white, size: 22.sp),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ),
-        ),
-      ),
-      body: LiquidBackground(
-        child: SingleChildScrollView(
+    return LiquidBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: CommonAppBar(title: 'Blockchain & Security'),
+        body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-          padding: EdgeInsets.only(top: kToolbarHeight + 50.h),
+          padding: EdgeInsets.only(top: 20.h),
           child: Column(
             children: [
               _heroSection(),
@@ -88,7 +68,7 @@ class BlockchainSecurityPage extends StatelessWidget {
               _auditTrailSection(),
               SizedBox(height: 60.h),
               _smartContractsSection(),
-              SizedBox(height: 100.h),
+              SizedBox(height: 40.h),
             ],
           ),
         ),

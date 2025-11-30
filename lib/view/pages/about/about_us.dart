@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:suncube_ai/utils/AppColors.dart';
+import 'package:suncube_ai/widgets/common/common_app_%20bar.dart';
 import 'package:suncube_ai/widgets/common/glass_container.dart';
 import 'package:suncube_ai/widgets/common/liquid_background.dart';
 
@@ -13,34 +14,11 @@ class AboutUsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: Icon(Icons.arrow_back, color: Colors.white, size: 28.sp),
-        ),
-        title: Text(
-          'About Us',
-          style: GoogleFonts.inter(
-            fontSize: 20.sp,
-            fontWeight: FontWeight.w800,
-            color: Colors.white,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        flexibleSpace: GlassContainer(
-          opacity: 0.2,
-          blur: 12,
-          borderRadius: BorderRadius.zero,
-          child: Container(),
-        ),
-      ),
+      appBar: CommonAppBar(title: "About us"),
       body: LiquidBackground(
         child: SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(20.w, 110.h, 20.w, 40.h),
+          padding: EdgeInsets.fromLTRB(20.w, 20.h, 20.w, 40.h),
           child: Column(
             children: [
               // HERO SECTION

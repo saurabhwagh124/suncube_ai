@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:suncube_ai/utils/app_theme.dart';
+import 'package:suncube_ai/widgets/common/common_app_%20bar.dart';
 import 'package:suncube_ai/widgets/common/glass_container.dart';
 import 'package:suncube_ai/widgets/common/liquid_background.dart';
 
@@ -31,41 +32,14 @@ class _SustainabilityPageState extends State<SustainabilityPage> {
           secondary: accentOrange,
         ),
       ),
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: Colors.white,
-              size: 28.sp,
-            ),
-          ),
-          title: Text(
-            'Sustainability',
-            style: GoogleFonts.inter(
-              fontSize: 21.sp,
-              fontWeight: FontWeight.w800,
-              color: Colors.white,
-            ),
-          ),
-          centerTitle: true,
+      child: LiquidBackground(
+        child: Scaffold(
           backgroundColor: Colors.transparent,
-          elevation: 0,
-          flexibleSpace: GlassContainer(
-            opacity: 0.22,
-            blur: 16,
-            borderRadius: BorderRadius.zero,
-            child: Container(),
-          ),
-        ),
-        body: LiquidBackground(
-          child: SafeArea(
+          appBar: CommonAppBar(title: "Sustainability"),
+          body: SafeArea(
             top: false,
             child: SingleChildScrollView(
-              padding: EdgeInsets.fromLTRB(20.w, 110.h, 20.w, 80.h),
+              padding: EdgeInsets.fromLTRB(20.w, 20.h, 20.w, 40.h),
               child: Column(
                 children: [
                   _HeroSection(),

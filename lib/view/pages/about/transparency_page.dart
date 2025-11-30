@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import 'package:suncube_ai/utils/AppColors.dart';
+import 'package:suncube_ai/widgets/common/common_app_%20bar.dart';
 import 'package:suncube_ai/widgets/common/glass_container.dart';
 import 'package:suncube_ai/widgets/common/liquid_background.dart';
 
@@ -14,38 +15,13 @@ class TransparencyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      extendBodyBehindAppBar: true,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: GlassContainer(
-          opacity: 0.15,
-          blur: 14,
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(24.r)),
-          child: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            centerTitle: true,
-            title: Text(
-              'Transparency',
-              style: GoogleFonts.inter(
-                color: Colors.white,
-                fontWeight: FontWeight.w800,
-                fontSize: 21.sp,
-              ),
-            ),
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white, size: 22.sp),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ),
-        ),
-      ),
-      body: LiquidBackground(
-        child: SingleChildScrollView(
+    return LiquidBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: CommonAppBar(title: 'Transparency'),
+        body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-          padding: EdgeInsets.only(top: kToolbarHeight + 30.h),
+          padding: EdgeInsets.only(top:20.h),
           child: Column(
             children: [
               _hero(),
@@ -57,7 +33,7 @@ class TransparencyPage extends StatelessWidget {
               _stakeholderDashboard(),
               SizedBox(height: 40.h),
               _digestSection(),
-              SizedBox(height: 100.h),
+              SizedBox(height: 40.h),
             ],
           ),
         ),
